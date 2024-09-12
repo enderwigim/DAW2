@@ -1,0 +1,4 @@
+#Extension .bak
+*.bak
+#./output files
+output/
