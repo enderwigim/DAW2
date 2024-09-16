@@ -1,0 +1,7 @@
+﻿.header{
+    text-align: center;
+}
+.linkbuttons{
+    display: flex;
+    direction: row;
+}

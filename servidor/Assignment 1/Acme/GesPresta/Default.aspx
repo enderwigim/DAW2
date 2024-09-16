@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GesPresta.Default" %>
 
+<%@ Register Src="~/Cabecera.ascx" TagPrefix="uc1" TagName="Cabecera" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,6 +13,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <uc1:Cabecera runat="server" id="Cabecera" />
         </div>
     </form>
 </body>
