@@ -1,0 +1,16 @@
+﻿.header{
+    text-align: center;
+}
+.linkbuttons{
+    padding: 3%;
+}
+h1, h2, h3{
+    margin: 1% 0% 0% 0%;
+    padding: 0%;
+}
+h3 {
+    font-weight: 100;
+}
+.empleado_container{
+    display: flex
+}
