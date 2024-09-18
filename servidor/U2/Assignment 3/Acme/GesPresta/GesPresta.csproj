@@ -72,6 +72,7 @@
     <Content Include="styles.css" />
     <Content Include="Web.config" />
     <Content Include="Empleados.aspx" />
+    <Content Include="Prestaciones.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cabecera.ascx.cs">
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="Empleados.aspx.designer.cs">
       <DependentUpon>Empleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prestaciones.aspx.cs">
+      <DependentUpon>Prestaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prestaciones.aspx.designer.cs">
+      <DependentUpon>Prestaciones.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

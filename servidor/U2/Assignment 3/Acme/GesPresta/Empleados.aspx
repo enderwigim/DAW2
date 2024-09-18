@@ -20,7 +20,6 @@
             <div class="empleado_container">
                 <label>Código Empleado</label>
                 <asp:TextBox ID="txtCodEmp" runat="server"></asp:TextBox>
-
             </div>
             <div class="empleado_container">
                 <label>NIF</label>

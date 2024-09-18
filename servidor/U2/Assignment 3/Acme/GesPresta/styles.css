@@ -14,3 +14,26 @@ h3 {
 .empleado_container{
     display: flex
 }
+
+.lendings {
+    text-align: center;
+}
+
+.body-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.text {
+    display: inline-block;
+    width: 45%;
+    margin: 5px;
+    text-align: right;
+    margin-right: 2%;
+}
+.button{
+    margin-top: 2%;
+    text-align: center;
+
+}
