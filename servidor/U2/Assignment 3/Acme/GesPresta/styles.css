@@ -4,36 +4,57 @@
 .linkbuttons{
     padding: 3%;
 }
-h1, h2, h3{
+h1, h3{
     margin: 1% 0% 0% 0%;
     padding: 0%;
 }
 h3 {
     font-weight: 100;
 }
-.empleado_container{
-    display: flex
+h2 {
+    margin-top:3%;
+    text-align: center;
 }
 
 .lendings {
     text-align: center;
+    margin-bottom: 2%;
 }
 
-.body-container {
+.body {
+    display: table;
     margin-left: 10%;
     margin-right: 10%;
-    padding-top: 15px;
-    padding-bottom: 10px;
+    padding-top: 2%;
+    width: 80%;
 }
-.text {
-    display: inline-block;
-    width: 45%;
-    margin: 5px;
-    text-align: right;
-    margin-right: 2%;
-}
-.button{
-    margin-top: 2%;
-    text-align: center;
 
+.line {
+    display: table-row;
+    height: 25px;
+}
+
+.text {
+    display: table-cell;
+    text-align: right;
+    width: 40%;
+    padding-bottom: 1%;
+}
+
+.control {
+    display: table-cell;
+    text-align: left;
+    width: 50%;
+    padding-left: 4%;
+}
+
+.btn {
+    text-align: center;
+}
+
+.prestaciones-titulo {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    padding: 22px 0px 22px 0px;
 }

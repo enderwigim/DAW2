@@ -13,53 +13,100 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <uc1:Cabecera runat="server" ID="Cabecera" />
-        </div>
-        <div>
-            <div class="empleado_container">
-                <label>Código Empleado</label>
-                <asp:TextBox ID="txtCodEmp" runat="server"></asp:TextBox>
-            </div>
-            <div class="empleado_container">
-                <label>NIF</label>
-                <asp:TextBox ID="txtNifEmp" runat="server"></asp:TextBox>
-            </div>
-            <div class="empleado_container">
-                <label>Apellidos y Nombre</label>
-                <asp:TextBox ID="txtNomEmp" runat="server"></asp:TextBox>
+    <div>
+        <uc1:Cabecera runat="server" ID="Cabecera" />
+    </div>
 
+    <div class="body">
+        <div class="line">
+            <div class="text">
+                Código Empleado
             </div>
-            <div class="empleado_container">
-                <label>Dirección</label>
-                <asp:TextBox ID="txtDirEmp" runat="server"></asp:TextBox>
+            <div class="control">
+                <asp:TextBox ID="txtCodEmp" runat="server" Width="200px"></asp:TextBox>
             </div>
-            
-            <div class="empleado_container">
-                <label>Ciudad</label>
-                <asp:TextBox ID="txtCiuEmp" runat="server"></asp:TextBox>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                NIF
             </div>
-            <div class="empleado_container">
-                <label>Telefono</label>
-                <asp:TextBox ID="txtTelEmp" runat="server"></asp:TextBox>
+            <div class="control">
+                <asp:TextBox ID="txtNifEmp" runat="server" Width="200px"></asp:TextBox>
             </div>
-            <div class="empleado_container">
-                <label>Fecha de nacimiento</label>
-                <asp:TextBox ID="txtFnaEmp" runat="server"></asp:TextBox>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Apellidos y Nombre
             </div>
-            <div class="empleado_container">
-                <label>Fecha de ingreso</label>
-                <asp:TextBox ID="txtFinEmp" runat="server"></asp:TextBox>
+            <div class="control">
+                <asp:TextBox ID="txtNomEmp" runat="server" Width="200px"></asp:TextBox>
             </div>
-            <div class="empleado_container">
-                <label>Sexo</label>
-                <asp:RadioButtonList ID="rblSexEmp" runat="server">
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Dirección
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtDirEmp" runat="server" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Ciudad
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtCiuEmp" runat="server" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Teléfono
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtTelEmp" runat="server" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Fecha de nacimiento
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtFnaEmp" runat="server" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Fecha de ingreso
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtFinEmp" runat="server" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Sexo
+            </div>
+            <div class="control">
+                <asp:RadioButtonList ID="rblSexEmp" runat="server" RepeatDirection="Horizontal">
                     <asp:ListItem Value="H">Hombre</asp:ListItem>
                     <asp:ListItem Value="M">Mujer</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
-            <div class="empleado_container">
-                <label>Departamento</label>
+        </div>
+
+        <div class="line">
+            <div class="text">
+                Departamento
+            </div>
+            <div class="control">
                 <asp:DropDownList ID="DropDownList1" runat="server">
                     <asp:ListItem Selected="True">Investigación</asp:ListItem>
                     <asp:ListItem>Desarrollo</asp:ListItem>
@@ -68,9 +115,12 @@
                 </asp:DropDownList>
             </div>
         </div>
+    </div>
 
+    <div class="btn">
+        <br />
         <asp:Button ID="ddlDepEmp" runat="server" Text="Enviar" Width="95px" />
-
-    </form>
+    </div>
+</form>
 </body>
 </html>

@@ -14,46 +14,64 @@
 <body>
     <form id="form1" runat="server">
         <uc1:Cabecera runat="server" ID="Cabecera" />
-        <div class="body-container">
-                    <h2 class="lendings">DATOS DE LAS PRESTACIONES</h2>
-                    <div class="text">
-                        <label for="txtCodPre">Código Prestación</label>
-                    </div>
-                    <asp:TextBox ID="txtCodPre" runat="server"></asp:TextBox>
-                    <div class="text">
-                        <label for="txtDesPre">Descripción</label>
-                    </div>
-                    <asp:TextBox ID="txtDesPre" runat="server"></asp:TextBox>
-                
-                
-                    <div class="text">
-                        <label for="txtImpPre">Importe</label>
-                    </div>
-                    <asp:TextBox ID="txtImpPre" runat="server"></asp:TextBox>
 
+        <h2>DATOS DE LAS PRESTACIONES</h2> 
+        <div class="body">
+            <div class="line">
+                <div class="text">
+                    Código Prestación
+                </div>
+                <div class="control">
+                    <asp:TextBox ID="txtCodPre" runat="server" Width="200px"></asp:TextBox>
+                </div>
+            </div>
 
-                    <div class="text">
-                        <label for="txtPorPre">Porcentaje de Importe</label>
-                    </div>
-                    <asp:TextBox ID="txtPorPre" runat="server"></asp:TextBox>
-                
-                    <div class="text">
-                        <label for="ddlTipPre">Tipo de prestación</label>
-                    </div>
+            <div class="line">
+                <div class="text">
+                    Descripción
+                </div>
+                <div class="control">
+                    <asp:TextBox ID="txtDesPre" runat="server" Width="200px"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="text">
+                    Importe
+                </div>
+                <div class="control">
+                    <asp:TextBox ID="txtImpPre" runat="server" Width="200px"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="text">
+                    Porcentaje de Importe
+                </div>
+                <div class="control">
+                    <asp:TextBox ID="txtPorPre" runat="server" Width="200px"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="text">
+                    Tipo de prestación
+                </div>
+                <div class="control">
                     <asp:DropDownList ID="ddlTipPre" runat="server">
                         <asp:ListItem>Dentaria</asp:ListItem>
                         <asp:ListItem>Familiar</asp:ListItem>
                         <asp:ListItem Selected="True">Ocultar</asp:ListItem>
                         <asp:ListItem>Otras</asp:ListItem>
                     </asp:DropDownList>
-                    <br />
-                    <div class="button-cont">
-                        <div class="text">
-                           
-                        </div>
-                        <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" CssClass="button"/>
-                    </div>
+                </div>
+            </div>
         </div>
-    </form>
+
+        <div class="btn">
+            <br />
+            <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" />
+        </div>
+</form>
 </body>
 </html>
