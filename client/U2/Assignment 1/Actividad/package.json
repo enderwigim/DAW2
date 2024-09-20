@@ -5,7 +5,9 @@
     "scripts": {
         "test": "mocha",
         "test1": "mocha test/test",
-        "test2": "mocha test/test2"
+        "test2": "mocha test/test2",
+        "test3": "mocha test/test3",
+        "test4": "mocha test/test4"
     },
     "author": "Pedro Prieto Alarcón",
     "license": "MIT",

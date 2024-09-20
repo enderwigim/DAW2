@@ -8,3 +8,4 @@ it('comprobar función power (potencia)', function() {
     assert.equal(operaciones.power(2,3), 8);
     assert.equal(operaciones.power(8,2), 64);
 });
+
