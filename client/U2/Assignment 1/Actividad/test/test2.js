@@ -19,6 +19,5 @@ it('comprobar función multiplicación', function() {
 	  should.equal(operaciones.multiplicacion(12, 3), 36);
 	  should.equal(operaciones.multiplicacion(9, -3), -27);
 	  should.equal(operaciones.multiplicacion(15, 5), 75);
-});
-
+})
 
