@@ -69,7 +69,8 @@
   <ItemGroup>
     <Content Include="Cabecera.ascx" />
     <Content Include="Default.aspx" />
-    <Content Include="Empleados1.aspx" />
+    <Content Include="Empleados1 - Copia.aspx" />
+    <Content Include="EmpleadosCalendar.aspx" />
     <Content Include="Prestaciones1Respuesta.aspx" />
     <Content Include="Prestaciones1.aspx" />
     <Content Include="styles.css" />
@@ -92,12 +93,19 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Empleados1.aspx.cs">
-      <DependentUpon>Empleados1.aspx</DependentUpon>
+    <Compile Include="Empleados1 - Copia.aspx.cs">
+      <DependentUpon>Empleados1 - Copia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Empleados1.aspx.designer.cs">
-      <DependentUpon>Empleados1.aspx</DependentUpon>
+    <Compile Include="Empleados1 - Copia.aspx.designer.cs">
+      <DependentUpon>Empleados1 - Copia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadosCalendar.aspx.cs">
+      <DependentUpon>EmpleadosCalendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpleadosCalendar.aspx.designer.cs">
+      <DependentUpon>EmpleadosCalendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Prestaciones1Respuesta.aspx.cs">
       <DependentUpon>Prestaciones1Respuesta.aspx</DependentUpon>

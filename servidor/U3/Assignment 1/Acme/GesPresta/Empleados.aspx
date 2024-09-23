@@ -17,7 +17,7 @@
         <uc1:Cabecera runat="server" ID="Cabecera" />
     </div>
 
-    <div class="body">
+    <div class="initial-form">
         <div class="line">
             <div class="text">
                 Código Empleado

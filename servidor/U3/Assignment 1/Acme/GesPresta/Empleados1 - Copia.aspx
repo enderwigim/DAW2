@@ -17,7 +17,7 @@
         <uc1:Cabecera runat="server" ID="Cabecera" />
     </div>
 
-    <div class="body">
+    <div class="initial-form">
         <div class="line">
             <div class="text">
                 Código Empleado
@@ -121,6 +121,8 @@
         <br />
         <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" Width="95px" OnClick="cmdEnviar_Click" />
         <br />
+    </div>
+    <div class="respuesta-prestaciones">
         <asp:Label ID="lblValores" runat="server" Text="Hola" BackColor="#66FFFF" Width="60%" Visible="false"></asp:Label>
     </div>
 </form>

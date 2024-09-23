@@ -21,7 +21,7 @@ h2 {
     margin-bottom: 2%;
 }
 
-.body {
+.initial-form {
     display: table;
     margin-left: 10%;
     margin-right: 10%;
@@ -50,6 +50,7 @@ h2 {
 
 .btn {
     text-align: center;
+    padding-top: 3%;
 }
 
 .prestaciones-titulo {
@@ -60,5 +61,35 @@ h2 {
 }
 
 .respuesta-prestaciones {
+    margin-top : 2%;
     text-align: center;
 }
+
+.calendar-form{
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+}
+.seniority {
+    display: flex;
+    flex-direction: column;
+}
+.seniority-line {
+    display: flex;
+    flex-direction: row;
+    row-gap: 10%;
+    margin-bottom: 10%;
+}
+.seniority-textbox{
+    flex:50%;
+}
+.seniority-text{
+    margin-left: 5%;
+}
+
+.calendar-form-container {
+    border: 5px solid red;
+    margin: 5%;
+    padding: 2%;
+}
+
