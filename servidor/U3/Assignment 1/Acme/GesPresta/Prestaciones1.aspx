@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prestaciones.aspx.cs" Inherits="GesPresta.WebForm2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prestaciones1.aspx.cs" Inherits="GesPresta.Prestaciones1" %>
 
 <%@ Register src="~/Cabecera.ascx" TagPrefix="uc1" TagName="Cabecera" %>
 
@@ -70,7 +70,7 @@
 
         <div class="btn">
             <br />
-            <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" />
+            <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" PostBackUrl="~/Prestaciones1Respuesta.aspx" />
         </div>
 </form>
 </body>
