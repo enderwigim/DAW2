@@ -13,7 +13,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <uc1:Cabecera runat="server" ID="Cabecera" />
 
         <h2>DATOS DE LAS PRESTACIONES</h2> 
         <div class="respuesta-prestaciones">

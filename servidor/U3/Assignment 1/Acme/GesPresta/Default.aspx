@@ -7,15 +7,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-<link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <uc1:Cabecera runat="server" id="Cabecera" />
-            <p>La corporación ACME está comprometida con sus empleados.
+            
+            <uc1:Cabecera ID="Cabecera1" runat="server" />
+            <p>
+                La corporación ACME está comprometida con sus empleados.
                Para ello ha establecido una serie de prestaciones que
                 pueden utilizar sus empleados para obtener ayudas sociales
                 sociales a diversos gastos de tipo familiar, médico, etc.

@@ -115,20 +115,20 @@
         <div class="line">
             <div class="text">
                 Fecha de Nacimiento
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNacimiento" runat="server"></asp:TextBox>
             </div>
             <div class="control">
-                <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                <asp:Calendar ID="CalendarNacimiento" runat="server" OnSelectionChanged="CalendarNacimiento_SelectionChanged"></asp:Calendar>
             </div>
         </div>
         <!-- Ingreso -->
         <div class="line">
             <div class="text">
                 Fecha de Ingreso
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtIngreso" runat="server"></asp:TextBox>
             </div>
             <div class="control">
-                <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+                <asp:Calendar ID="CalendarIngreso" runat="server" OnSelectionChanged="CalendarIngreso_SelectionChanged"></asp:Calendar>
             </div> 
         </div>
         <!-- Antiguedad -->
@@ -168,7 +168,11 @@
         <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" OnClick="cmdEnviar_Click" />
         <br />
     </div>
-        
+    <div>
+        <asp:Label ID="lblError1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblError2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblError3" runat="server" Text="Label"></asp:Label>
+    </div>        
     </div>
     
 </form>

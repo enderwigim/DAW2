@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Prestaciones.aspx.cs" Inherits="GesPresta.Prestaciones" %>
 
-<%@ Register src="~/Cabecera.ascx" TagPrefix="uc1" TagName="Cabecera" %>
+<%@ Register Src="~/Cabecera.ascx" TagPrefix="uc1" TagName="Cabecera" %>
 
 
 <!DOCTYPE html>
