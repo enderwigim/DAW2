@@ -33,42 +33,48 @@ namespace GesPresta
 
         protected void CalendarIngreso_SelectionChanged(object sender, EventArgs e)
         {
+            bool birthdayIsBigger;
+            bool entryIsBigger;
             // Select calendarDateEntry
             DateTime calendarDateEntry = CalendarIngreso.SelectedDate;
             DateTime calendarDateBirthDay = CalendarNacimiento.SelectedDate;
 
-            BirthdayIsBiggerEntry(calendarDateEntry, calendarDateBirthDay);
-            EntryIsBiggerThanToday(calendarDateEntry);
-            CalcSeniority();
+            birthdayIsBigger = BirthdayIsBiggerEntry(calendarDateEntry, calendarDateBirthDay);
+            entryIsBigger = EntryIsBiggerThanToday(calendarDateEntry);
+            if (!birthdayIsBigger && !entryIsBigger)
+                CalcSeniority();
+            else
+            {
+                ResetSeniority();
+            }
 
             txtIngreso.Text = calendarDateEntry.ToString();
         }
 
-        private void BirthdayIsBiggerEntry(DateTime calendarDateEntry, DateTime calendarDateBirthDay)
+        private bool BirthdayIsBiggerEntry(DateTime calendarDateEntry, DateTime calendarDateBirthDay)
         {
             if (calendarDateEntry.ToString() != "01/01/0001 0:00:00" && calendarDateEntry <= calendarDateBirthDay)
             {
                 lblError1.Visible = true;
                 lblError1.Text = "La fecha de ingreso a la compañia no puede ser menor que la fecha de nacimiento";
+                return true;
             }
-            else
-            {
-                lblError1.Visible = false;
-            }
+            lblError1.Visible = false;
+            return false;
+
            
         }
-        private void EntryIsBiggerThanToday(DateTime calendarEntry)
+        private bool EntryIsBiggerThanToday(DateTime calendarEntry)
         {
             DateTime today = System.DateTime.Now;
             if (calendarEntry.ToString() != "01/01/0001 0:00:00" && calendarEntry > today)
             {
                 lblError2.Visible = true;
                 lblError2.Text = "La fecha de ingreso no puede ser mayor a la fecha de del dia hoy.";
+                return true;
             }
-            else
-            {
-                lblError2.Visible = false;
-            }
+            lblError2.Visible = false;
+            return false;
         }
         private void  BirthdayIsBiggerThanToday(DateTime calendarDateBirthDay)
         {
@@ -92,6 +98,12 @@ namespace GesPresta
             txtYears.Text = ((dtMinDate + minus).Year - 1).ToString();
             txtMonth.Text = ((dtMinDate + minus).Month - 1).ToString();
             txtDay.Text = ((dtMinDate + minus).Day).ToString();
+        }
+        private void ResetSeniority()
+        {
+            txtYears.Text = "";
+            txtMonth.Text = "";
+            txtDay.Text = "";
         }
 
     }
