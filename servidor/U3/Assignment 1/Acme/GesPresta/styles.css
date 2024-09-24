@@ -93,3 +93,19 @@ h2 {
     padding: 2%;
 }
 
+.error-lbls {
+    display: flex;
+    column-gap: 5%;
+    flex-direction: column;
+    background-color: red;
+    width: 60%;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 2%;
+    justify-content: center;
+    align-items: center;
+}
+.error-lbls span {
+    padding: 5px;
+}
+

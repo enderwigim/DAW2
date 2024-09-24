@@ -138,7 +138,7 @@
              </div>
              <div class="seniority-line">
                  <div class="seniority-textbox">
-                     <asp:TextBox ID="TextBox3" runat="server" Width="120px"></asp:TextBox>
+                     <asp:TextBox ID="txtYears" runat="server" Width="120px"></asp:TextBox>
                  </div>
                  <div class="seniority-text">
                      Años
@@ -146,7 +146,7 @@
              </div>
              <div class="seniority-line">
                  <div class="seniority-textbox">
-                     <asp:TextBox ID="TextBox4" runat="server" Width="120px"></asp:TextBox>
+                     <asp:TextBox ID="txtMonth" runat="server" Width="120px"></asp:TextBox>
                  </div>
                  <div class="seniority-text">
                      Meses
@@ -154,7 +154,7 @@
             </div>
             <div class="seniority-line">
                 <div class="seniority-textbox">
-                    <asp:TextBox ID="TextBox5" runat="server" Width="120px"></asp:TextBox>
+                    <asp:TextBox ID="txtDay" runat="server" Width="120px"></asp:TextBox>
                 </div>
                 <div class="seniority-text">
                     Dias
@@ -168,10 +168,10 @@
         <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" OnClick="cmdEnviar_Click" />
         <br />
     </div>
-    <div>
-        <asp:Label ID="lblError1" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="lblError2" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="lblError3" runat="server" Text="Label"></asp:Label>
+    <div class="error-lbls">
+        <asp:Label ID="lblError1" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lblError2" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lblError3" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>        
     </div>
     

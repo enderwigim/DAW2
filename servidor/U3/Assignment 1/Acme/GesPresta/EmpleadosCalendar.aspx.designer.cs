@@ -159,31 +159,31 @@ namespace GesPresta
         protected global::System.Web.UI.WebControls.Calendar CalendarIngreso;
 
         /// <summary>
-        /// Control TextBox3.
+        /// Control txtYears.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtYears;
 
         /// <summary>
-        /// Control TextBox4.
+        /// Control txtMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtMonth;
 
         /// <summary>
-        /// Control TextBox5.
+        /// Control txtDay.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txtDay;
 
         /// <summary>
         /// Control cmdEnviar.

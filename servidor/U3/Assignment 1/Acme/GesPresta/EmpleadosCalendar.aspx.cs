@@ -26,6 +26,7 @@ namespace GesPresta
             DateTime calendarDateEntry = CalendarIngreso.SelectedDate;
 
             BirthdayIsBiggerEntry(calendarDateEntry, calendarDateBirthDay);
+            BirthdayIsBiggerThanToday(calendarDateBirthDay);
             // Add calendarDateBirthday to txtNacimiento.
             txtNacimiento.Text = calendarDateBirthDay.ToString();
         }
@@ -37,13 +38,15 @@ namespace GesPresta
             DateTime calendarDateBirthDay = CalendarNacimiento.SelectedDate;
 
             BirthdayIsBiggerEntry(calendarDateEntry, calendarDateBirthDay);
+            EntryIsBiggerThanToday(calendarDateEntry);
+            CalcSeniority();
 
             txtIngreso.Text = calendarDateEntry.ToString();
         }
 
         private void BirthdayIsBiggerEntry(DateTime calendarDateEntry, DateTime calendarDateBirthDay)
         {
-            if (calendarDateEntry.ToString() != "01/01/0001 0:00:00" && calendarDateEntry < calendarDateBirthDay)
+            if (calendarDateEntry.ToString() != "01/01/0001 0:00:00" && calendarDateEntry <= calendarDateBirthDay)
             {
                 lblError1.Visible = true;
                 lblError1.Text = "La fecha de ingreso a la compañia no puede ser menor que la fecha de nacimiento";
@@ -53,6 +56,19 @@ namespace GesPresta
                 lblError1.Visible = false;
             }
            
+        }
+        private void EntryIsBiggerThanToday(DateTime calendarEntry)
+        {
+            DateTime today = System.DateTime.Now;
+            if (calendarEntry.ToString() != "01/01/0001 0:00:00" && calendarEntry > today)
+            {
+                lblError2.Visible = true;
+                lblError2.Text = "La fecha de ingreso no puede ser mayor a la fecha de del dia hoy.";
+            }
+            else
+            {
+                lblError2.Visible = false;
+            }
         }
         private void  BirthdayIsBiggerThanToday(DateTime calendarDateBirthDay)
         {
@@ -67,19 +83,16 @@ namespace GesPresta
                 lblError3.Visible = false;
             }
         }
-
-        private void EntryIsBiggerThanToday(DateTime calendarEntry)
+        private void CalcSeniority()
         {
-            DateTime today = System.DateTime.Now;
-            if (calendarEntry.ToString() != "01/01/0001 0:00:00" && calendarEntry > today)
-            {
-                lblError3.Visible = true;
-                lblError3.Text = "La fecha de ingreso no puede ser mayor a la fecha de del dia hoy.";
-            }
-            else
-            {
-                lblError3.Visible = false;
-            }
+            DateTime dtToday = System.DateTime.Now;
+            TimeSpan minus = dtToday - CalendarIngreso.SelectedDate;
+            DateTime dtMinDate = new DateTime(1, 1, 1);
+
+            txtYears.Text = ((dtMinDate + minus).Year - 1).ToString();
+            txtMonth.Text = ((dtMinDate + minus).Month - 1).ToString();
+            txtDay.Text = ((dtMinDate + minus).Day).ToString();
         }
+
     }
 }

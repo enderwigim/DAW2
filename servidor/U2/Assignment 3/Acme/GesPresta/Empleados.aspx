@@ -96,7 +96,7 @@
             </div>
             <div class="control">
                 <asp:RadioButtonList ID="rblSexEmp" runat="server" RepeatDirection="Horizontal">
-                    <asp:ListItem Value="H">Hombre</asp:ListItem>
+                    <asp:ListItem Value="H" Selected="True">Hombre</asp:ListItem>
                     <asp:ListItem Value="M">Mujer</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
