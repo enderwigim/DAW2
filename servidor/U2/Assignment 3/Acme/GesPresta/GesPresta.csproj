@@ -68,8 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cabecera.ascx" />
+    <Content Include="header.css" />
     <Content Include="Default.aspx" />
-    <Content Include="styles.css" />
+    <Content Include="bodyStyle.css" />
     <Content Include="Web.config" />
     <Content Include="Empleados.aspx" />
     <Content Include="Prestaciones.aspx" />

@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empleados.aspx.cs" Inherits="GesPresta.WebForm1" %>
 
-<%@ Register Src="~/Cabecera.ascx" TagPrefix="uc1" TagName="Cabecera" %>
-
+<%@ Register src="Cabecera.ascx" tagname="Cabecera" tagprefix="uc1" %>
 
 <!DOCTYPE html>
 
@@ -9,12 +8,13 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-<link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="bodyStyle.css" />
+    <link rel="stylesheet" type="text/css" href="header.css" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <uc1:Cabecera runat="server" ID="Cabecera" />
+        <uc1:Cabecera ID="Cabecera1" runat="server" />
     </div>
 
     <div class="body">
