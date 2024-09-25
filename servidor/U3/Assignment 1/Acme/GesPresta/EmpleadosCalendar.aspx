@@ -134,7 +134,7 @@
         <div class="line">
             <div class="text">
                 Fecha de Ingreso
-                <asp:TextBox ID="txtIngreso" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtIngreso" runat="server" AutoPostBack="True" OnTextChanged="txtIngreso_TextChanged"></asp:TextBox>
             </div>
             <div class="control">
                 <asp:Calendar ID="CalendarIngreso" runat="server" OnSelectionChanged="CalendarIngreso_SelectionChanged" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
@@ -183,13 +183,14 @@
     <!-- Botón de enviar. -->
     <div class="btn">
         <br />
-        <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" OnClick="cmdEnviar_Click" />
+        <asp:Button ID="CmdEnviar" runat="server" Text="Enviar" OnClick="CmdEnviar_Click" />
         <br />
     </div>
     <div class="error-lbls">
         <asp:Label ID="lblError1" runat="server" Text="Label" Visible="False"></asp:Label>
         <asp:Label ID="lblError2" runat="server" Text="Label" Visible="False"></asp:Label>
         <asp:Label ID="lblError3" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lblError4" runat="server" Text="Label" Visible="False">La fecha escrita no es valida</asp:Label>
     </div>        
     </div>
     

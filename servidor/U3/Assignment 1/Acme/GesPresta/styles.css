@@ -104,6 +104,7 @@ h2 {
     margin-top: 2%;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 .error-lbls span {
     padding: 5px;

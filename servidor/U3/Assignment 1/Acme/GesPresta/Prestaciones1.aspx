@@ -70,7 +70,11 @@
 
         <div class="btn">
             <br />
-            <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" PostBackUrl="~/Prestaciones1Respuesta.aspx" />
+            <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" OnClick="cmdEnviar_Click" />
+        </div>
+
+         <div class="error-lbls">
+            <asp:Label ID="lblError" runat="server" Visible="False"></asp:Label>
         </div>
 </form>
 </body>

@@ -186,13 +186,13 @@ namespace GesPresta
         protected global::System.Web.UI.WebControls.TextBox txtDay;
 
         /// <summary>
-        /// Control cmdEnviar.
+        /// Control CmdEnviar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdEnviar;
+        protected global::System.Web.UI.WebControls.Button CmdEnviar;
 
         /// <summary>
         /// Control lblError1.
@@ -220,5 +220,14 @@ namespace GesPresta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError3;
+
+        /// <summary>
+        /// Control lblError4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError4;
     }
 }
