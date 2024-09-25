@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -106,5 +107,10 @@ namespace GesPresta
             txtDay.Text = "";
         }
 
+        protected void txtNacimiento_TextChanged(object sender, EventArgs e)
+        {
+            CalendarNacimiento.SelectedDate = Convert.ToDateTime(txtNacimiento.Text);
+            CalendarNacimiento.VisibleDate = Convert.ToDateTime(txtNacimiento.Text);
+        }
     }
 }

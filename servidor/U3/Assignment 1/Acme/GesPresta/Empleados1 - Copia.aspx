@@ -96,7 +96,7 @@
             </div>
             <div class="control">
                 <asp:RadioButtonList ID="rblSexEmp" runat="server" RepeatDirection="Horizontal">
-                    <asp:ListItem Value="H">Hombre</asp:ListItem>
+                    <asp:ListItem Value="H" Selected="True">Hombre</asp:ListItem>
                     <asp:ListItem Value="M">Mujer</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
@@ -123,7 +123,7 @@
         <br />
     </div>
     <div class="respuesta-prestaciones">
-        <asp:Label ID="lblValores" runat="server" Text="Hola" BackColor="#66FFFF" Width="60%" Visible="false"></asp:Label>
+        <asp:Label ID="lblValores" runat="server" BackColor="#66FFFF" Width="60%" Visible="false"></asp:Label>
     </div>
 </form>
 </body>

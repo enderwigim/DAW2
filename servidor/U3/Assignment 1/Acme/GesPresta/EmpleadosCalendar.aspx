@@ -90,7 +90,7 @@
                 </div>
                 <div class="control">
                     <asp:RadioButtonList ID="rblSexEmp" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem Value="H">Hombre</asp:ListItem>
+                        <asp:ListItem Value="H" Selected="True">Hombre</asp:ListItem>
                         <asp:ListItem Value="M">Mujer</asp:ListItem>
                     </asp:RadioButtonList>
                 </div>
@@ -115,7 +115,7 @@
         <div class="line">
             <div class="text">
                 Fecha de Nacimiento
-                <asp:TextBox ID="txtNacimiento" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNacimiento" runat="server" AutoPostBack="True" OnTextChanged="txtNacimiento_TextChanged"></asp:TextBox>
             </div>
             <div class="control">
                 <asp:Calendar ID="CalendarNacimiento" runat="server" OnSelectionChanged="CalendarNacimiento_SelectionChanged" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
