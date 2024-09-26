@@ -1,4 +1,5 @@
-// TODO: Crear las funciones, objetos y variables indicadas en el enunciado
+
+"use strict";
 
 let presupuesto = 0;
 
@@ -15,17 +16,29 @@ function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
 
-function CrearGasto(num, descripcion) {
+function CrearGasto (descripcion, value) {
     
-    if (num < 0 || isNaN(num)){
+    // PROPIEDADES.
+    // En caso de que el numero sea menor a 0 y/o no sea un numero. Seteamos valor a 0.
+    if (value < 0 || isNaN(value)){
         this.valor = 0;
     } else {
-        this.valor = num;
+        this.valor = value;
     }
+    // Seteamos descripcion
     this.descripcion = descripcion;
 
+    // METODOS
     this.mostrarGasto = function (){
-        return `Gasto correspondiente a ${descripcion} con valor ${valor} €`
+        return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`
+    }
+    this.actualizarDescripcion = function (newDescripcion){
+        this.descripcion = newDescripcion;
+    }
+    this.actualizarValor = function (newValue){
+        if (newValue > 0){
+            this.valor = newValue;
+        };
     }
 }
 
