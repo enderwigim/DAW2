@@ -27,9 +27,9 @@ namespace GesPresta
             DateTime calendarDateBirthDay = CalendarNacimiento.SelectedDate;
 
             txtNacimiento.Text = calendarDateBirthDay.ToShortDateString();
+            lblError4.Visible = false;
             // Checkeamos ambos, simplemente por el display de los textbox de error.
-            FindBirthdayErrors();
-            FindEntryError();
+            FindDateError();
 
         }
 
@@ -44,8 +44,7 @@ namespace GesPresta
                 CalendarNacimiento.VisibleDate = Convert.ToDateTime(txtNacimiento.Text);
                 lblError4.Visible = false;
                 // Checkeamos ambos, simplemente por el display de los textbox de error.
-                FindBirthdayErrors();
-                FindEntryError();
+                FindDateError();
             }
             else
             {
@@ -64,8 +63,7 @@ namespace GesPresta
                 CalendarIngreso.SelectedDate = Convert.ToDateTime(txtIngreso.Text);
                 CalendarIngreso.VisibleDate = Convert.ToDateTime(txtIngreso.Text);
                 lblError4.Visible = false;
-                FindBirthdayErrors();
-                bool errorExists = FindEntryError();
+                bool errorExists = FindDateError();
                 if (!errorExists)
                 {
                     CalcSeniority();
@@ -77,7 +75,7 @@ namespace GesPresta
             }
             else
             {
-                HideEntryLblErrors();
+                HideLblErrors();
                 // Mostramos el error
                 lblError4.Visible = true;
                 ResetSeniority();
@@ -86,18 +84,18 @@ namespace GesPresta
 
         protected void CalendarIngreso_SelectionChanged(object sender, EventArgs e)
         {
-            // Seleccionamos la fecha del calendario.
+            // SELECCIONAMOS LA FECHA DEL CALENDARIO.
             DateTime calendarDateEntry = CalendarIngreso.SelectedDate;
 
             txtIngreso.Text = calendarDateEntry.ToShortDateString();
-            // Revisamos si existen errores. ESTA FUNCION SOLO REVISA SI HAY ERRORES A LA HORA
-            // DE DAR CLICK EN EL CALENDARIO,
-            FindBirthdayErrors();
-            bool errorExists = FindEntryError();
+            lblError4.Visible = false;
+            // REVISAMOS SI EXISTEN ERRORES. EN CASO DE QUE LA FECHA DE INGRESO SEA MAYOR A LA FECHA DEL DIA DE HOY.
+            // NO SE CALCULARÁ LA ANTIGUEDAD
+            bool errorExists = FindDateError();
 
             if (!errorExists)
             {
-                // Calculo de antiguedad
+                // CALCULO DE ANTIGUEDAD
                 CalcSeniority();
             }
             else
@@ -105,37 +103,38 @@ namespace GesPresta
                 ResetSeniority();
             }
         }
+        protected void txtDay_TextChanged(object sender, EventArgs e)
+        {
+            CalcEntryDateWithSeniority();
+        }
+        protected void txtMonth_TextChanged(object sender, EventArgs e)
+        {
+            CalcEntryDateWithSeniority();
+        }
+        protected void txtYears_TextChanged(object sender, EventArgs e)
+        {
+            CalcEntryDateWithSeniority();
+        }
 
-        private bool FindBirthdayErrors()
+        private bool FindDateError()
         {
             bool errorExist = false;
             DateTime dtCalendarDateBirthDay = CalendarNacimiento.SelectedDate;
             DateTime dtCalendarDateEntry = CalendarIngreso.SelectedDate;
             DateTime dtToday = System.DateTime.Now;
 
-            HideBirthDayLblErrors();
+            HideLblErrors();
             if (dtCalendarDateBirthDay > dtCalendarDateEntry && txtIngreso.Text != "")
             {
                 lblError1.Visible = true;
                 lblError1.Text = "La fecha de ingreso a la compañia no puede ser menor que la fecha de nacimiento";
-                errorExist = true;
             }
             if (dtCalendarDateBirthDay > dtToday)
             {
                 lblError3.Visible = true;
                 lblError3.Text = "La fecha de nacimiento no puede ser mayor a la fecha de del dia hoy.";
-                errorExist = true;
             }
-            return errorExist;
-        }
-    private bool FindEntryError()
-        {
-            bool errorExist = false;
-            DateTime dtCalendarDateEntry = CalendarIngreso.SelectedDate;
-            DateTime dtToday = System.DateTime.Now;
-
-            HideEntryLblErrors();
-            if (dtCalendarDateEntry > dtToday && txtNacimiento.Text != "")
+            if (dtCalendarDateEntry > dtToday)
             {
                 lblError2.Visible = true;
                 lblError2.Text = "La fecha de ingreso no puede ser mayor a la fecha de del dia hoy.";
@@ -143,9 +142,11 @@ namespace GesPresta
             }
             return errorExist;
         }
+
         
         private void CalcSeniority()
         {
+            lblError5.Visible = false;
             DateTime dtToday = System.DateTime.Now;
             TimeSpan minus = dtToday - CalendarIngreso.SelectedDate;
             DateTime dtMinDate = new DateTime(1, 1, 1);
@@ -153,6 +154,25 @@ namespace GesPresta
             txtYears.Text = ((dtMinDate + minus).Year - 1).ToString();
             txtMonth.Text = ((dtMinDate + minus).Month - 1).ToString();
             txtDay.Text = ((dtMinDate + minus).Day).ToString();
+        }
+
+        private void CalcEntryDateWithSeniority()
+        {
+            if (AreSeniorityInputsValid())
+            {
+                lblError5.Visible = false;
+                DateTime dtToday = DateTime.Now;
+                DateTime calculatedDate = dtToday.AddDays(int.Parse(txtDay.Text) * -1)
+                                                 .AddMonths(int.Parse(txtMonth.Text) * -1)
+                                                 .AddYears(int.Parse(txtYears.Text) * -1);
+                txtIngreso.Text = calculatedDate.ToShortDateString();
+                CalendarIngreso.SelectedDate = Convert.ToDateTime(txtIngreso.Text);
+                CalendarIngreso.VisibleDate = Convert.ToDateTime(txtIngreso.Text);
+            }
+            else
+            {
+                lblError5.Visible = true;
+            }
         }
         
         private void ResetSeniority()
@@ -162,17 +182,14 @@ namespace GesPresta
             txtMonth.Text = "";
             txtDay.Text = "";
         }
-        private void HideBirthDayLblErrors()
+        private void HideLblErrors()
         {
             // Ocultamos los labels de error.
             lblError1.Visible = false;
             lblError3.Visible = false;
-        }
-        private void HideEntryLblErrors()
-        {
-            // Ocultamos el labels de error.
             lblError2.Visible = false;
         }
+
 
 
         protected bool isDateValid(String date)
@@ -183,6 +200,20 @@ namespace GesPresta
 
             return dateRegex.IsMatch(date);
         }
+
+        private bool AreSeniorityInputsValid()
+        {
+            bool inputsAreValid = true;
+            
+            if (!int.TryParse(txtDay.Text, out int day) || !int.TryParse(txtMonth.Text, out int month) 
+                || !int.TryParse(txtYears.Text, out int year))
+            {
+                inputsAreValid = false;
+            }
+
+            return inputsAreValid;
+        }
+
 
     }
 }

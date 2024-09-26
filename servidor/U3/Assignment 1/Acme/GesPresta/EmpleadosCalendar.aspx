@@ -9,7 +9,9 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-<link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="bodyStyle.css" />
+    <link rel="stylesheet" type="text/css" href="calendarStyle.css" />
+    <link rel="stylesheet" type="text/css" href="header.css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -156,7 +158,7 @@
              </div>
              <div class="seniority-line">
                  <div class="seniority-textbox">
-                     <asp:TextBox ID="txtYears" runat="server" Width="120px"></asp:TextBox>
+                     <asp:TextBox ID="txtYears" runat="server" Width="120px" OnTextChanged="txtYears_TextChanged"></asp:TextBox>
                  </div>
                  <div class="seniority-text">
                      Años
@@ -164,7 +166,7 @@
              </div>
              <div class="seniority-line">
                  <div class="seniority-textbox">
-                     <asp:TextBox ID="txtMonth" runat="server" Width="120px"></asp:TextBox>
+                     <asp:TextBox ID="txtMonth" runat="server" Width="120px" OnTextChanged="txtMonth_TextChanged"></asp:TextBox>
                  </div>
                  <div class="seniority-text">
                      Meses
@@ -172,7 +174,7 @@
             </div>
             <div class="seniority-line">
                 <div class="seniority-textbox">
-                    <asp:TextBox ID="txtDay" runat="server" Width="120px"></asp:TextBox>
+                    <asp:TextBox ID="txtDay" runat="server" Width="120px" OnTextChanged="txtDay_TextChanged"></asp:TextBox>
                 </div>
                 <div class="seniority-text">
                     Dias
@@ -191,6 +193,7 @@
         <asp:Label ID="lblError2" runat="server" Text="Label" Visible="False"></asp:Label>
         <asp:Label ID="lblError3" runat="server" Text="Label" Visible="False"></asp:Label>
         <asp:Label ID="lblError4" runat="server" Text="Label" Visible="False">La fecha escrita no es valida</asp:Label>
+        <asp:Label ID="lblError5" runat="server" Text="Label" Visible="False">El formato de la antiguedad no es valido.</asp:Label>
     </div>        
     </div>
     

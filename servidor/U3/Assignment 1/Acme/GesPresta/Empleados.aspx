@@ -9,7 +9,8 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-<link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="bodyStyle.css" />
+    <link rel="stylesheet" type="text/css" href="header.css" />
 </head>
 <body>
     <form id="form1" runat="server">
