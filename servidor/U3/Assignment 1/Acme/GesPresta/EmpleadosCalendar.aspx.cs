@@ -32,7 +32,7 @@ namespace GesPresta
 
             txtNacimiento.Text = calendarDateBirthDay.ToShortDateString();
             lblError4.Visible = false;
-            // Checkeamos ambos, simplemente por el display de los textbox de error.
+            // CHECKEAMOS AMBOS, SIMPLEMENTE POR EL DISPLAY DE LOS TEXTBOX DE ERROR.
             FindDateError();
 
         }
@@ -73,20 +73,25 @@ namespace GesPresta
                 CalendarNacimiento.SelectedDate = Convert.ToDateTime(txtNacimiento.Text);
                 CalendarNacimiento.VisibleDate = Convert.ToDateTime(txtNacimiento.Text);
                 lblError4.Visible = false;
-                // CHECKEAMOS AMBOS, SIMPLEMENTE POR EL DISPLAY DE LOS TEXTBOX DE ERROR.
-                FindDateError();
             }
             else
             {
                 // MOSTRAMOS EL ERROR
                 lblError4.Visible = true;
-                ResetSeniority();
+                txtNacimiento.Text = "";
+                // DEL DateTime SOLO TOMAMOS EL DATE. SI UTILIZAMOS NOW, INCLUYE HORA. SOLO QUEREMOS EL DIA
+                CalendarNacimiento.SelectedDate = DateTime.Now.Date;
+                CalendarNacimiento.VisibleDate = DateTime.Now.Date;
             }
+            // CHECKEAMOS AMBOS, SIMPLEMENTE POR EL DISPLAY DE LOS TEXTBOX DE ERROR.
+            FindDateError();
         }
 
         // -------------------- TEXTBOX FECHA DE INGRESO -------------------- \\
         protected void txtIngreso_TextChanged(object sender, EventArgs e)
         {
+            // MODIFICAR LA SELECTED DATE Y VISIBLE DATE DEL ERROR.
+
             // SI LA FECHA ESCRITA POR EL USUARIO EN EL TXT ES VALIDA.
             if (isDateValid(txtIngreso.Text))
             {
@@ -107,7 +112,14 @@ namespace GesPresta
             else
             {
                 HideLblErrors();
+
+                CalendarIngreso.SelectedDate = DateTime.Now.Date;
+                CalendarIngreso.VisibleDate = DateTime.Now.Date;
+
+                FindDateError();
                 // MOSTRAMOS EL ERROR
+                txtIngreso.Text = "";
+                lblError1.Visible = false;
                 lblError4.Visible = true;
                 ResetSeniority();
             }
@@ -137,11 +149,23 @@ namespace GesPresta
         // FORMATO DE FECHA ES VALIDO.
         protected bool isDateValid(String date)
         {
+            // OPCION UNO. Resolver con Expresiones Regulares.
+            /*
             // Set a pattern to follow
             string pattern = @"^(?:(?:(?:31\/(?:0[13578]|1[02]))|(?:30\/(?:0[13-9]|1[0-2]))|(?:29\/02\/(?:\d{2}(?:04|08|[2468][048]|[13579][26])|(?:[02468][048]00|[13579][26]00))))|(?:0[1-9]|1\d|2[0-8])\/(?:0[1-9]|1[0-2]))\/\d{4}$";
             Regex dateRegex = new Regex(pattern);
 
             return dateRegex.IsMatch(date);
+            */
+
+            // OPCION DOS. Resolver con DateTime
+            bool isDateValid = false;
+            
+            if (DateTime.TryParse(date, out DateTime dtValidDate))
+            {
+                isDateValid = true;
+            }
+            return isDateValid;
         }
 
         // FORMATO DE ANTIGUEDAD ES VALIDO.
@@ -152,7 +176,13 @@ namespace GesPresta
             if (!int.TryParse(txtDay.Text, out int day) || !int.TryParse(txtMonth.Text, out int month)
                 || !int.TryParse(txtYears.Text, out int year))
             {
-                inputsAreValid = false;
+                    inputsAreValid = false;
+            } else
+            {
+                if (int.Parse(txtDay.Text) < 0 || int.Parse(txtMonth.Text) < 0 || int.Parse(txtYears.Text) > 0)
+                {
+                    inputsAreValid = false;
+                }
             }
 
             return inputsAreValid;
@@ -164,9 +194,9 @@ namespace GesPresta
         private void ResetSeniority()
         {
             // Reseteamos la antiguedad.
-            txtYears.Text = "";
-            txtMonth.Text = "";
-            txtDay.Text = "";
+            txtYears.Text = "0";
+            txtMonth.Text = "0";
+            txtDay.Text = "0";
         }
 
         // -------------------- LABELS DE ERROR -------------------- \\
@@ -226,6 +256,8 @@ namespace GesPresta
         {
             if (AreSeniorityInputsValid())
             {
+                HideLblErrors();
+                lblError4.Visible = false;
                 lblError5.Visible = false;
                 DateTime dtToday = DateTime.Now;
                 DateTime dtCalculatedDate = dtToday.AddDays((int.Parse(txtDay.Text) - 1) * -1)
