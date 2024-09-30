@@ -4,7 +4,8 @@
 let presupuesto = 0;
 
 function actualizarPresupuesto(num) {
-    // TODO
+    // SI EL PRESUPUESTO ES MENOR A CERO O NO ES UN TIPO NUM
+    // DEVUELVE -1
     if (num < 0 || isNaN(num)) {
         return -1;
     }
@@ -13,9 +14,11 @@ function actualizarPresupuesto(num) {
 }
 
 function mostrarPresupuesto() {
+    //MOSTRAR PRESUPUESTO
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
 
+// FUNCION CONSTRUCTORA DE GASTO
 function CrearGasto (descripcion, value) {
     
     // PROPIEDADES.
@@ -36,7 +39,7 @@ function CrearGasto (descripcion, value) {
         this.descripcion = newDescripcion;
     }
     this.actualizarValor = function (newValue){
-        if (newValue > 0){
+        if (newValue > 0 && !isNaN(newValue)){
             this.valor = newValue;
         };
     }

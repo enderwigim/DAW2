@@ -188,11 +188,17 @@
         <asp:Button ID="CmdEnviar" runat="server" Text="Enviar" OnClick="CmdEnviar_Click" />
         <br />
     </div>
+    <!-- LABELS DE ERROR -->
     <div class="error-lbls">
+        <!-- FECHA DE INGRESO < FECHA DE NACIMIENTO -->
         <asp:Label ID="lblError1" runat="server" Text="Label" Visible="False"></asp:Label>
+        <!-- FECHA DE NACIMIENTO > FECHA DE HOY -->
         <asp:Label ID="lblError2" runat="server" Text="Label" Visible="False"></asp:Label>
+        <!-- FECHA DE INGRESO > FECHA DE HOY -->
         <asp:Label ID="lblError3" runat="server" Text="Label" Visible="False"></asp:Label>
-        <asp:Label ID="lblError4" runat="server" Text="Label" Visible="False">La fecha escrita no es valida</asp:Label>
+        <!-- FORMATO DE FECHA ADQUIRIDO DESDE TEXTBOX -->
+        <asp:Label ID="lblError4" runat="server" Text="Label" Visible="False">El formato de fecha no es valido.</asp:Label>
+        <!-- FORMATO DE ANTIGUEDAD -->
         <asp:Label ID="lblError5" runat="server" Text="Label" Visible="False">El formato de la antiguedad no es valido.</asp:Label>
     </div>        
     </div>
