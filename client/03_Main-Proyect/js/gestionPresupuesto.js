@@ -1,55 +1,99 @@
-
 "use strict";
 
 let presupuesto = 0;
+let idGasto = 0;
+let gastos = [];
+
 
 function actualizarPresupuesto(num) {
-    // SI EL PRESUPUESTO ES MENOR A CERO O NO ES UN TIPO NUM
-    // DEVUELVE -1
-    if (num < 0 || isNaN(num)) {
-        return -1;
-    }
-    presupuesto = num;
-    return presupuesto
+  // SI EL PRESUPUESTO ES MENOR A CERO O NO ES UN TIPO NUM
+  // DEVUELVE -1
+  if (num < 0 || isNaN(num)) {
+    return -1;
+  }
+  presupuesto = num;
+  return presupuesto;
 }
 
 function mostrarPresupuesto() {
-    //MOSTRAR PRESUPUESTO
-    return `Tu presupuesto actual es de ${presupuesto} €`
+  //MOSTRAR PRESUPUESTO
+  return `Tu presupuesto actual es de ${presupuesto} €`;
+}
+function listarGastos(){
+  return gastos;
+}
+function anyadirGasto(newGasto){
+  // Agregamos el id a gasto.
+  newGasto.id = idGasto;
+  // Aumentamos el idGasto
+  idGasto++;
+  // Añadimos a gastos el gasto seleccionado.
+  gastos.push(newGasto);
+}
+function borrarGasto(id){
+
+}
+function calcularTotalGastos(){
+  let total = 0;
+  for (let i = 0; i < gastos.length; i++){
+    total += gastos[i].valor;
+  }
+  return total;
+}
+function calcularBalance(){
+  return presupuesto -= calcularTotalGastos();
+
 }
 
 // FUNCION CONSTRUCTORA DE GASTO
-function CrearGasto (descripcion, value) {
-    
-    // PROPIEDADES.
-    // En caso de que el numero sea menor a 0 y/o no sea un numero. Seteamos valor a 0.
-    if (value < 0 || isNaN(value)){
-        this.valor = 0;
-    } else {
-        this.valor = value;
-    }
-    // Seteamos descripcion
-    this.descripcion = descripcion;
+// Revisar por defecto.
+function CrearGasto(descripcion, value, date, ...etiquetas) {
+  // PROPIEDADES.
+  // En caso de que el numero sea menor a 0 y/o no sea un numero. Seteamos valor a 0.
+  this.valor = (value < 0 || isNaN(value))?  0 : value;
 
-    // METODOS
-    this.mostrarGasto = function (){
-        return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`
+  // Seteamos descripcion
+  this.descripcion = descripcion;
+
+  this.fecha = isNaN(Date.parse(date)) ? Date.now() : Date.parse(date);
+
+  this.etiquetas = (etiquetas.length > 0) ? [...etiquetas] : [];
+
+  // METODOS
+  this.mostrarGastoCompleto = function() {
+   let etiquetasText = "";
+   for(let i = 0; i < this.etiquetas.length; i++){
+    etiquetasText += `- ${etiquetas[i]}\n`;
+   }
+
+   return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\nFecha: ${new Date(this.fecha).toLocaleString()}\nEtiquetas:\n${etiquetasText}`;
+  };
+
+  this.mostrarGasto = function () {
+    return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
+  };
+  this.actualizarDescripcion = function (newDescripcion) {
+    this.descripcion = newDescripcion;
+  };
+  this.actualizarValor = function (newValue) {
+    if (newValue > 0 && !isNaN(newValue)) {
+      this.valor = newValue;
     }
-    this.actualizarDescripcion = function (newDescripcion){
-        this.descripcion = newDescripcion;
-    }
-    this.actualizarValor = function (newValue){
-        if (newValue > 0 && !isNaN(newValue)){
-            this.valor = newValue;
-        };
-    }
+  };
+  this.actualizarFecha = function (date){
+    this.fecha = (isNaN(Date.parse(date)))? this.fecha : Date.parse(date);
+  }
+  this.anyadirEtiquetas = function (...nuevasEtiqueta){
+    let etiquetasAnyadir = nuevasEtiqueta.filter((etiqueta) => !this.etiquetas.includes(etiqueta));
+    this.etiquetas = [...this.etiquetas, ...etiquetasAnyadir];
+  }
+  this.borrarEtiquetas = function(...etiquetasBorrar){
+    let etiquetasBorradas = etiquetas.filter((etiqueta) => !etiquetasBorrar.includes(etiqueta))
+    this.etiquetas = etiquetasBorradas;
+  }
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
 // Las funciones y objetos deben tener los nombres que se indican en el enunciado
 // Si al obtener el código de una práctica se genera un conflicto, por favor incluye todo el código que aparece aquí debajo
-export   {
-    mostrarPresupuesto,
-    actualizarPresupuesto,
-    CrearGasto
-}
+export { mostrarPresupuesto, actualizarPresupuesto, CrearGasto, listarGastos, anyadirGasto, borrarGasto, calcularTotalGastos, calcularBalance };
