@@ -1,0 +1,31 @@
+﻿.calendar-form {
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+.seniority {
+    display: flex;
+    flex-direction: column;
+}
+
+.seniority-line {
+    display: flex;
+    flex-direction: row;
+    row-gap: 10%;
+    margin-bottom: 10%;
+}
+
+.seniority-textbox {
+    flex: 50%;
+}
+
+.seniority-text {
+    margin-left: 5%;
+}
+
+.calendar-form-container {
+    border: 5px solid red;
+    margin: 5%;
+    padding: 2%;
+}

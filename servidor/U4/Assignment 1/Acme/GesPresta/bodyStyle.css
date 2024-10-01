@@ -1,0 +1,72 @@
+﻿h2 {
+    margin-top:3%;
+    text-align: center;
+}
+
+.lendings {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.initial-form {
+    display: table;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 2%;
+    width: 80%;
+}
+
+.line {
+    display: table-row;
+    height: 25px;
+}
+
+.text {
+    display: table-cell;
+    text-align: right;
+    width: 40%;
+    padding-bottom: 1%;
+}
+
+.control {
+    display: table-cell;
+    text-align: left;
+    width: 50%;
+    padding-left: 4%;
+}
+
+.btn {
+    text-align: center;
+    padding-top: 3%;
+}
+
+.prestaciones-titulo {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    padding: 22px 0px 22px 0px;
+}
+
+.respuesta-prestaciones {
+    margin-top : 2%;
+    text-align: center;
+}
+
+
+.error-lbls {
+    display: flex;
+    column-gap: 5%;
+    flex-direction: column;
+    background-color: red;
+    width: 60%;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 2%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.error-lbls span {
+    padding: 5px;
+}
+
