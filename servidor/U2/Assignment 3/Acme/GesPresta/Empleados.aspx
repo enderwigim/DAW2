@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empleados.aspx.cs" Inherits="GesPresta.WebForm1" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Empleados.aspx.cs" Inherits="GesPresta.WebForm1" %>
 
 <%@ Register src="Cabecera.ascx" tagname="Cabecera" tagprefix="uc1" %>
 

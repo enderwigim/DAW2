@@ -72,22 +72,6 @@
             </div>
             <div class="line">
                 <div class="text">
-                    Fecha de nacimiento
-                </div>
-                <div class="control">
-                    <asp:TextBox ID="txtFnaEmp" runat="server" Width="200px"></asp:TextBox>
-                </div>
-            </div>
-            <div class="line">
-                <div class="text">
-                    Fecha de ingreso
-                </div>
-                <div class="control">
-                    <asp:TextBox ID="txtFinEmp" runat="server" Width="200px"></asp:TextBox>
-                </div>
-            </div>
-            <div class="line">
-                <div class="text">
                     Sexo
                 </div>
                 <div class="control">
@@ -200,7 +184,10 @@
         <asp:Label ID="lblError4" runat="server" Text="Label" Visible="False">El formato de fecha no es valido.</asp:Label>
         <!-- FORMATO DE ANTIGUEDAD -->
         <asp:Label ID="lblError5" runat="server" Text="Label" Visible="False">El formato de la antiguedad no es valido.</asp:Label>
-    </div>        
+    </div>  
+    <div class="respuesta-prestaciones">
+        <asp:Label ID="lblValores" runat="server" BackColor="#66FFFF" Width="60%" Visible="false"></asp:Label>
+    </div>
     </div>
     
 </form>

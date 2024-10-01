@@ -19,7 +19,23 @@ namespace GesPresta
 
         protected void CmdEnviar_Click(object sender, EventArgs e)
         {
-           
+            if(lblError1.Visible == false && lblError2.Visible == false && lblError3.Visible == false)
+            {
+                lblValores.Visible = true;
+                lblValores.BackColor = System.Drawing.ColorTranslator.FromHtml("#66FFFF");
+                lblValores.Text = "VALORES DEL FORMULARIO" +
+                    "<br/> Código Empleado: " + txtCodEmp.Text +
+                    "<br/> NIF: " + txtNifEmp.Text +
+                    "<br/> Apellidos y Nombre: " + txtNomEmp.Text +
+                    "<br/> Dirección: " + txtDirEmp.Text +
+                    "<br/> Ciudad: " + txtCiuEmp.Text +
+                    "<br/> Teléfonos: " + txtTelEmp.Text +
+                    "<br/> Fecha de Nacimiento: " + txtNacimiento.Text +
+                    "<br/> Fecha de Incorporación: " + txtIngreso.Text +
+                    "<br/> Sexo: " + rblSexEmp.SelectedItem.Value +
+                    "<br/> Departamento: " + ddlDepEmp.Text;
+            }
+
         }
         // -------------------- EVENTOS -------------------- \\
 
