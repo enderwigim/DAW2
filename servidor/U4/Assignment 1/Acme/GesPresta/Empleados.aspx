@@ -22,6 +22,7 @@
         <div class="line">
             <div class="text">
                 Código Empleado
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
             </div>
             <div class="control">
                 <asp:TextBox ID="txtCodEmp" runat="server" Width="200px"></asp:TextBox>
@@ -31,8 +32,8 @@
 
         <div class="line">
             <div class="text">
-                NIF
-            </div>
+                NIF<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
+&nbsp;</div>
             <div class="control">
                 <asp:TextBox ID="txtNifEmp" runat="server" Width="200px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rqdTxtNifEmp" runat="server" ErrorMessage="El NIF es obligatorio" ControlToValidate="txtNifEmp"></asp:RequiredFieldValidator>
@@ -73,7 +74,8 @@
             </div>
             <div class="control">
                 <asp:TextBox ID="txtTelEmp" runat="server" Width="200px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rdqTxtTelEmp" runat="server" ErrorMessage="El Telefono es obligatorio" ControlToValidate="txtTelEmp"></asp:RequiredFieldValidator>
+                <%--<asp:RequiredFieldValidator ID="rdqTxtTelEmp" runat="server" ErrorMessage="El Telefono es obligatorio" ControlToValidate="txtTelEmp"></asp:RequiredFieldValidator>--%>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
             </div>
         </div>
 
@@ -96,7 +98,8 @@
             </div>
             <div class="control">
                 <asp:TextBox ID="txtFinEmp" runat="server" Width="200px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rdqTxtFinEmp" runat="server" ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFinEmp"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
+                <%--<asp:RequiredFieldValidator ID="rdqTxtFinEmp" runat="server" ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFinEmp"></asp:RequiredFieldValidator>--%>
             </div>
         </div>
 
