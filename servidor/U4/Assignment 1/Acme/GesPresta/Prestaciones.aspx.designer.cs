@@ -42,6 +42,15 @@ namespace GesPresta
         protected global::System.Web.UI.WebControls.TextBox txtCodPre;
 
         /// <summary>
+        /// Control rqdTxtCodPre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqdTxtCodPre;
+
+        /// <summary>
         /// Control txtDesPre.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace GesPresta
         protected global::System.Web.UI.WebControls.TextBox txtImpPre;
 
         /// <summary>
+        /// Control rngTxtImpPre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rngTxtImpPre;
+
+        /// <summary>
         /// Control txtPorPre.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace GesPresta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPorPre;
+
+        /// <summary>
+        /// Control rngTxtPorPre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rngTxtPorPre;
 
         /// <summary>
         /// Control ddlTipPre.

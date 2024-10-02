@@ -22,10 +22,10 @@
         <div class="line">
             <div class="text">
                 Código Empleado
-                <asp:RequiredFieldValidator ID="rqdTxtCodEmp" runat="server" ErrorMessage="El Codigo Empleado es obligatorio" ControlToValidate="txtCodEmp"></asp:RequiredFieldValidator>
             </div>
             <div class="control">
                 <asp:TextBox ID="txtCodEmp" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rqdTxtCodEmp" runat="server" ErrorMessage="El Codigo Empleado es obligatorio" ControlToValidate="txtCodEmp"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -42,10 +42,10 @@
         <div class="line">
             <div class="text">
                 Apellidos y Nombre
-                <asp:RequiredFieldValidator ID="rqdTxtNomEmp" runat="server" ErrorMessage="El Apellidos y Nombre es obligatorio" ControlToValidate="txtNomEmp"></asp:RequiredFieldValidator>
             </div>
             <div class="control">
                 <asp:TextBox ID="txtNomEmp" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rqdTxtNomEmp" runat="server" ErrorMessage="El Apellidos y Nombre es obligatorio" ControlToValidate="txtNomEmp"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -70,31 +70,30 @@
         <div class="line">
             <div class="text">
                 Teléfono
-                <asp:RequiredFieldValidator ID="rdqTxtTelEmp" runat="server" ErrorMessage="El Telefono es obligatorio" ControlToValidate="txtTelEmp"></asp:RequiredFieldValidator>
-
             </div>
             <div class="control">
                 <asp:TextBox ID="txtTelEmp" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rdqTxtTelEmp" runat="server" ErrorMessage="El Telefono es obligatorio" ControlToValidate="txtTelEmp"></asp:RequiredFieldValidator>
             </div>
         </div>
 
         <div class="line">
             <div class="text">
                 Fecha de nacimiento
-                <asp:RequiredFieldValidator ID="rdqTxtFnaEmp" runat="server"  ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFnaEmp"></asp:RequiredFieldValidator>
             </div>
             <div class="control">
                 <asp:TextBox ID="txtFnaEmp" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rdqTxtFnaEmp" runat="server"  ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFnaEmp"></asp:RequiredFieldValidator>
             </div>
         </div>
 
         <div class="line">
             <div class="text">
-                <asp:RequiredFieldValidator ID="rdqTxtFinEmp" runat="server" ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFinEmp"></asp:RequiredFieldValidator>
                 Fecha de ingreso
             </div>
             <div class="control">
                 <asp:TextBox ID="txtFinEmp" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rdqTxtFinEmp" runat="server" ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFinEmp"></asp:RequiredFieldValidator>
             </div>
         </div>
 
