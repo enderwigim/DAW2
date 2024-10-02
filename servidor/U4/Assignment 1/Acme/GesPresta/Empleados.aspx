@@ -83,7 +83,10 @@
             </div>
             <div class="control">
                 <asp:TextBox ID="txtFnaEmp" runat="server" Width="200px"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rdqTxtFnaEmp" runat="server"  ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFnaEmp"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cmptxtFnaEmp" ControlToValidate="txtFnaEmp" ControlToCompare="txtFinEmp" 
+                    runat="server" Type="Date" Operator="LessThan" 
+                    ErrorMessage="La Fecha de Ingreso del Empleado debe ser mayor que la Fecha de Nacimiento"></asp:CompareValidator>
+                <%--<asp:RequiredFieldValidator ID="rdqTxtFnaEmp" runat="server"  ErrorMessage="La fecha de nacimiento es obligatoria" ControlToValidate="txtFnaEmp"></asp:RequiredFieldValidator>--%>
             </div>
         </div>
 

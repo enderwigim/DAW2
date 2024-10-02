@@ -44,10 +44,9 @@
                 <div class="control">
                     <asp:TextBox ID="txtImpPre" runat="server" Width="200px"></asp:TextBox>
                     <asp:RangeValidator ID="rngTxtImpPre" runat="server" ControlToValidate="txtImpPre" ErrorMessage="El importe máximo de las prestaciones no debe superar 500,00€" Type="Double" MaximumValue="500,00" MinimumValue="0,00"></asp:RangeValidator>
-                    <asp:RequiredFieldValidator ID="rqdTxtImpPre" runat="server" ControlToValidate="txtImpPre" ErrorMessage="El Importe es obligatorio"></asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="rqdTxtImpPre" runat="server" ControlToValidate="txtImpPre" ErrorMessage="El Importe es obligatorio"></asp:RequiredFieldValidator>--%>
                 </div>
             </div>
-
             <div class="line">
                 <div class="text">
                     Porcentaje de Importe
@@ -55,7 +54,7 @@
                 <div class="control">
                     <asp:TextBox ID="txtPorPre" runat="server" Width="200px"></asp:TextBox>
                     <asp:RangeValidator ID="rngTxtPorPre" runat="server" ControlToValidate="txtPorPre" ErrorMessage="El valor introducido debe estar comprendido entre el 0,00 y el 15,00 %" Type="Double" MaximumValue="15,00" MinimumValue="0,00"></asp:RangeValidator>
-                    <asp:RequiredFieldValidator ID="rqdTxtPorPre" runat="server" ControlToValidate="txtPorPre" ErrorMessage="El Porcentaje de Importe es obligatorio"></asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="rqdTxtPorPre" runat="server" ControlToValidate="txtPorPre" ErrorMessage="El Porcentaje de Importe es obligatorio"></asp:RequiredFieldValidator>--%>
                 </div>
             </div>
 
