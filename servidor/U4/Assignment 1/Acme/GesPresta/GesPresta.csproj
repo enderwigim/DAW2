@@ -72,10 +72,15 @@
     <Content Include="Default.aspx" />
     <Content Include="Empleados1.aspx" />
     <Content Include="EmpleadosCalendar.aspx" />
+    <Content Include="MPDefault.aspx" />
+    <Content Include="MPEmpleados.aspx" />
+    <Content Include="MPPrestaciones.aspx" />
+    <Content Include="Prestaciones2.aspx" />
     <Content Include="Prestaciones1Respuesta.aspx" />
     <Content Include="Prestaciones1.aspx" />
     <Content Include="bodyStyle.css" />
     <Content Include="header.css" />
+    <Content Include="prestacionesBuscar.ascx" />
     <Content Include="Web.config" />
     <Content Include="Empleados.aspx" />
     <Content Include="Prestaciones.aspx" />
@@ -109,6 +114,40 @@
     <Compile Include="EmpleadosCalendar.aspx.designer.cs">
       <DependentUpon>EmpleadosCalendar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MPDefault.aspx.cs">
+      <DependentUpon>MPDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MPDefault.aspx.designer.cs">
+      <DependentUpon>MPDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MPEmpleados.aspx.cs">
+      <DependentUpon>MPEmpleados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MPEmpleados.aspx.designer.cs">
+      <DependentUpon>MPEmpleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MPPrestaciones.aspx.cs">
+      <DependentUpon>MPPrestaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MPPrestaciones.aspx.designer.cs">
+      <DependentUpon>MPPrestaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Prestaciones2.aspx.cs">
+      <DependentUpon>Prestaciones2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prestaciones2.aspx.designer.cs">
+      <DependentUpon>Prestaciones2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Prestaciones1Respuesta.aspx.cs">
       <DependentUpon>Prestaciones1Respuesta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,6 +161,13 @@
     </Compile>
     <Compile Include="Prestaciones1.aspx.designer.cs">
       <DependentUpon>Prestaciones1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prestacionesBuscar.ascx.cs">
+      <DependentUpon>prestacionesBuscar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prestacionesBuscar.ascx.designer.cs">
+      <DependentUpon>prestacionesBuscar.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Empleados.aspx.cs">
@@ -140,6 +186,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
