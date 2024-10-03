@@ -2,9 +2,7 @@
   El objetivo de esta práctica es seguir profundizando en los conceptos fundamentales de JavaScript. En concreto, trataremos sobre los arrays y funciones avanzadas.
 
 ** Repositorio de la práctica
-   El *repositorio base* de la práctica está disponible en: https://github.com/DWEC2324/practica_dwec_gestor_presupuesto, bajo invitación pues es privado.
-
-
+   El *repositorio base* de la práctica está disponible en: https://github.com/DWEC-24-25/dwec-24-25-classroom-66db84-pr-gestor-de-presupuesto-dwec-practica_dwec_gestor_presupuesto, y es privado.
    Se supone que ya está configurado el *repositorio personal* y el *remoto secundario* (~profesor~). Si no es así, revisa las instrucciones de las prácticas anteriores. En el apartado de *Preparación* se indica cómo proceder.
    
 ** Requisitos de software

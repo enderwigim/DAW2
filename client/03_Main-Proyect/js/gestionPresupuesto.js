@@ -31,18 +31,19 @@ function anyadirGasto(newGasto){
   gastos.push(newGasto);
 }
 function borrarGasto(id){
-
+  gastos = gastos.filter((gasto) => gasto.id !== id);
 }
 function calcularTotalGastos(){
   let total = 0;
+  
   for (let i = 0; i < gastos.length; i++){
     total += gastos[i].valor;
   }
   return total;
 }
 function calcularBalance(){
-  return presupuesto -= calcularTotalGastos();
-
+  let balance = presupuesto - calcularTotalGastos();
+  return balance;
 }
 
 // FUNCION CONSTRUCTORA DE GASTO
@@ -76,7 +77,7 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
     this.descripcion = newDescripcion;
   };
   this.actualizarValor = function (newValue) {
-    if (newValue > 0 && !isNaN(newValue)) {
+    if (newValue >= 0 && !isNaN(newValue)) {
       this.valor = newValue;
     }
   };
