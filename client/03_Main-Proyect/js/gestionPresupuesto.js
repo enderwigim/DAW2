@@ -81,8 +81,26 @@ function filtrarGastos({
   return filtered;
 }
 
-function agruparGastos(periodo, etiquetas, fechaDesde, fechaHasta ) {
+function agruparGastos(periodo = 'mes', etiquetas, fechaDesde, fechaHasta) {
+  if (!Array.isArray(etiquetas)) {
+    etiquetas = [];
+  }
+  filtered = filtrarGastos({
+    fechaDesde: fechaDesde,
+    fechaHasta: fechaHasta,
+    etiquetas: etiquetas,
+  });
+  //return filteredArray;
+  let gastosAgrupados = filtered.reduce((acumulador, gasto) => {
+    let periodoGasto = gasto.obtenerPeriodoAgrupacion(periodo);
+    if (!acumulador[periodoGasto]) {
+      acumulador[periodoGasto] = 0;
+    }
+    acumulador[periodoGasto] += gasto.valor;
 
+    return acumulador;
+  }, {});
+  return gastosAgrupados;
 }
 
 // FUNCION CONSTRUCTORA DE GASTO
