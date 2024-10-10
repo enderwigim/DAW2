@@ -51,7 +51,7 @@ function filtrarGastos({
   valorMinimo,
   valorMaximo,
   descripcionContiene,
-  etiquetasTiene
+  etiquetasTiene,
 }) {
   let filtered = [...gastos];
   if (fechaDesde != undefined) {
@@ -67,36 +67,46 @@ function filtrarGastos({
   if (valorMinimo != undefined) {
     filtered = filtered.filter((gasto) => valorMinimo < gasto.valor);
   }
-  if (valorMaximo != undefined){
+  if (valorMaximo != undefined) {
     filtered = filtered.filter((gasto) => valorMaximo > gasto.valor);
   }
-  if (descripcionContiene != undefined){
-    filtered = filtered.filter((gasto) => gasto.descripcion.toLowerCase().includes(descripcionContiene.toLowerCase()));
+  if (descripcionContiene != undefined) {
+    filtered = filtered.filter((gasto) =>
+      gasto.descripcion
+        .toLowerCase()
+        .includes(descripcionContiene.toLowerCase())
+    );
   }
-  if (etiquetasTiene != undefined){
-    filtered = filtered.filter(producto => 
-      etiquetasTiene.some(etiqueta => producto.etiquetas.includes(etiqueta))
+  if (etiquetasTiene != undefined && etiquetasTiene.length > 0) {
+    filtered = filtered.filter((producto) =>
+      etiquetasTiene.some((etiqueta) => producto.etiquetas.includes(etiqueta))
     );
   }
   return filtered;
 }
 
-function agruparGastos(periodo = 'mes', etiquetas, fechaDesde, fechaHasta) {
-  if (!Array.isArray(etiquetas)) {
-    etiquetas = [];
-  }
-  filtered = filtrarGastos({
+function agruparGastos(
+  periodo = "mes", etiquetas = [],
+  fechaDesde = undefined, fechaHasta = undefined,
+) {
+  console.log("Gastos todos:", fechaHasta);
+  let filtered = filtrarGastos({
     fechaDesde: fechaDesde,
     fechaHasta: fechaHasta,
-    etiquetas: etiquetas,
+    etiquetasTiene: etiquetas,
   });
-  //return filteredArray;
+
+  console.log("Gastos filtrados:", filtered);
+
   let gastosAgrupados = filtered.reduce((acumulador, gasto) => {
     let periodoGasto = gasto.obtenerPeriodoAgrupacion(periodo);
-    if (!acumulador[periodoGasto]) {
+    console.log("Periodo de agrupación:", periodoGasto);
+    if (acumulador[periodoGasto] == undefined) {
       acumulador[periodoGasto] = 0;
     }
+
     acumulador[periodoGasto] += gasto.valor;
+
 
     return acumulador;
   }, {});

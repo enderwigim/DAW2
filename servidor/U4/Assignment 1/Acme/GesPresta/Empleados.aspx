@@ -28,7 +28,7 @@
                 <asp:RequiredFieldValidator ID="rqdTxtCodEmp" runat="server" ErrorMessage="El Codigo Empleado es obligatorio" 
                     ControlToValidate="txtCodEmp" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="regTxtCodEmp" ControlToValidate="txtCodEmp" ValidationExpression="\w\d{5}"
-                    runat="server" ErrorMessage="El formato de los datos a introducir debe ser:  una letra y 5 dígitos." Text="*" ForeColor="Red"></asp:RegularExpressionValidator>
+                    runat="server" ErrorMessage="El formato de los datos a introducir debe ser:  una letra y 5 dígitos." Text="*" ForeColor="Green"></asp:RegularExpressionValidator>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
                 <asp:RequiredFieldValidator ID="rqdTxtNifEmp" runat="server" ErrorMessage="El NIF es obligatorio" 
                     ControlToValidate="txtNifEmp" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="regTxtNifEmp" ControlToValidate="txtNifEmp" runat="server" ValidationExpression="\d{8}-\w"
-                    ErrorMessage="El formato de los datos a introducir debe ser: 8 dígitos, un guion y una letra." Text="*" ForeColor="Red"></asp:RegularExpressionValidator>
+                    ErrorMessage="El formato de los datos a introducir debe ser: 8 dígitos, un guion y una letra." Text="*" ForeColor="Green"></asp:RegularExpressionValidator>
             </div>
         </div>
 
@@ -95,7 +95,7 @@
                 <asp:RequiredFieldValidator ID="rdqTxtFnaEmp" runat="server"  ErrorMessage="La fecha de nacimiento es obligatoria" 
                     ControlToValidate="txtFnaEmp" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="regTxtFnaEmp" runat="server" ControlToValidate="txtFnaEmp" ValidationExpression="\d\d\/\d\d\/\d\d\d\d"
-                 ErrorMessage="El formato de los datos a introducir debe ser: Formato de fecha dd/mm/aaaa." ForeColor="Red" Text="*"></asp:RegularExpressionValidator>
+                 ErrorMessage="El formato de los datos a introducir debe ser: Formato de fecha dd/mm/aaaa." ForeColor="Green" Text="*"></asp:RegularExpressionValidator>
                 <asp:CompareValidator ID="cmptxtFnaEmp" ControlToValidate="txtFnaEmp" ControlToCompare="txtFinEmp"
                     runat="server" Type="Date" Operator="LessThan" 
                     ErrorMessage="La Fecha de Ingreso del Empleado debe ser mayor que la Fecha de Nacimiento" Text="*" ForeColor="Green"></asp:CompareValidator>     
