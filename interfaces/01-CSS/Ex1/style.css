@@ -8,7 +8,7 @@ border: none;
 *, *:before, *:after {
 
     box-sizing: inherit;
-    border: black solid 5px;
+    border: black solid 2px;
     text-align: center;
     padding: 1%;
     margin: 1%;
@@ -26,21 +26,22 @@ nav{
 header{
     height: 100px;
     float: left;
-    width: 50%;
+    width: 70%;
     background-color: #82E98C;
 }
 section{
     background-color: #B69EE1;
     margin-left: 25px;
-    width: 45%;
+    height: 100%;
+    width: 70%;
     display: inline;
     float: left;
     
 }
 aside{
     background-color: #F09B9A;
-    height: 200px;
-    width: 45%;
+    height: 500px;
+    width: calc(25%);
     float: right;
     
 }
