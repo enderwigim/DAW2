@@ -1,0 +1,48 @@
+html {
+
+    box-sizing: border-box;
+    
+    }
+    
+    *, *:before, *:after {
+    
+    box-sizing: inherit;
+    border-radius: 5px;
+    padding: 2px;
+    }
+header {
+    background-color: brown;
+}
+main {
+    display: flex;
+    flex-direction: row;
+
+}
+section{
+    background-color: #3993DD;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+article {
+    background-color: #44CF6C;
+}
+article > p {
+    background-color: #A9FDAC
+}
+aside {
+    padding: auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+aside > nav{
+    background-color: red;
+}
+aside > p {
+    background-color: brown;
+    height: 100%;
+}
+footer {
+    background-color: #E0ACD5;
+}
