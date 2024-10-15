@@ -11,18 +11,21 @@ html {
     padding: 2px;
     }
 header {
-    background-color: brown;
+    background-color: #DF5C53;
+    margin: 5px;
+    height: 100px;
 }
 main {
     display: flex;
     flex-direction: row;
-
+    
 }
 section{
     background-color: #3993DD;
     display: flex;
     flex-direction: column;
     width: 70%;
+    margin: 5px
 }
 article {
     background-color: #44CF6C;
@@ -35,14 +38,39 @@ aside {
     width: 30%;
     display: flex;
     flex-direction: column;
+    margin: 3px 5px 5px 5px
 }
 aside > nav{
-    background-color: red;
+    background-color: #EAFA73;
 }
 aside > p {
-    background-color: brown;
+    background-color: #13B6C5;
     height: 100%;
+    margin-bottom: 0%;
+    margin-top: 10px;
+    padding: 0;
 }
 footer {
     background-color: #E0ACD5;
+}
+section > article {
+    margin: 1.5%;
+    padding: 1%;
+
+}
+article > p {
+    height: 50px;
+}
+article:nth-child(3){
+    height: 100px;
+}
+section > p {
+    background-color: #E0ACD5;
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 10px 5px 5px;
+}
+footer {
+    padding: 1%;
+    margin: 5px;
 }
