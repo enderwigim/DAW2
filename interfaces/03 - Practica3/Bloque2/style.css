@@ -9,6 +9,7 @@ html {
     box-sizing: inherit;
     border-radius: 5px;
     padding: 2px;
+    font-weight: bold;
     }
 header {
     background-color: #DF5C53;
