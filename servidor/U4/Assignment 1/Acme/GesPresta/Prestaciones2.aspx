@@ -101,8 +101,9 @@
         <div class="btn">
             <br />
             <asp:Button ID="cmdEnviar" runat="server" Text="Enviar" />
+            <br />
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" DisplayMode="List" />
         </div>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
 </form>
 </body>
 </html>
