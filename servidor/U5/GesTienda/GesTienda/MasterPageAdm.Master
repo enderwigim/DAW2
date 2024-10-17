@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Prueba.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageAdm.Master.cs" Inherits="Prueba.MasterPageAdm" %>
 
 <!DOCTYPE html>
 
@@ -25,23 +25,27 @@
                    <br />
                </div>
                <div id="cabecera3">
-                   Usuario: 
+                   Rol Administrador: 
                    <asp:Label ID="lblDatosUsuario" runat="server" CssClass="verticalMitad"></asp:Label> &nbsp; &nbsp;
                    <asp:Button ID="btnCerrar" runat="server" Text="Cerrar sesión" CssClass="verticalMitad" OnClick="btnCerrar_Click" />
                </div>
             </div>
             <div id="cuerpo">
-               <div id="menu">
+               <div id="menu" style="background:#d0d0d0">
                    <asp:TreeView ID="TreeView1" runat="server" ImageSet="Arrows">
                        <Nodes>
-                           <asp:TreeNode Text="Inicio" Value="Inicio" NavigateUrl="~/InicioUsuario.aspx"></asp:TreeNode>
+                           <asp:TreeNode Text="Inicio" Value="Inicio" NavigateUrl="~/InicioAdmin.aspx"></asp:TreeNode>
                            <asp:TreeNode Expanded="False" SelectAction="Expand" Text="Productos" Value="Productos">
-                               <asp:TreeNode Text="Tipos de productos" Value="Ver Productos" NavigateUrl="~/TiposVer.aspx"></asp:TreeNode>
-                               <asp:TreeNode NavigateUrl="~/ProductosPorTipoVer.aspx" Text="Productos por Tipo" Value="Ver Productos por Tipo"></asp:TreeNode>
-                               <asp:TreeNode NavigateUrl="~/ProductosVer.aspx" Text="Ver Productos" Value="Productos"></asp:TreeNode>
+                               <asp:TreeNode Text="Mantener productos" Value="Mantener productos" NavigateUrl="~/ProductosMantener.aspx"></asp:TreeNode>
                            </asp:TreeNode>
-                           <asp:TreeNode Expanded="False" SelectAction="Expand" Text="Compras" Value="Clientes">
-                               <asp:TreeNode Text="Mis Pedidos" Value="Mis Pedidos"></asp:TreeNode>
+                           <asp:TreeNode Expanded="False" SelectAction="Expand" Text="Ventas" Value="Ventas">
+                               <asp:TreeNode Text="Pedidos por cliente" Value="Pedidos por cliente" NavigateUrl="~/PedidosPorCliente.aspx"></asp:TreeNode>
+                           </asp:TreeNode>
+                           <asp:TreeNode Expanded="False" SelectAction="Expand" Text="Clientes" Value="Clientes">
+                               <asp:TreeNode Text="Clientes por ciudad" Value="Clientes por ciudad"></asp:TreeNode>
+                           </asp:TreeNode>
+                           <asp:TreeNode Expanded="False" SelectAction="Expand" Text="Usuarios" Value="Usuarios">
+                               <asp:TreeNode Text="Mantener usuarios" Value="Mantener usuarios"></asp:TreeNode>
                            </asp:TreeNode>
                        </Nodes>
                    </asp:TreeView>
@@ -73,8 +77,7 @@
                <div id="contenido">
                    <asp:ContentPlaceHolder ID="InfoContenido" runat="server">
                    </asp:ContentPlaceHolder>
-               </div>
-            </div>
+               
             <div id="pie">
                 <br />
                 <br />

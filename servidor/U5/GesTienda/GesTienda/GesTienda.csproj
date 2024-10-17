@@ -75,6 +75,8 @@
     <Content Include="EstiloControlError.css" />
     <Content Include="Estilos\HojaEstilo.css" />
     <Content Include="Global.asax" />
+    <Content Include="PedidosPorCliente.aspx" />
+    <Content Include="ProductosMantener.aspx" />
     <Content Include="ProductosPorTipoVer.aspx" />
     <Content Include="ProductosVer.aspx" />
     <Content Include="TiposVer.aspx" />
@@ -97,6 +99,27 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageAdm.Master.cs">
+      <DependentUpon>MasterPageAdm.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageAdm.Master.designer.cs">
+      <DependentUpon>MasterPageAdm.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PedidosPorCliente.aspx.cs">
+      <DependentUpon>PedidosPorCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidosPorCliente.aspx.designer.cs">
+      <DependentUpon>PedidosPorCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductosMantener.aspx.cs">
+      <DependentUpon>ProductosMantener.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductosMantener.aspx.designer.cs">
+      <DependentUpon>ProductosMantener.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductosPorTipoVer.aspx.cs">
       <DependentUpon>ProductosPorTipoVer.aspx</DependentUpon>
@@ -123,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
+    <Content Include="MasterPageAdm.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

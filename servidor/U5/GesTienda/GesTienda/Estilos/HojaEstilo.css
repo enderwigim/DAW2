@@ -7,7 +7,9 @@
     background-color: #FFFFFF;
     color: #000000;
 }
-
+h1 {
+    text-align: center;
+}
 #cabecera {
     width: 100%;
     padding: 0px;
@@ -76,4 +78,40 @@
 
 .verticalMitad {
     vertical-align: middle;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.container {
+    margin: 0% 3%;
+}
+.cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinea los label y inputs en el centro verticalmente */
+    margin-bottom: 10px; /* Espacio entre filas */
+}
+.cont {
+    display: flex;
+    flex-direction: column; /* Cambiado para alinear en una columna */
+    margin-bottom: 10px; /* Espacio entre filas */
+}
+
+.cont label {
+    margin-bottom: 5px; /* Añadir espacio entre el label y el input */
+}
+
+.cont input,
+.cont select {
+    padding: 5px;
+    width: 100%; /* Hacer que todos los inputs ocupen el 100% del ancho disponible */
+    box-sizing: border-box; /* Para incluir el padding en el ancho total */
+}
+
+.cont input[type="text"],
+.cont select {
+    max-width: 300px; /* Ancho máximo de los inputs y selects, puedes ajustarlo según tus necesidades */
 }
