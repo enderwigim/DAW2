@@ -18,7 +18,7 @@ function mostrarGastoWeb(idElemento, gasto){
 
     // Create fecha
     let gastoFecha = document.createElement("div");
-    gastoFecha.innerHTML = new Date(gasto.fecha);
+    gastoFecha.innerHTML = new Date(gasto.fecha).toLocaleDateString();
     gastoFecha.classList.add('gasto-fecha');
     // Add fecha
     gastoDiv.appendChild(gastoFecha);
@@ -47,9 +47,12 @@ function mostrarGastoWeb(idElemento, gasto){
     
 }
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
-    let elemento = document.getElementById(idElemento);
+    let element = document.getElementById(idElemento);
 
     // Create DIV AND H1
+    let mainDiv = document.createElement('div');
+    mainDiv.classList.add("agrupacion");
+
     let h1 = document.createElement('h1');
     h1.innerHTML = periodo === 'anyo' ? 
                     "Gastos agrupados por año"
@@ -57,8 +60,36 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
                         "Gastos agrupados por mes"
                         : periodo === 'dia' ?
                         "Gastos agrupados por día" :
-                        "ERROR - Periodo mal especificado."
-    
+                        "ERROR - Periodo mal especificado.";
+    mainDiv.appendChild(h1);
+    /*
+    const object = {'a': 1, 'b': 2, 'c' : 3};
+
+    for (const [key, value] of Object.entries(object)) {
+    console.log(key, value);
+    }
+    */
+    for (const [key, value] of Object.entries(agrup)) {
+        // Create div
+        let keyValueDiv = document.createElement("div");
+        keyValueDiv.classList.add("agrupacion-dato");
+        // Create first span
+        let keySpan = document.createElement("span");
+        keySpan.classList.add("agrupacion-dato-clave");
+        keySpan.innerHTML = key;
+        // Create second span
+        let valueSpan = document.createElement("span");
+        valueSpan.classList.add("agrupacion-dato-valor");
+        valueSpan.innerHTML = value;
+        // Add spans to div
+        keyValueDiv.appendChild(keySpan);
+        keyValueDiv.appendChild(valueSpan);
+        // Add div to mainDiv
+        mainDiv.appendChild(keyValueDiv);
+    }
+                 
+    // Add mainDiv to element
+    element.appendChild(mainDiv);
 
 }
 export {

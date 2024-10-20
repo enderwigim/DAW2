@@ -63,3 +63,15 @@ let gastosFiltradosMenor50 = gest.filtrarGastos({
 gastosFiltradosMenor50.forEach((gasto) => {
    web.mostrarGastoWeb('listado-gastos-filtrado-4', gasto);
 })
+
+// SHOW AGROUP BY DAY
+let agroupByDay = gest.agruparGastos("dia");
+web.mostrarGastosAgrupadosWeb("agrupacion-dia", agroupByDay, "dia");
+
+// SHOW AGROUP BY MONTH
+let agroupByMonth = gest.agruparGastos("mes");
+web.mostrarGastosAgrupadosWeb("agrupacion-mes", agroupByMonth, "mes");
+
+// SHOW AGROUP BY YEAR
+let agroupByYear = gest.agruparGastos("anyo");
+web.mostrarGastosAgrupadosWeb("agrupacion-anyo", agroupByYear, "anyo")
