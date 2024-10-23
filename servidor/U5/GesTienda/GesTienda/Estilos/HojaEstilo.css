@@ -115,3 +115,14 @@ h1 {
 .cont select {
     max-width: 300px; /* Ancho máximo de los inputs y selects, puedes ajustarlo según tus necesidades */
 }
+
+.prod-mant-buttons{
+    padding: 2%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+
+}
+.btn {
+    margin-top: 2%;
+}

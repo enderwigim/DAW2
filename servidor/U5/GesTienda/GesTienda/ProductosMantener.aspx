@@ -14,10 +14,12 @@
             <asp:GridView ID="grdProductos" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="IdProducto" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grdProductos_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
+                    <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
                     <asp:BoundField DataField="IdProducto" HeaderText="IdProducto" ReadOnly="True" SortExpression="IdProducto" />
                     <asp:BoundField DataField="DesPro" HeaderText="DesPro" SortExpression="DesPro" />
-                    <asp:BoundField DataField="PrePro" HeaderText="PrePro" SortExpression="PrePro" />
+                    <asp:BoundField DataField="PrePro" HeaderText="PrePro" SortExpression="PrePro" DataFormatString="{0:c}" >
+                    <ItemStyle HorizontalAlign="Right" />
+                    </asp:BoundField>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -30,9 +32,10 @@
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
-        </article>
             <asp:Label ID="lblResultado" runat="server"></asp:Label> 
             <asp:Label ID="lblMensajes" ForeColor="red" runat="server"></asp:Label> 
+        </article>
+            
         <article class="container">
             <div class="cont">
                 <asp:Label ID="lblIdProducto" runat="server" Text="ID.Producto"></asp:Label> 
@@ -56,15 +59,19 @@
                 <asp:DropDownList ID="ddlIdTipo" runat="server" DataSourceID="SqlDataSource3" DataTextField="DesTip" DataValueField="IdTipo">
                 </asp:DropDownList>
                 <br />
-                <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" Visible="True" Width="200px" OnClick="btnNuevo_Click" />
-                <asp:Button ID="btnEditar" runat="server" Text="Editar" Visible="True" Width="200px" OnClick="btnEditar_Click" />
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Visible="True" Width="200px" OnClick="btnEliminar_Click" />
-                <asp:Button ID="btnInsertar" runat="server" Text="Insertar" Visible="False" Width="200px" OnClick="btnInsertar_Click" />
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" Visible="False" Width="200px" OnClick="btnModificar_Click" />
-                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" Visible="False" Width="200px" OnClick="btnBorrar_Click" />
-                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Visible="False" Width="200px" OnClick="btnCancelar_Click" />
+                <div class="prod-mant-buttons">
+                    <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" Visible="True" Width="200px" OnClick="btnNuevo_Click" cssClass="btn"/>
+                    <asp:Button ID="btnEditar" runat="server" Text="Editar" Visible="False" Width="200px" OnClick="btnEditar_Click" cssClass="btn"/>
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Visible="False" Width="200px" OnClick="btnEliminar_Click" cssClass="btn"/>
+                    <asp:Button ID="btnInsertar" runat="server" Text="Insertar" Visible="False" Width="200px" OnClick="btnInsertar_Click" cssClass="btn"/>
+                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" Visible="False" Width="200px" OnClick="btnModificar_Click" cssClass="btn"/>
+                    <asp:Button ID="btnBorrar" runat="server" Text="Borrar" Visible="False" Width="200px" OnClick="btnBorrar_Click" cssClass="btn"/>
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" Visible="False" Width="200px" OnClick="btnCancelar_Click" cssClass="btn"/>
+
+                </div>
             </div>
-            
+        
         </article>
+
     </section>
 </asp:Content>

@@ -19,7 +19,7 @@ namespace GesTienda
         protected void grdProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblMensajes.Text = "";
-            FnDeshabilitarControles();
+            FnGestionarControles(all: false);
             string StrIdProducto = grdProductos.SelectedRow.Cells[1].Text;
             string StrCadenaConexion =
                ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -50,13 +50,7 @@ namespace GesTienda
                         lblMensajes.Text = "No existen registros resultantes de la consulta";
                     }
                     reader.Close();
-                    btnNuevo.Visible = true;
-                    btnEditar.Visible = true;
-                    btnEliminar.Visible = true;
-                    btnInsertar.Visible = false;
-                    btnModificar.Visible = false;
-                    btnBorrar.Visible = false;
-                    btnCancelar.Visible = false;
+                    FnHabilitarBotones(nuevo: true, editar: true, eliminar: true);
                 }
                 catch (SqlException ex)
                 {
@@ -68,41 +62,18 @@ namespace GesTienda
                 }
             }
         }
-        protected void FnDeshabilitarControles()
-        {
-            txtIdProducto.Enabled = false;
-            txtDesPro.Enabled = false;
-            txtPrePro.Enabled = false;
-            ddlIdUnidad.Enabled = false;
-            ddlIdTipo.Enabled = false;
-        }
-
-        protected void FnHabilitarControles()
-        {
-            txtIdProducto.Enabled = true;
-            txtDesPro.Enabled = true;
-            txtPrePro.Enabled = true;
-            ddlIdUnidad.Enabled = true;
-            ddlIdTipo.Enabled = true;
-        }
-
+       
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             lblMensajes.Text = "";
-            btnNuevo.Visible = false;
-            btnEditar.Visible = false;
-            btnEliminar.Visible = false;
-            btnInsertar.Visible = true;
-            btnModificar.Visible = false;
-            btnBorrar.Visible = false;
-            btnCancelar.Visible = true;
+            FnHabilitarBotones(insertar: true, cancelar: true);
             txtIdProducto.Text = "";
             txtDesPro.Text = "";
             txtPrePro.Text = Convert.ToString(0);
             ddlIdUnidad.DataBind();      // Vuelve a enlazar el control para que se actualicen los datos 
             ddlIdTipo.DataBind();
             grdProductos.SelectedIndex = -1;
-            FnHabilitarControles();
+            FnGestionarControles(all: true);
             txtIdProducto.Focus();
         }
 
@@ -114,7 +85,7 @@ namespace GesTienda
 
             strIdProducto = txtIdProducto.Text;
             strDescripcion = txtDesPro.Text;
-            dcPrecio = Convert.ToDecimal(txtPrePro.Text);
+            dcPrecio = Convert.ToDecimal(FnAdaptarFormatoPrecio(txtPrePro.Text));
             strIdUnidad = ddlIdUnidad.SelectedItem.Text;
             strIdTipo = ddlIdTipo.SelectedItem.Value;
             string StrCadenaConexion =
@@ -136,14 +107,7 @@ namespace GesTienda
                         lblMensajes.Text = "Registro insertado correctamente";
                     else
                         lblMensajes.Text = "Error al insertar el registro";
-                    btnNuevo.Visible = true;
-
-                    btnEditar.Visible = true;
-                    btnEliminar.Visible = false;
-                    btnInsertar.Visible = false;
-                    btnModificar.Visible = false;
-                    btnBorrar.Visible = false;
-                    btnCancelar.Visible = false;
+                    FnHabilitarBotones(nuevo: true, editar: true);
                 }
                 catch (SqlException ex)
                 {
@@ -156,7 +120,7 @@ namespace GesTienda
             }
             grdProductos.DataBind();         // Vuelve a enlazar el GridView para que se actualicen los datos 
             grdProductos.SelectedIndex = -1;
-            FnDeshabilitarControles();
+            FnGestionarControles(all: false);
         }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -167,14 +131,14 @@ namespace GesTienda
 
             strIdProducto = txtIdProducto.Text;
             strDescripcion = txtDesPro.Text;
-            if (decimal.TryParse(FnPuntoPorComa(txtPrePro.Text), out decimal precio))
+            if (!decimal.TryParse(FnAdaptarFormatoPrecio(txtPrePro.Text), out decimal value))
             {
-                dcPrecio = precio;
-
-            } else
-            {
+                lblMensajes.Text = "ERROR: El precio debe tener un formato adecuado.";
                 return;
-            }
+            } 
+            dcPrecio = value;
+
+            // dcPrecio = Convert.ToDecimal(FnAdaptarFormatoPrecio(txtPrePro.Text));
 
             strIdUnidad = ddlIdUnidad.SelectedItem.Text;
             strIdTipo = ddlIdTipo.SelectedItem.Value;
@@ -216,70 +180,35 @@ namespace GesTienda
                 }
                 grdProductos.DataBind();         // Vuelve a enlazar el GridView para que se actualicen los datos 
                 grdProductos.SelectedIndex = -1;
-                FnDeshabilitarControles();
-                btnNuevo.Visible = true;
-                btnEditar.Visible = true;
-                btnEliminar.Visible = true;
-                btnInsertar.Visible = false;
-                btnModificar.Visible = false;
-                btnBorrar.Visible = false;
-                btnCancelar.Visible = false;
+                FnGestionarControles(all: false);
+                FnResetTxtBox();
+                
+                FnHabilitarBotones(nuevo: true, editar: true, eliminar: true);
             }
 
         }
-        protected string FnComaPorPunto(decimal Numero)
-        {
-            string StrNumero = Convert.ToString(Numero);
-            string stNumeroConPunto = String.Format("{0}", StrNumero.Replace(',', '.'));
-            return (stNumeroConPunto);
-        }
-        protected string FnPuntoPorComa(String numero)
-        {
-            string stNumeroConPunto = numero.Replace('.', ',');
-            return (stNumeroConPunto);
-        }
-
-        protected void FnResetTxtBox()
-        {
-            txtIdProducto.Text = "";
-            txtDesPro.Text = "";
-            txtPrePro.Text = "";
-
-        }
+ 
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             lblMensajes.Text = "";
-            btnNuevo.Visible = true;
-            btnEditar.Visible = false;
-            btnEliminar.Visible = false;
-            btnInsertar.Visible = false;
-            btnModificar.Visible = false;
-            btnBorrar.Visible = false;
-            btnCancelar.Visible = false;
+            FnHabilitarBotones(nuevo: true);
             txtIdProducto.Text = "";
             txtDesPro.Text = "";
             txtPrePro.Text = Convert.ToString(0);
             ddlIdUnidad.DataBind();
             ddlIdTipo.DataBind();
             grdProductos.SelectedIndex = -1;
-            FnDeshabilitarControles();
+            FnGestionarControles(all: false);
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
             // HABILITAR TODOS LOS CONTROLES EXCEPTO EL txtIdProducto.
-            FnHabilitarControles();
-            txtIdProducto.Enabled = false;
+            FnGestionarControles(des: true, precio: true, unidad: true, idTipo: true);
 
             // GESTIONAMOS LOS BOTONES
-            btnNuevo.Visible = false;
-            btnEditar.Visible = false;
-            btnEliminar.Visible = false;
-            btnInsertar.Visible = false;
-            btnModificar.Visible = true;
-            btnBorrar.Visible = false;
-            btnCancelar.Visible = true;
+            FnHabilitarBotones(modificar:true, cancelar: true);
         }
 
         
@@ -325,15 +254,9 @@ namespace GesTienda
                 }
                 grdProductos.DataBind();         // Vuelve a enlazar el GridView para que se actualicen los datos 
                 grdProductos.SelectedIndex = -1;
-                FnDeshabilitarControles();
+                FnGestionarControles(all: false);
                 FnResetTxtBox();
-                btnNuevo.Visible = true;
-                btnEditar.Visible = true;
-                btnEliminar.Visible = false;
-                btnInsertar.Visible = false;
-                btnModificar.Visible = false;
-                btnBorrar.Visible = false;
-                btnCancelar.Visible = false;
+                FnHabilitarBotones(nuevo: true, editar: true);
             }
 
         }
@@ -341,13 +264,66 @@ namespace GesTienda
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             // GESTIONAMOS LOS BOTONES
-            btnNuevo.Visible = false;
-            btnEditar.Visible = false;
-            btnEliminar.Visible = false;
-            btnInsertar.Visible = false;
-            btnModificar.Visible = false;
-            btnBorrar.Visible = true;
-            btnCancelar.Visible = true;
+            FnHabilitarBotones(borrar: true, cancelar: true);
+        }
+        protected void FnGestionarControles(bool? all = null, bool id = false, bool des = false,
+                                            bool precio = false, bool unidad = false,
+                                            bool idTipo = false)
+        {
+            if (all != null) 
+            {
+                txtIdProducto.Enabled = (bool)all;
+                txtDesPro.Enabled = (bool)all;
+                txtPrePro.Enabled = (bool)all;
+                ddlIdUnidad.Enabled = (bool)all;
+                ddlIdTipo.Enabled = (bool)all;
+            } else
+            {
+                txtIdProducto.Enabled = id;
+                txtDesPro.Enabled = des;
+                txtPrePro.Enabled = precio;
+                ddlIdUnidad.Enabled = unidad;
+                ddlIdTipo.Enabled = idTipo;
+            }
+        }
+        protected void FnHabilitarBotones(bool nuevo = false, bool editar = false,
+                                          bool eliminar = false, bool insertar = false,
+                                          bool modificar = false, bool borrar = false,
+                                          bool cancelar = false)
+        {
+            // GESTIONAMOS LOS BOTONES
+            btnNuevo.Visible = nuevo;
+            btnEditar.Visible = editar;
+            btnEliminar.Visible = eliminar;
+            btnInsertar.Visible = insertar;
+            btnModificar.Visible = modificar;
+            btnBorrar.Visible = borrar;
+            btnCancelar.Visible = cancelar;
+        }
+
+        protected string FnComaPorPunto(decimal Numero)
+        {
+            string StrNumero = Convert.ToString(Numero);
+            string stNumeroConPunto = String.Format("{0}", StrNumero.Replace(',', '.'));
+            return (stNumeroConPunto);
+        }
+        protected string FnAdaptarFormatoPrecio(String numero)
+        {
+            if (numero.Contains("€"))
+            {
+                numero = numero.Replace("€", "");
+            }
+
+            numero = String.Format("{0}", numero.Replace(".", ","));
+            return numero;
+        }
+
+        protected void FnResetTxtBox()
+        {
+            txtIdProducto.Text = "";
+            txtDesPro.Text = "";
+            txtPrePro.Text = "";
+
         }
     }
 }
