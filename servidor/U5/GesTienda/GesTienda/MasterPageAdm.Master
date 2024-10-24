@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPageAdm.Master.cs" Inherits="Prueba.MasterPageAdm" %>
-
 <!DOCTYPE html>
 
 <html>

@@ -1,0 +1,33 @@
+﻿body {
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+}
+
+#cabecera {
+    width: 100%;
+    padding: 0px;
+}
+
+#cabecera1 {
+    width: 100%;
+    padding: 0px;
+    background-color: #000000;
+    text-align: right;
+    color: #ffffff;
+}
+#cabecera2 {
+    width: 100%;
+    padding: 0px;
+    background-color: #006699;
+    color: #ffffff;
+    font-size: large;
+    font-weight: bold;
+}
+td {
+    height: 2em;
+}
