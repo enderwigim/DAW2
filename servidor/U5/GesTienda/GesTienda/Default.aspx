@@ -73,8 +73,10 @@
                                 </td>
                             </tr>
                         </table>
+
                     </LayoutTemplate>
                 </asp:Login>
+                <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Registrarse.aspx">Registrarse</asp:LinkButton>
             </section>
         </form>
 

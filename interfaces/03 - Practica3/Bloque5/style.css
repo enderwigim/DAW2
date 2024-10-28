@@ -1,32 +1,46 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
 }
 body {
     border: 5px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 500px;
 }
 
 header {
-    background-color: red;
+    background-color: #4b6a88;
+    color: #FFF;
+    text-align: center;
 }
 main {
-    background-color: rgb(182, 26, 26);
+    padding: 1%;
+    background-color: #67737f;
     display: flex;
     flex-direction: row;
-    
+    gap: 90px;
 }
 article {
     padding: 2%;
     p{
+        padding: 2px;
         color: white;
+        font-weight: 400;
     }
 }
 section {
+    height: 200px;
     justify-content: left;
+    img {
+        height: 100%;
+        width: 220px;
+    }
 }
 footer {
+    text-align: center;
+    color: #FFF;
     clear: right;
-    background-color: red;
+    background-color: #4b6a88;
 }
