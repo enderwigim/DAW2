@@ -183,7 +183,7 @@ namespace GesTienda
                 FnGestionarControles(all: false);
                 FnResetTxtBox();
                 
-                FnHabilitarBotones(nuevo: true, editar: true, eliminar: true);
+                FnHabilitarBotones(nuevo: true);
             }
 
         }

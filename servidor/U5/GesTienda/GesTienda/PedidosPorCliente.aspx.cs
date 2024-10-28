@@ -53,12 +53,12 @@ namespace GesTienda
                         StrResultado += "<div style='display:table-cell; font-weight:bold'>Fecha</div>";
                         StrResultado += "<div style='display:table-cell; font-weight:bold'>Servido</div>";
                         StrResultado += "<div style='display:table-cell; font-weight:bold'>Cobrado</div>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold'>Total</div>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: right'>Total</div>";
                         StrResultado += "</div>";
                         while (reader.Read())
                         {
                             StrResultado += "<div style='display:table-row;'>";
-                            StrResultado += "<div style='display:table-cell; text-align: center'>" +
+                            StrResultado += "<div style='display:table-cell; text-align: right'>" +
                                                 reader.GetValue(0) + "</div>";
                             StrResultado += "<div style='display:table-cell'>" +
                                                 string.Format("{0:d}", reader.GetValue(1)) + "</div>";

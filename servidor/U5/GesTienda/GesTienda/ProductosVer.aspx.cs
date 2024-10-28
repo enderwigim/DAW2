@@ -44,7 +44,7 @@ namespace GesTienda
                             StrResul += "<div style='display:table-cell'> &nbsp;" + reader.GetString(0) + "</div>";
                             StrResul += "<div style='display:table-cell'>" + reader.GetString(1) + "</div>";
                             StrResul += "<div style='display:table-cell; text-align: right'>"
-                                           + string.Format("{0:C}", reader.GetValue(2)) + "&nbsp; &nbsp; </div>";
+                                           + string.Format("{0:c}", reader.GetValue(2)) + "&nbsp; &nbsp; </div>";
                             StrResul += "<div style='display:table-cell'>" + reader.GetString(3) + "</div>";
                             StrResul += "<div style='display:table-cell'>" + reader.GetString(4) + "</div>";
                             StrResul += "</div>";
