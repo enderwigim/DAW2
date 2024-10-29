@@ -63,13 +63,13 @@ namespace GesTienda
                             StrResultado += "<div style='display:table-cell'>" +
                                                 string.Format("{0:d}", reader.GetValue(1)) + "</div>";
                             if (reader.GetBoolean(2) == true)
-                                StrResultado += "<div style='display:table-cell'> Sí </div>";
+                                StrResultado += "<div style='display:table-cell; text-align: center'> Sí </div>";
                             else
-                                StrResultado += "<div style='display:table-cell'> No </div>";
+                                StrResultado += "<div style='display:table-cell; text-align: center'> No </div>";
                             if (reader.GetBoolean(3) == true)
-                                StrResultado += "<div style='display:table-cell'> Sí </div>";
+                                StrResultado += "<div style='display:table-cell; text-align: center'> Sí </div>";
                             else
-                                StrResultado += "<div style='display:table-cell'> No </div>";
+                                StrResultado += "<div style='display:table-cell; text-align: center'> No </div>";
                             StrResultado += "<div style='display:table-cell; text-align: right'>" +
                                                 string.Format("{0:c}", reader.GetValue(4)) + "&nbsp; </div>";
                             StrResultado += "</div>";

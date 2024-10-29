@@ -42,6 +42,15 @@ namespace GesTienda
         protected global::System.Web.UI.WebControls.TextBox txtCorCli;
 
         /// <summary>
+        /// Control rfvTxtCorCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtCorCli;
+
+        /// <summary>
         /// Control lblPassword1.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace GesTienda
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword1;
+
+        /// <summary>
+        /// Control rfvTxtPassword1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtPassword1;
 
         /// <summary>
         /// Control lblPassword2.
@@ -78,6 +96,15 @@ namespace GesTienda
         protected global::System.Web.UI.WebControls.TextBox txtPassword2;
 
         /// <summary>
+        /// Control rfvTxtPassword2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtPassword2;
+
+        /// <summary>
         /// Control lblIdCliente.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,15 @@ namespace GesTienda
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdCliente;
+
+        /// <summary>
+        /// Control rfvTIdCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTIdCliente;
 
         /// <summary>
         /// Control lblNomCli.
@@ -114,6 +150,15 @@ namespace GesTienda
         protected global::System.Web.UI.WebControls.TextBox txtNomCli;
 
         /// <summary>
+        /// Control rfvTxtNomCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtNomCli;
+
+        /// <summary>
         /// Control lblDirCli.
         /// </summary>
         /// <remarks>
@@ -130,6 +175,15 @@ namespace GesTienda
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDirCli;
+
+        /// <summary>
+        /// Control rfvTxtDirCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtDirCli;
 
         /// <summary>
         /// Control lblPobCli.
@@ -150,6 +204,15 @@ namespace GesTienda
         protected global::System.Web.UI.WebControls.TextBox txtPobCli;
 
         /// <summary>
+        /// Control rfvTxtPobCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtPobCli;
+
+        /// <summary>
         /// Control lblCpoCli.
         /// </summary>
         /// <remarks>
@@ -168,6 +231,15 @@ namespace GesTienda
         protected global::System.Web.UI.WebControls.TextBox txtCpoCli;
 
         /// <summary>
+        /// Control rfvTxtCpoCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtCpoCli;
+
+        /// <summary>
         /// Control lblTelCli.
         /// </summary>
         /// <remarks>
@@ -184,6 +256,15 @@ namespace GesTienda
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTelCli;
+
+        /// <summary>
+        /// Control rfvTxtTelCli.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTxtTelCli;
 
         /// <summary>
         /// Control Registro.

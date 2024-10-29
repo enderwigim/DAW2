@@ -35,6 +35,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtCorCli" runat="server" Width="234px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtCorCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtCorCli"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -43,14 +44,15 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtPassword1" runat="server" TextMode="Password" Width="158px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtPassword1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPassword1"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td align="right">
-                    <asp:Label ID="lblPassword2" runat="server" AssociatedControlID="txtPassword2">Confirmar contraseña:</asp:Label>
-                </td>
+                    <asp:Label ID="lblPassword2" runat="server" AssociatedControlID="txtPassword2">Confirmar contraseña:</asp:Label>                </td>
                 <td>
                     <asp:TextBox ID="txtPassword2" runat="server" TextMode="Password" Width="158px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtPassword2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPassword2"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -59,14 +61,17 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtIdCliente" runat="server" Width="182px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTIdCliente" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtIdCliente"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     <asp:Label ID="lblNomCli" runat="server" AssociatedControlID="txtNomCli">Nombre/Razón Social</asp:Label>
+
                 </td>
                 <td>
                     <asp:TextBox ID="txtNomCli" runat="server" Width="158px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtNomCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtNomCli"></asp:RequiredFieldValidator>
                    
                 </td>
             </tr>
@@ -76,6 +81,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtDirCli" runat="server" Width="156px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtDirCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDirCli"></asp:RequiredFieldValidator>
                              
                 </td>
             </tr>
@@ -85,6 +91,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtPobCli" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtPobCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPobCli"></asp:RequiredFieldValidator>
     
                 </td>
             </tr>
@@ -94,6 +101,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtCpoCli" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtCpoCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtCpoCli"></asp:RequiredFieldValidator>
    
                 </td>
             </tr>
@@ -103,6 +111,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtTelCli" runat="server" Width="164px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="rfvTxtTelCli" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtTelCli"></asp:RequiredFieldValidator>
                        
                 </td>
             </tr>
