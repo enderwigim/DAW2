@@ -126,3 +126,8 @@ h1 {
 .btn {
     margin-top: 2%;
 }
+.ped-cliente-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

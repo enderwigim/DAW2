@@ -31,22 +31,22 @@ namespace GesTienda
                     {
                         StrResul = "<div style='display:table;border-style:solid;border-color:#336699;width:90%'>";
                         StrResul += "<div style='display:table-row; background:#336699;color:white'>";
-                        StrResul += "<div style='display:table-cell; font-weight:bold'>Código</div>";
-                        StrResul += "<div style='display:table-cell; font-weight:bold'>Descripción</div>";
-                        StrResul += "<div style='display:table-cell; font-weight:bold'>Precio</div>";
-                        StrResul += "<div style='display:table-cell; font-weight:bold'>Unidad</div>";
-                        StrResul += "<div style='display:table-cell; font-weight:bold'>Tipo Producto</div>";
+                        StrResul += "<div style='display:table-cell; font-weight:bold; text-align: left'>Código</div>";
+                        StrResul += "<div style='display:table-cell; font-weight:bold; text-align: left'>Descripción</div>";
+                        StrResul += "<div style='display:table-cell; font-weight:bold; text-align: left'>Precio</div>";
+                        StrResul += "<div style='display:table-cell; font-weight:bold; text-align: left'>Unidad</div>";
+                        StrResul += "<div style='display:table-cell; font-weight:bold; text-align: left'>Tipo Producto</div>";
                         StrResul += "</div>";
                         InNumeroFilas = 0;
                         while (reader.Read())
                         {
                             StrResul += "<div style='display:table-row'>";
-                            StrResul += "<div style='display:table-cell'> &nbsp;" + reader.GetString(0) + "</div>";
-                            StrResul += "<div style='display:table-cell'>" + reader.GetString(1) + "</div>";
+                            StrResul += "<div style='display:table-cell; text-align: left'> &nbsp;" + reader.GetString(0) + "</div>";
+                            StrResul += "<div style='display:table-cell; text-align: left'>" + reader.GetString(1) + "</div>";
                             StrResul += "<div style='display:table-cell; text-align: right'>"
                                            + string.Format("{0:c}", reader.GetValue(2)) + "&nbsp; &nbsp; </div>";
-                            StrResul += "<div style='display:table-cell'>" + reader.GetString(3) + "</div>";
-                            StrResul += "<div style='display:table-cell'>" + reader.GetString(4) + "</div>";
+                            StrResul += "<div style='display:table-cell; text-align: left'>" + reader.GetString(3) + "</div>";
+                            StrResul += "<div style='display:table-cell; text-align: left'>" + reader.GetString(4) + "</div>";
                             StrResul += "</div>";
                             InNumeroFilas++;
                         }

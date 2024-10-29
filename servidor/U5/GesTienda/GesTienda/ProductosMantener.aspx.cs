@@ -120,6 +120,7 @@ namespace GesTienda
             }
             grdProductos.DataBind();         // Vuelve a enlazar el GridView para que se actualicen los datos 
             grdProductos.SelectedIndex = -1;
+            FnResetTxtBox();
             FnGestionarControles(all: false);
         }
         protected void btnModificar_Click(object sender, EventArgs e)

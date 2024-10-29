@@ -6,7 +6,7 @@
     
     <!-- PRIMER TITULO -->
     <div class="contenidotitulo">
-        <h1>Productos por tipo</h1>
+        <h2>Productos por tipo</h2>
         <h4>Tipos de productos</h4>
         <br /> 
     </div> 
@@ -53,7 +53,9 @@
         <Columns>
             <asp:BoundField DataField="IdProducto" HeaderText="IdProducto" ReadOnly="True" SortExpression="IdProducto" />
             <asp:BoundField DataField="DesPro" HeaderText="Descripción" SortExpression="DesPro" />
-            <asp:BoundField DataField="PrePro" HeaderText="Precio" SortExpression="PrePro" DataFormatString="{0:c}" />
+            <asp:BoundField DataField="PrePro" HeaderText="Precio" SortExpression="PrePro" DataFormatString="{0:c}" >
+            <ItemStyle HorizontalAlign="Right" />
+            </asp:BoundField>
             <asp:BoundField DataField="IdUnidad" HeaderText="Unidad" SortExpression="IdUnidad" />
             <asp:BoundField DataField="DesTip" HeaderText="Descripción Tipo" SortExpression="DesTip" >
             <ItemStyle HorizontalAlign="Right" />

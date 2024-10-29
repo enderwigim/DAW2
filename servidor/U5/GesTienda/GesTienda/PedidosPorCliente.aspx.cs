@@ -47,18 +47,18 @@ namespace GesTienda
                         lblResultado.Visible = true;
                         lblTotal.Visible = true;
                         StrResultado = "<h4>Detalle de pedidos</h4>";
-                        StrResultado += "<div style='display:table; border-color:#336699;width:35%'>";
-                        StrResultado += "<div style='display:table-row; background:#336699;color:white'>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold'>Núm.Pedido</div>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold'>Fecha</div>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold'>Servido</div>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold'>Cobrado</div>";
-                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: right'>Total</div>";
+                        StrResultado += "<div style='display:table; border-color:#336699; padding: 10px;'>";
+                        StrResultado += "<div style='display:table-row; background:#336699;color:white; padding: 10px;'>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: center; padding: 10px;'>Núm.Pedido</div>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: center; padding: 10px;'>Fecha</div>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: center; padding: 10px;'>Servido</div>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: center; padding: 10px;'>Cobrado</div>";
+                        StrResultado += "<div style='display:table-cell; font-weight:bold; text-align: center; padding: 10px;'>Total</div>";
                         StrResultado += "</div>";
                         while (reader.Read())
                         {
                             StrResultado += "<div style='display:table-row;'>";
-                            StrResultado += "<div style='display:table-cell; text-align: right'>" +
+                            StrResultado += "<div style='display:table-cell; text-align: center'>" +
                                                 reader.GetValue(0) + "</div>";
                             StrResultado += "<div style='display:table-cell'>" +
                                                 string.Format("{0:d}", reader.GetValue(1)) + "</div>";
