@@ -124,7 +124,7 @@
             </tr>
             <tr>
                 <td align="center" colspan="2">
-                    <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Default.aspx">Ir al Inicio</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Default.aspx" CausesValidation="false">Ir al Inicio</asp:LinkButton>
                 </td>
             </tr>
         </table>

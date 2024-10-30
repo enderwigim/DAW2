@@ -58,7 +58,7 @@
             </asp:BoundField>
             <asp:BoundField DataField="IdUnidad" HeaderText="Unidad" SortExpression="IdUnidad" />
             <asp:BoundField DataField="DesTip" HeaderText="Descripción Tipo" SortExpression="DesTip" >
-            <ItemStyle HorizontalAlign="Right" />
+            <ItemStyle HorizontalAlign="Left" />
             </asp:BoundField>
         </Columns>
         <EditRowStyle BackColor="#999999" />

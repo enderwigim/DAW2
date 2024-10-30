@@ -7,11 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link href="~/Estilos/DefaultEstilo.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .auto-style1 {
-            height: 22px;
-        }
-    </style>
 </head>
 <body>
     <div id="cabecera">
@@ -76,7 +71,7 @@
 
                     </LayoutTemplate>
                 </asp:Login>
-                <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Registrarse.aspx">Registrarse</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Registrarse.aspx" CausesValidation="false">Registrarse</asp:LinkButton>
             </section>
         </form>
 
