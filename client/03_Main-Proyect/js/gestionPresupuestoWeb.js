@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import * as gest from './gestionPresupuesto.js'
 
 
 function mostrarDatoEnId(idElemento, valor){
     document.getElementById(idElemento).innerHTML = valor;
 }
+
+=======
+function mostrarDatoEnId(idElemento, valor){
+    document.getElementById(idElemento).innerHTML = valor;
+}
+>>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 function mostrarGastoWeb(idElemento, gasto){
     // Get element by id
     let element = document.getElementById(idElemento);
@@ -47,8 +54,13 @@ function mostrarGastoWeb(idElemento, gasto){
     gastoDiv.appendChild(gastoEtiquetas);
 
     element.appendChild(gastoDiv);
+<<<<<<< HEAD
+}
+
+=======
     
 }
+>>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
     let element = document.getElementById(idElemento);
 
@@ -93,19 +105,19 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
                  
     // Add mainDiv to element
     element.appendChild(mainDiv);
-
+<<<<<<< HEAD
 }
 
 function repintar(){
     // SHOW PRESUPUESTO
-    mostrarDatoEnId("presupuesto", gest.mostrarPresupuesto);
+    mostrarDatoEnId("presupuesto", gest.mostrarPresupuesto());
     // SHOW GASTOS TOTALES
-    web.mostrarDatoEnId('gastos-totales', gest.calcularTotalGastos());
+    mostrarDatoEnId('gastos-totales', gest.calcularTotalGastos());
     // SHOW BALANCE
-    web.mostrarDatoEnId('balance-total', gest.calcularBalance());
+    mostrarDatoEnId('balance-total', gest.calcularBalance());
 
     // RESET EVERY EXPENSE
-    web.mostrarDatoEnId('listado-gastos-completo', "");
+    mostrarDatoEnId('listado-gastos-completo', "");
 
     let gastos = gest.listarGastos();
     gastos.forEach((gasto) => {
@@ -113,9 +125,43 @@ function repintar(){
     })
 }
 
+function actualizarPresupuestoWeb(){
+    let newBadget = prompt("¿Cual es tu nuevo presupuesto?");
+    newBadget = Number(newBadget);
+    gest.actualizarPresupuesto(newBadget);
+    repintar();
+} 
+
+/*
+Pedir al usuario la información necesaria para crear un nuevo
+ gasto mediante sucesivas preguntas con prompt (por orden: 
+ descripción, valor, fecha y etiquetas). Por simplicidad,
+  de momento no se comprobará la validez de dichos datos. 
+  La fecha vendrá dada en formato internacional (yyyy-mm-dd) y 
+  las etiquetas se introducirán en un único cuadro de texto como
+   una lista separada por comas (por ejemplo, etiqueta1,etiqueta2,etiqueta3).
+*/
+
+function nuevoGastoWeb(){
+    let descript = prompt("Añada una nueva descripción");
+    let value = prompt("Añada un costo");
+    let fecha = new Date(prompt("Añada una fecha"));
+    let etiqueta = prompt("Añada etiquetas");
+}
+
+
 export {
     mostrarDatoEnId,
     mostrarGastoWeb,
     mostrarGastosAgrupadosWeb,
     repintar,
+    actualizarPresupuestoWeb,
+=======
+
+}
+export {
+    mostrarDatoEnId,
+    mostrarGastoWeb,
+    mostrarGastosAgrupadosWeb
+>>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
   };

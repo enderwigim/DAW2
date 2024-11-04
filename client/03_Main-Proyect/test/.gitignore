@@ -1,5 +1,3 @@
-04_testInteraccionHTML.js
-05_testEventos.js
-06_testFormularios.js
-07_testRegexp.js
-08_testAlmacenamiento.js
+06_testFormularios.cy.js
+07_testRegexp.cy.js
+08_testAlmacenamiento.cy.js
