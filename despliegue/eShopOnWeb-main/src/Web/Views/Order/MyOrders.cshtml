@@ -24,6 +24,7 @@
                     <section class="esh-orders-item col-xs-2">@Html.DisplayFor(modelItem => item.Status)</section>
                     <section class="esh-orders-item col-xs-1">
                         <a class="esh-orders-link" asp-controller="Order" asp-action="Detail" asp-route-orderId="@item.OrderNumber">Detail</a>
+                        <button>wpp</button>
                     </section>
                     <section class="esh-orders-item col-xs-1">
                         @if (item.Status.ToLower() == "submitted")
