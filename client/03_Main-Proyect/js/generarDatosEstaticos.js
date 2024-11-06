@@ -14,19 +14,13 @@ newGastos.push(new gest.CrearGasto("Compra carne", 23.44, "2021-10-06", "casa", 
                new gest.CrearGasto("Seguro hogar", 206.45, "2021-09-26", "casa", "seguros"),
                new gest.CrearGasto("Seguro coche", 195.78, "2021-10-06", "transporte", "seguros"),
             );
-<<<<<<< HEAD
-=======
 
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 // ADD GASTOS
 newGastos.forEach(gasto => gest.anyadirGasto(gasto));
 
 // SHOW GASTOS TOTALES
 web.mostrarDatoEnId('gastos-totales', gest.calcularTotalGastos());
-<<<<<<< HEAD
 
-=======
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 // SHOW BALANCE
 web.mostrarDatoEnId('balance-total', gest.calcularBalance());
 
@@ -81,11 +75,7 @@ web.mostrarGastosAgrupadosWeb("agrupacion-mes", agroupByMonth, "mes");
 
 // SHOW AGROUP BY YEAR
 let agroupByYear = gest.agruparGastos("anyo");
-<<<<<<< HEAD
 web.mostrarGastosAgrupadosWeb("agrupacion-anyo", agroupByYear, "anyo")
 
 let actDataButton = document.getElementById("actualizarpresupuesto");
 actDataButton.addEventListener("click", web.actualizarPresupuestoWeb);
-=======
-web.mostrarGastosAgrupadosWeb("agrupacion-anyo", agroupByYear, "anyo")
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43

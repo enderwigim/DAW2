@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as gest from './gestionPresupuesto.js'
 
 
@@ -6,11 +5,6 @@ function mostrarDatoEnId(idElemento, valor){
     document.getElementById(idElemento).innerHTML = valor;
 }
 
-=======
-function mostrarDatoEnId(idElemento, valor){
-    document.getElementById(idElemento).innerHTML = valor;
-}
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 function mostrarGastoWeb(idElemento, gasto){
     // Get element by id
     let element = document.getElementById(idElemento);
@@ -54,13 +48,8 @@ function mostrarGastoWeb(idElemento, gasto){
     gastoDiv.appendChild(gastoEtiquetas);
 
     element.appendChild(gastoDiv);
-<<<<<<< HEAD
 }
 
-=======
-    
-}
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
     let element = document.getElementById(idElemento);
 
@@ -105,7 +94,6 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
                  
     // Add mainDiv to element
     element.appendChild(mainDiv);
-<<<<<<< HEAD
 }
 
 function repintar(){
@@ -156,12 +144,4 @@ export {
     mostrarGastosAgrupadosWeb,
     repintar,
     actualizarPresupuestoWeb,
-=======
-
-}
-export {
-    mostrarDatoEnId,
-    mostrarGastoWeb,
-    mostrarGastosAgrupadosWeb
->>>>>>> 19eee8d2c98e7c4d155bf0e177a78822f3286f43
   };
