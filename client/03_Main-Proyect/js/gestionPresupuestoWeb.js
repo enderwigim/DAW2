@@ -47,6 +47,17 @@ function mostrarGastoWeb(idElemento, gasto){
     // Add Etiquetas
     gastoDiv.appendChild(gastoEtiquetas);
 
+    let editButton = document.createElement("button");
+    editButton.classList.add("gasto-editar");
+    editButton.innerHTML = "Editar";
+
+    let editHandle = new EditarHandle();
+    editHandle.gasto = gasto;
+
+    editButton.addEventListener("click", editHandle);
+    gastoDiv.appendChild(editButton);
+
+
     element.appendChild(gastoDiv);
 }
 
@@ -120,21 +131,30 @@ function actualizarPresupuestoWeb(){
     repintar();
 } 
 
-/*
-Pedir al usuario la información necesaria para crear un nuevo
- gasto mediante sucesivas preguntas con prompt (por orden: 
- descripción, valor, fecha y etiquetas). Por simplicidad,
-  de momento no se comprobará la validez de dichos datos. 
-  La fecha vendrá dada en formato internacional (yyyy-mm-dd) y 
-  las etiquetas se introducirán en un único cuadro de texto como
-   una lista separada por comas (por ejemplo, etiqueta1,etiqueta2,etiqueta3).
-*/
 
 function nuevoGastoWeb(){
     let descript = prompt("Añada una nueva descripción");
-    let value = prompt("Añada un costo");
+    let value = Number(prompt("Añada un costo"));
     let fecha = new Date(prompt("Añada una fecha"));
-    let etiqueta = prompt("Añada etiquetas");
+    let etiquetas = prompt("Añada etiquetas").split(",");
+
+    let gasto = new gest.CrearGasto(descript,value,fecha,...etiquetas)
+    gest.anyadirGasto(gasto);
+    repintar();
+}
+
+function EditarHandle(){
+    this.handleEvent = function(event){
+        let newDescrip = prompt("Cambie la descripción", this.gasto.descripcion)
+        let newDate = new Date(prompt("Cambie la fecha", this.gasto.fecha));
+        let etiquetas = prompt("Añade etiquetas").split(",");
+        let newValue = Number(prompt("Cambie el valor del gasto", this.gasto.valor));
+        this.gasto.actualizarValor(newValue);
+        this.gasto.actualizarDescripcion(newDescrip);
+        this.gasto.actualizarFecha(newDate);
+        this.gasto.anyadirEtiquetas(...etiquetas);
+        repintar();
+    }
 }
 
 
@@ -144,4 +164,5 @@ export {
     mostrarGastosAgrupadosWeb,
     repintar,
     actualizarPresupuestoWeb,
+    nuevoGastoWeb,
   };

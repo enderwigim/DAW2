@@ -14,7 +14,6 @@ newGastos.push(new gest.CrearGasto("Compra carne", 23.44, "2021-10-06", "casa", 
                new gest.CrearGasto("Seguro hogar", 206.45, "2021-09-26", "casa", "seguros"),
                new gest.CrearGasto("Seguro coche", 195.78, "2021-10-06", "transporte", "seguros"),
             );
-
 // ADD GASTOS
 newGastos.forEach(gasto => gest.anyadirGasto(gasto));
 
@@ -77,5 +76,10 @@ web.mostrarGastosAgrupadosWeb("agrupacion-mes", agroupByMonth, "mes");
 let agroupByYear = gest.agruparGastos("anyo");
 web.mostrarGastosAgrupadosWeb("agrupacion-anyo", agroupByYear, "anyo")
 
+
 let actDataButton = document.getElementById("actualizarpresupuesto");
 actDataButton.addEventListener("click", web.actualizarPresupuestoWeb);
+
+let addExpense = document.getElementById("anyadirgasto");
+addExpense.addEventListener("click", web.nuevoGastoWeb);
+
