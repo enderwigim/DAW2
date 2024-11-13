@@ -162,10 +162,9 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
     this.etiquetas = [...this.etiquetas, ...etiquetasAnyadir];
   };
   this.borrarEtiquetas = function (...etiquetasBorrar) {
-    let etiquetasBorradas = etiquetas.filter(
+    this.etiquetas = this.etiquetas.filter(
       (etiqueta) => !etiquetasBorrar.includes(etiqueta)
     );
-    this.etiquetas = etiquetasBorradas;
   };
   this.obtenerPeriodoAgrupacion = function (datePeriod) {
     // Obtenemos la fecha en objeto Date.

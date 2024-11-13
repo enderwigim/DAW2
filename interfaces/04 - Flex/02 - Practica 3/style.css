@@ -1,0 +1,32 @@
+html{
+    box-sizing: border-boxq;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+    justify-content: flex-end;
+}
+header > p:nth-child(3) {
+    margin-right: 200px;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: left;
+    gap: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+}

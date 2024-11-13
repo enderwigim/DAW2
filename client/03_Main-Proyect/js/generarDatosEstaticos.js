@@ -31,8 +31,8 @@ gastos.forEach((gasto) => {
 
 // SHOW FILTERED GASTOS SEPTEMBER
 let gastosFiltradosSep = gest.filtrarGastos({
-   fechaDesde: "2021-09-01",
-   fechaHasta: "2021-09-30",
+   fechaDesde: "2021/09/01",
+   fechaHasta: "2021/09/30",
 });
 gastosFiltradosSep.forEach((gasto) => {
    web.mostrarGastoWeb('listado-gastos-filtrado-1', gasto);
@@ -40,7 +40,7 @@ gastosFiltradosSep.forEach((gasto) => {
 
 // SHOW GASTOS > 50 EUROS
 let gastosFiltrados50 = gest.filtrarGastos({
-   valorMinimo: 50,
+   valorMinimo: 50.0,
 });
 gastosFiltrados50.forEach((gasto) => {
    web.mostrarGastoWeb('listado-gastos-filtrado-2', gasto);
@@ -48,7 +48,7 @@ gastosFiltrados50.forEach((gasto) => {
 
 // SHOW GASTOS < 200 EUROS
 let gastosFiltrados200 = gest.filtrarGastos({
-   valorMinimo: 200,
+   valorMinimo: 200.0,
    etiquetasTiene: ['seguros'],
 })
 gastosFiltrados200.forEach((gasto) => {
@@ -57,7 +57,7 @@ gastosFiltrados200.forEach((gasto) => {
 
 // SHOW GASTOS < 50 EUROS && ETIQUETAS
 let gastosFiltradosMenor50 = gest.filtrarGastos({
-   valorMaximo: 50,
+   valorMaximo: 50.0,
    etiquetasTiene: ['comida', 'transporte'],
 })
 gastosFiltradosMenor50.forEach((gasto) => {
