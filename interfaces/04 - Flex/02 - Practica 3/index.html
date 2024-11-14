@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=º, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <p>Empresa</p>
-        <p>Empleo</p>
-        <p>Blog</p>
+        <a href="www.google.com">Empresa</a>
+        <a href="www.google.com">Empleo</a>
+        <a href="www.google.com">Blog</a>
     </header>
-    <section class="main-block">
+    <main>
         <nav>
             <img src="img/LoveBridge.png" class="logo">
             <ul>
@@ -30,19 +33,23 @@
                 </li>
             </ul>
             <section>
-                <button >Empieza Gratis</button>
-                <button>Inicio de sesion</button>
+                <button class="register-button">Empieza Gratis</button>
+                <button class="login-button">Inicio de sesion</button>
             </section>
         </nav>
         <section class="center-block">
             <h1>Tu relación a distancia, más cerca que nunca</h1>
             <p>LoveBridge te ofrece herramientas para mantener la chispa, sin importar la distancia.</p>
             <article>
-                <input>
-                <button>Registrate</button>
+                <input placeholder="Tu email">
+                <button class="register-button">Registrate</button>
             </article>
         </section>
-
-    </section>
+        <footer>
+            <p>Cientos de parejas eligen LoveBridge</p>
+            <img src="img/PayPal.png" class="footer-img">
+            <img src="img/Purestorage.png" class="footer-img">
+        </footer>
+    </main>
 </body>
 </html>
