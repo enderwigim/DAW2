@@ -1,5 +1,5 @@
 html{
-    box-sizing: border-boxq;
+    box-sizing: border-box;
 }
 
 *,
@@ -17,16 +17,40 @@ header {
 header > p:nth-child(3) {
     margin-right: 200px;
 }
+
+.main-block {
+    padding: 2%;
+    background-color: cornflowerblue;
+}
 nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+.logo {
+    width: 100px;
+    height: 100px;
 }
 ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    justify-content: left;
+    justify-content: flex-start;
     gap: 20px;
-    padding-left: 10%;
-    padding-right: 10%;
+    margin-right: 7%;
+}
+nav > section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 10%;
+    gap: 20px;
+}
+button {
+    height: 30%;
+}
+.center-block {
+    display: flex;
+    flex-direction: column;
 }
