@@ -71,8 +71,6 @@ function Ordenador(marca, modelo, ram, disco, pulgadas, fecha, ...accesorios) {
 
 };
 
-
-
 anyadirOrdernador(new Ordenador('lenovo', 'legion', 32, 256, 15.6, '2022-11-09', 'ratón', 'teclado'))
 anyadirOrdernador(new Ordenador('hp', 'omen', 32, 256, 15.6, '2022-11-09', 'ratón', 'teclado'));
 anyadirOrdernador(new Ordenador('acer', 'ferrari', 32, 256, 15.6, '2022-09-09', 'ratón', 'teclado'));
