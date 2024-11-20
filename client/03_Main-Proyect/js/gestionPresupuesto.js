@@ -98,11 +98,9 @@ function agruparGastos(
 
   let gastosAgrupados = filtered.reduce((acumulador, gasto) => {
     let periodoGasto = gasto.obtenerPeriodoAgrupacion(periodo);
-    console.log("Periodo de agrupación:", periodoGasto);
     if (acumulador[periodoGasto] == undefined) {
       acumulador[periodoGasto] = 0;
     }
-
     acumulador[periodoGasto] += gasto.valor;
 
 
