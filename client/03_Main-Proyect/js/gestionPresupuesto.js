@@ -89,14 +89,12 @@ function agruparGastos(
   periodo = "mes", etiquetas = [],
   fechaDesde = undefined, fechaHasta = undefined,
 ) {
-  console.log("Gastos todos:", fechaHasta);
   let filtered = filtrarGastos({
     fechaDesde: fechaDesde,
     fechaHasta: fechaHasta,
     etiquetasTiene: etiquetas,
   });
 
-  console.log("Gastos filtrados:", filtered);
 
   let gastosAgrupados = filtered.reduce((acumulador, gasto) => {
     let periodoGasto = gasto.obtenerPeriodoAgrupacion(periodo);

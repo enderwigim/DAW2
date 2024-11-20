@@ -3,9 +3,9 @@
   El objetivo de esta práctica es conocer la historia y los fundamentos de JavaScript, así como instalar las herramientas necesarias para comenzar a trabajar con dicho lenguaje.
   
 ** Repositorio de la práctica
-   El *repositorio base* de la práctica está disponible en: https://github.com/DWEC2324/practica_dwec_gestor_presupuesto, bajo invitación pues es privado.
+   El *repositorio base* de la práctica está disponible en: https://github.com/DWEC-24-25/dwec-24-25-classroom-66db84-pr-gestor-de-presupuesto-dwec-practica_dwec_gestor_presupuesto, que es privado.
 
-   En esta primera práctica se deberá realizar un /fork/ del repositorio base. Al realizar dicho /fork/, se creará un repositorio copia del original en tu cuenta de usuario. *Será sobre este repositorio personal sobre el que deberás trabajar*.
+   Al aceptar tu tarea de GitHub classroom, se te habrá creado un repositorio personal en la organización DWEC-24-25 de la forma https://github.com/DWEC-24-25/dwec-24-25-classroom-66db84-pr-gestor-de-presupuesto-dwec-practica_dwec_gestor_presupuesto-usuario, donde *usuario* es tu nombre de usuario en GitHub.
 
    Dicho repositorio personal se utilizará para sucesivas prácticas. El profesor irá añadiendo nuevas tareas cada semana. En cada nueva práctica se darán las instrucciones de cómo proceder para incorporar las nuevas tareas a realizar.
 

@@ -42,6 +42,59 @@ function calcularTotalGastos(){
 function listarGastos(){
     return gastos;
 }
+function filtrarGastos({fechaDesde, fechaHasta, valorMinimo, valorMaximo, descripcionContiene, etiquetasTiene}){
+    let gastosFiltrados = [...gastos];
+    if (fechaDesde != undefined){
+        gastosFiltrados = gastosFiltrados.filter(
+            (gasto) => 
+            gasto.fecha >= Date.parse(fechaDesde)
+        )
+    }
+    if (fechaHasta != undefined && !isNaN(Date.parse(fechaHasta))){
+        gastosFiltrados = gastosFiltrados.filter((gasto) => 
+            gasto.fecha <= Date.parse(fechaHasta)
+        )
+    }
+    if (valorMinimo != undefined && !isNaN(valorMinimo)) {
+        gastosFiltrados = gastosFiltrados.filter((gasto) => 
+            gasto.valor >= valorMinimo
+        )
+    }
+    if (valorMaximo != undefined && !isNaN(valorMaximo)) {
+        gastosFiltrados = gastosFiltrados.filter((gasto) => 
+            gasto.valor <= valorMaximo
+        )
+    }
+    if (descripcionContiene != undefined && descripcionContiene != ""){
+        gastosFiltrados = gastosFiltrados.filter((gasto) => 
+            gasto.descripcion.toUpperCase().includes(descripcionContiene.toUpperCase())
+        )
+    }
+    if (etiquetasTiene != undefined && etiquetasTiene.length > 0) {
+        gastosFiltrados = gastosFiltrados.filter((gasto) => 
+            etiquetasTiene.some(
+                (etiqueta) => {
+                    return gasto.etiquetas.includes(etiqueta);
+                }
+            )
+        )
+    }
+    return gastosFiltrados;
+}
+function agruparGastos(periodo = "mes", etiquetas = [], fechaDesde = undefined, fechaHasta = undefined){
+    let gastosFiltrados = filtrarGastos({fechaDesde: fechaDesde, fechaHasta: fechaHasta,
+                                        etiquetasTiene: etiquetas})
+    let agrupados = gastosFiltrados.reduce((acc, gasto) => {
+        if(acc[gasto.obtenerPeriodoAgrupacion(periodo)] === undefined) {
+            acc[gasto.obtenerPeriodoAgrupacion(periodo)] = 0;
+        }
+        acc[gasto.obtenerPeriodoAgrupacion(periodo)] += gasto.valor;
+        
+        return acc;
+    }, {})
+    return agrupados;
+}
+
 
 function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
     // PROPIEDADES
@@ -86,7 +139,7 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
     this.actualizarFecha = function (newFecha) {
         this.fecha = isNaN(Date.parse(newFecha))? this.fecha : Date.parse(newFecha);
     }
-
+    // Etiquetas
     this.anyadirEtiquetas = function (...etiquetas) {
         etiquetas.forEach(
             etiqueta => {
@@ -106,6 +159,28 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
             }
         )
     }
+    // Agrupacion
+    this.obtenerPeriodoAgrupacion = function (tipoFecha = "mes") {
+        let ret;
+        let fecha = new Date(this.fecha);
+        if (tipoFecha === "anyo") {
+            ret = fecha.getFullYear();
+        }
+        else if (tipoFecha === "mes") {
+            ret = `${fecha.getFullYear()}-${("0" + (fecha.getMonth() + 1)).slice(-2)}`
+        }
+        else if (tipoFecha === "dia") {
+            ret = `${fecha.getFullYear()}-${(
+                "0" +
+                (fecha.getMonth() + 1)
+              ).slice(-2)}-${("0" + fecha.getDate()).slice(-2)}`;
+
+            //ret = fecha.getFullYear() + "-0" + fecha.getMonth() + 1
+
+            //ret = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).slice(-2)}-${fecha.getDate()}`;
+        }
+        return ret;
+    }
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
@@ -119,5 +194,7 @@ export   {
     borrarGasto,
     calcularBalance,
     calcularTotalGastos,
-    listarGastos
+    listarGastos,
+    filtrarGastos,
+    agruparGastos 
 }
