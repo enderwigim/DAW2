@@ -3,10 +3,10 @@ using MvcAgenda.Models;
 
 namespace MvcAgenda.Data
 {
-    public class MvcAgendaContexto
+    public class MvcAgendaContexto : DbContext
     {
         public MvcAgendaContexto(DbContextOptions<MvcAgendaContexto> options)
-:       base(options)
+        : base(options)
         {
         }
         public DbSet<Departamento>? Departamentos { get; set; }
@@ -14,7 +14,7 @@ namespace MvcAgenda.Data
         public DbSet<Tarea>? Tareas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Deshabilitar la eliminación en cascada en todas las relaciones 
+            // Deshabilitar la eliminación en cascada en todas las relaciones
             base.OnModelCreating(modelBuilder);
             foreach (var relationship in
             modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
