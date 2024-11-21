@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace mvc.Data
+namespace MvcAgenda.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
