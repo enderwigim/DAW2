@@ -1,19 +1,25 @@
-﻿@model IEnumerable<MvcAgenda.Models.Departamento>
+﻿@model IEnumerable<MvcAgenda.Models.Empleado>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Departamentos</h1>
+<h1>Empleados</h1>
 
 <p>
-    <a asp-action="Create">Nuevo</a>
+    <a asp-action="Create">Crear Empleado</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
             </th>
             <th></th>
         </tr>
@@ -25,9 +31,15 @@
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento.Nombre)
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
         </tr>
 }
