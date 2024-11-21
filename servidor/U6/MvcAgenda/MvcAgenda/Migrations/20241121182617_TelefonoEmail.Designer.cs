@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcAgenda.Data;
 
@@ -11,9 +12,11 @@ using MvcAgenda.Data;
 namespace MvcAgenda.Migrations
 {
     [DbContext(typeof(MvcAgendaContexto))]
-    partial class MvcAgendaContextoModelSnapshot : ModelSnapshot
+    [Migration("20241121182617_TelefonoEmail")]
+    partial class TelefonoEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
