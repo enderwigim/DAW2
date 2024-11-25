@@ -4,8 +4,33 @@ using MvcAgenda.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+if (string.IsNullOrEmpty(userProfile))
+{
+    userProfile = Directory.GetCurrentDirectory();
+}
+
+string dbFolderPath;
+
+if (Directory.Exists(Path.Combine(userProfile, "REPOS")))
+{
+    dbFolderPath = Path.Combine(userProfile, "REPOS", "DAW2", "servidor", "DB");
+} else
+{
+    throw new DirectoryNotFoundException("No se encontró la carpeta 'REPOS'");
+}
+
+if (!Directory.Exists(dbFolderPath)) {
+    Directory.CreateDirectory(dbFolderPath);
+}
+
+var dbFileName = "aspnet-MvcAgenda-e0e8cf12-7ab4-4235-a9ec-07e1ddccd3a5.mdf";
+var dbPath = Path.Combine(dbFolderPath, dbFileName);
+
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = $"Server=(localdb)\\MSSQL15;AttachDbFileName={dbPath};Database=aspnet-MvcAgenda;Trusted_Connection=True;MultipleActiveResultSets=true";
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 

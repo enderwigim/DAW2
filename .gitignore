@@ -238,3 +238,7 @@ src/.vs/config/applicationhost.config
 # JetBrains Rider's auto generated files
 .idea/
 /servidor/U5/GesTienda/GesTienda/App_Data
+
+
+!servidor/DB/*.mdf
+!servidor/DB/*.ldf
