@@ -89,18 +89,22 @@ function agruparGastos(
   periodo = "mes", etiquetas = [],
   fechaDesde = undefined, fechaHasta = undefined,
 ) {
+  console.log("Gastos todos:", fechaHasta);
   let filtered = filtrarGastos({
     fechaDesde: fechaDesde,
     fechaHasta: fechaHasta,
     etiquetasTiene: etiquetas,
   });
 
+  console.log("Gastos filtrados:", filtered);
 
   let gastosAgrupados = filtered.reduce((acumulador, gasto) => {
     let periodoGasto = gasto.obtenerPeriodoAgrupacion(periodo);
+    console.log("Periodo de agrupación:", periodoGasto);
     if (acumulador[periodoGasto] == undefined) {
       acumulador[periodoGasto] = 0;
     }
+
     acumulador[periodoGasto] += gasto.valor;
 
 
@@ -114,7 +118,7 @@ function agruparGastos(
 function CrearGasto(descripcion, value, date, ...etiquetas) {
   // PROPIEDADES.
   // En caso de que el numero sea menor a 0 y/o no sea un numero. Seteamos valor a 0.
-  this.valor = value < 0 || isNaN(value) ? 0 : value;
+  this.valor = (value < 0 || isNaN(value)) ? 0 : value;
 
   // Seteamos descripcion
   this.descripcion = descripcion;
@@ -141,7 +145,8 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
     return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
   };
   this.actualizarDescripcion = function (newDescripcion) {
-    this.descripcion = newDescripcion;
+    this.descripcion = (newDescripcion != undefined )? newDescripcion : this.descripcion; 
+    
   };
   this.actualizarValor = function (newValue) {
     if (newValue >= 0 && !isNaN(newValue)) {
@@ -152,10 +157,13 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
     this.fecha = isNaN(Date.parse(date)) ? this.fecha : Date.parse(date);
   };
   this.anyadirEtiquetas = function (...nuevasEtiqueta) {
-    let etiquetasAnyadir = nuevasEtiqueta.filter(
-      (etiqueta) => !this.etiquetas.includes(etiqueta)
-    );
-    this.etiquetas = [...this.etiquetas, ...etiquetasAnyadir];
+    if (nuevasEtiqueta.length > 0) {
+      let etiquetasAnyadir = nuevasEtiqueta.filter(
+        (etiqueta) => !this.etiquetas.includes(etiqueta)
+      );
+      this.etiquetas = [...this.etiquetas, ...etiquetasAnyadir];
+    }
+    
   };
   this.borrarEtiquetas = function (...etiquetasBorrar) {
     this.etiquetas = this.etiquetas.filter(
