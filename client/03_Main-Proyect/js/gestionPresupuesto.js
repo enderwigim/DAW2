@@ -118,7 +118,7 @@ function agruparGastos(
 function CrearGasto(descripcion, value, date, ...etiquetas) {
   // PROPIEDADES.
   // En caso de que el numero sea menor a 0 y/o no sea un numero. Seteamos valor a 0.
-  this.valor = (value < 0 || isNaN(value)) ? 0 : value;
+  this.valor = (value < 0 || isNaN(value)) ? 0 : Number(value);
 
   // Seteamos descripcion
   this.descripcion = descripcion;
