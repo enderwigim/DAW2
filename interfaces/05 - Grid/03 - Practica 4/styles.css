@@ -9,6 +9,7 @@ html{
     box-sizing: inherit;
 }
 
+
 header {
     display: flex;
     flex-direction: row;
@@ -23,13 +24,12 @@ header > p:nth-child(3) {
 
 main{
     padding: 2%;
-    background-image: url("img/background.jpg");
+    background: url("img/background.jpg") center/cover fixed;
     nav {
         /* Creating a sticky nav */
         position:sticky;
         top: 0;
-
-
+        
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -41,8 +41,7 @@ main{
             flex-direction: row;
             justify-content: flex-end;
             margin-left: auto;
-            margin-right: 10%;
-            gap: 20px;
+            gap: 1em;
         }
     }
     .logo {
@@ -100,14 +99,15 @@ main{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5,1fr);
-    grid-template-areas: "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c4 r1_c5"
-                        "r1_2_c1_2 r1_2_c1_2 r2_c3_4 r2_c3_4 r2_c5"
+    grid-template-areas: "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 r1_c5"
+                        "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 r1_c5"
                         "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
                         "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
                         "r5_c1 r5_c2_3 r5_c2_3 r5_c4 r5_c5";
     > * {
         margin: 0.5em 0.5em;
     }
+    
 }
 .r1_2_c1_2 {
     grid-area: r1_2_c1_2;
@@ -126,11 +126,18 @@ main{
 }
 .r1_c3 {
     grid-area: r1_c3;
-    background-color: #FE978E;
+    /*background-color: #FE978E; */
+    background: url(img/fondos/1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
+
 }
 .r1_c4 {
     grid-area: r1_c4;
     background-color: aqua;
+    background-image: url(img/fondos/2.jpg);
+    background-size: cover;
 }
 .r1_c5 {
     grid-area: r1_c5;
@@ -139,6 +146,8 @@ main{
 .r2_c3_4 {
     grid-area: r2_c3_4;
     background-color: red;
+    background-image: url(img/fondos/3.jpg);
+    background-size: auto;
 }
 .r2_c5 {
     grid-area: r2_c5;

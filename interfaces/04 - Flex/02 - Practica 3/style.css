@@ -9,6 +9,11 @@ html{
     box-sizing: inherit;
 }
 
+:root{
+    --color-btn: #FE978E;
+    --color-btn2 : #fe978e00;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -110,20 +115,19 @@ main{
 .register-button {
     width: 10em;
     border-radius: 5px;
-    background-color: #FE978E;
+    background-color: var(--color-btn);
+    /*background-color: #FE978E; */
     border-color: #FE978E;
     color: #fff9f9;
     font-weight: 600;
     height: 3em;
 }
 
-
-
-
 .login-button {
     width: 10em;
     border-radius: 5px;
-    background-color: #fe978e00;
+    background-color: var(--color-btn2);
+    /*background-color: #fe978e00;*/
     border-color: #FE978E;
     color: #fff9f9;
     font-weight: 600;
