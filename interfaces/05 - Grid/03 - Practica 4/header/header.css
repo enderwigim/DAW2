@@ -1,0 +1,11 @@
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 30px;
+}
+header > p:nth-child(3) {
+    margin-right: 200px;
+}
