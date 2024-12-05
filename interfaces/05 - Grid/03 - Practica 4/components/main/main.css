@@ -1,7 +1,6 @@
 
 main{
-    padding: 2%;
-    background: url(../img/background.jpg) center/cover fixed;
+    background: url(../../assets/background.jpg) center/cover fixed;
    
 }
 
@@ -9,17 +8,23 @@ main{
     padding: 2em;
     height: 130dvh;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5,1fr);
-    grid-template-areas: "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 r1_c5"
-                        "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 r2_c5"
+    grid-template-areas: "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 prueba"
+                        "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 prueba"
                         "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
                         "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
+                        "r5_c1 r5_c2_3 r5_c2_3 r5_c4 r5_c5"
                         "r5_c1 r5_c2_3 r5_c2_3 r5_c4 r5_c5";
     > * {
         margin: 0.5em 0.5em;
     }
     
+}
+.pepito {
+    /* display: grid; */
+    height: 100%;
+}
+article {
+    background-color: aliceblue;
 }
 .r1_2_c1_2 {
     grid-area: r1_2_c1_2;
@@ -29,8 +34,8 @@ main{
     
     align-content: center;
     p{
-        color:#FE978E;
-        text-shadow: 1px 1px 1px #000005;
+        color:var(--first-color);
+        text-shadow: 0.06em 0.06em 0.06em #000005;
         font-size: 2em;
         text-align: center;
     }
@@ -38,31 +43,37 @@ main{
 }
 .r1_c3 {
     grid-area: r1_c3;
-    /*background-color: #FE978E; */
-    background: url(../img/fondos/1.jpg) center/cover;
+    /* background-color: #FE978E; */
+    background: url(../../assets/fondos/1.jpg) center/cover;
 
     background-repeat: no-repeat;
     background-position: fixed;
 
 }
-
+.prueba {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row: 1/ span 2;
+    gap: 10px;
+    > * {
+        margin: 0px;
+    }
+}
 .r1_c5 {
-    grid-area: r1_c5;
     background-color:  var(--text-container-bg);
-    p {
+p {
         font-weight: 600;
-        color: #FE978E;
-        text-shadow: 1px 1px 1px #000005;
+        color: var(--first-color);
+        text-shadow: 1px 1px 1px var(--text-shadow);
         font-size: 0.9em;
         text-align: center;
     }
 }
 .r2_c5 {
-    grid-area: r2_c5;
-    background: url(../img/fondos/2.jpg) center/cover;
+
+    background: url(../../assets/fondos/2.jpg) center/cover;
     background-repeat: no-repeat;
     background-position: fixed;
-    
 }
 
 .r3_4_cFull {
@@ -70,9 +81,12 @@ main{
     background-color: var(--text-container-bg);
     display: grid;
     grid-template-columns: 5fr 6fr;
+    height: 100%;
+    margin-top: 0px;
+
 
     .middle-cont_r1_2{
-        background: url(../img/fondos/3.jpg) center/cover;
+        background: url(../../assets/fondos/3.jpg) center/cover;
         background-repeat: no-repeat;
 
     }
@@ -83,31 +97,31 @@ main{
         grid-template-rows: 1fr 1fr 1fr;
         h5 {
             font-size: 1em;
-            color: #FE978E;
-            text-shadow: 1px 1px rgb(0, 0, 57);
+            color: var(--first-color);
+            text-shadow: 1px 1px var(--text-shadow);
             font-size: 1.5em;
         }
         p{
             font-size: 0.9em;
             font-style: italic;
-            color: #6a849f;
-            text-shadow: 0.5px 0.5px rgb(0, 0, 0);
+            color: var(--font-color);
+            text-shadow: 0.5px 0.5px var(--text-shadow);
         }
     }
     
 }
 .r5_c1 {
     grid-area: r5_c1;
-    background: url(../img/fondos/5.jpg) center/cover no-repeat;
+    background: url(../../assets/fondos/5.jpg) center/cover no-repeat;
 }
 .r5_c2_3 {
     grid-area: r5_c2_3;
-    background-color: #FE978E;
+    background-color: var(--first-color);
 }
 .r5_c4 {
     grid-area: r5_c4;
     background-color: cadetblue;
-    background: url(../img/fondos/6.jpg) center/cover no-repeat;
+    background: url(../../assets/fondos/6.jpg) center/cover no-repeat;
 }
 .r5_c5 {
     grid-area: r5_c5;

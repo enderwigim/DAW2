@@ -1,7 +1,8 @@
-@import url(header/header.css);
-@import url(nav/nav.css);
-@import url(main/main.css);
-@import url(footer/footer.css);
+@import url(root.css);
+@import url(components/header/header.css);
+@import url(components/nav/nav.css);
+@import url(components/main/main.css);
+@import url(components/footer/footer.css);
 
 html{
     box-sizing: border-box;
@@ -13,11 +14,5 @@ html{
 *:after{
     box-sizing: inherit;
 }
-
-:root {
-    --opacity : 0;
-    --text-container-bg : #fff9f976
-}
-
 
 
