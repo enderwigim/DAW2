@@ -28,6 +28,12 @@
                                        asp-controller="MisDatos" asp-action="Edit">Mis Datos
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                       asp-controller="MisAvisos" asp-action="Index">
+                                        Mis Avisos
+                                    </a>
+                                </li>
                             }
                             @if (User.IsInRole("Administrador"))
                             {
@@ -50,6 +56,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area=""
                                        asp-controller="Empleados" asp-action="Index">Empleados</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                       asp-controller="Usuarios" asp-action="Index">Usuarios</a>
                                 </li>
                             }
                         }
