@@ -1,130 +1,122 @@
 
 main{
     background: url(../../assets/background.jpg) center/cover fixed;
+    /* ESTO HACE QUE OCUPE EL 1.5 DE LA PANTALLA. SIEMPRE 
+    SIN CONSIDERAR AL FOOTER, OSEA SE LO COME. */
+    /* height: 150dvh; */ 
+    min-height: 100vh;
+    height: auto;
    
 }
 
 .center-block {
+    height: 100%;
     padding: 2em;
-    height: 130dvh;
     display: grid;
-    grid-template-areas: "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 prueba"
-                        "r1_2_c1_2 r1_2_c1_2 r1_c3 r1_c3 prueba"
-                        "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
-                        "r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull r3_4_cFull"
-                        "r5_c1 r5_c2_3 r5_c2_3 r5_c4 r5_c5"
-                        "r5_c1 r5_c2_3 r5_c2_3 r5_c4 r5_c5";
+    grid-template-rows: 1fr 1fr;
+
     > * {
         margin: 0.5em 0.5em;
     }
-    
-}
-.pepito {
-    /* display: grid; */
-    height: 100%;
-}
-article {
-    background-color: aliceblue;
-}
-.r1_2_c1_2 {
-    grid-area: r1_2_c1_2;
-    font-family: "Montserrat", serif;
-    font-weight: 700;
-    background-color: var(--text-container-bg);
-    
-    align-content: center;
-    p{
-        color:var(--first-color);
-        text-shadow: 0.06em 0.06em 0.06em #000005;
-        font-size: 2em;
-        text-align: center;
-    }
-
-}
-.r1_c3 {
-    grid-area: r1_c3;
-    /* background-color: #FE978E; */
-    background: url(../../assets/fondos/1.jpg) center/cover;
-
-    background-repeat: no-repeat;
-    background-position: fixed;
-
-}
-.prueba {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-row: 1/ span 2;
-    gap: 10px;
-    > * {
-        margin: 0px;
-    }
-}
-.r1_c5 {
-    background-color:  var(--text-container-bg);
-p {
-        font-weight: 600;
-        color: var(--first-color);
-        text-shadow: 1px 1px 1px var(--text-shadow);
-        font-size: 0.9em;
-        text-align: center;
-    }
-}
-.r2_c5 {
-
-    background: url(../../assets/fondos/2.jpg) center/cover;
-    background-repeat: no-repeat;
-    background-position: fixed;
-}
-
-.r3_4_cFull {
-    grid-area: r3_4_cFull;
-    background-color: var(--text-container-bg);
-    display: grid;
-    grid-template-columns: 5fr 6fr;
-    height: 100%;
-    margin-top: 0px;
-
-
-    .middle-cont_r1_2{
-        background: url(../../assets/fondos/3.jpg) center/cover;
-        background-repeat: no-repeat;
-
-    }
-    .middle-cont_r3_4{
-        grid-column: 1fr;
-        background-color: var(--text-container-bg);
-        text-align: center;
-        grid-template-rows: 1fr 1fr 1fr;
-        h5 {
-            font-size: 1em;
-            color: var(--first-color);
-            text-shadow: 1px 1px var(--text-shadow);
-            font-size: 1.5em;
+    .first-part{
+        display: grid;
+        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        background-color: black;
+        .r1_2_c1_2 {
+            grid-column: 1/2;
+            grid-row: 1/span 2;
+            font-family: "Montserrat", serif;
+            font-weight: 700;
+            background-color: var(--text-container-bg);
+            
+            align-content: center;
+            p{
+                color:var(--first-color);
+                text-shadow: var(--text-shadow-first-color);
+                font-size: 150%;
+                text-align: center;
+            }
+        
         }
-        p{
-            font-size: 0.9em;
-            font-style: italic;
-            color: var(--font-color);
-            text-shadow: 0.5px 0.5px var(--text-shadow);
+        .r1_c3 {
+            grid-column: 2/3;
+            grid-row: 1/span 2;
+            /* background-color: #FE978E; */
+            background: url(../../assets/fondos/2.jpg) center/cover;
+        
+            background-repeat: no-repeat;
+            background-position: fixed;
+        
         }
+         
+        
+        .r1_2_c5_first {
+        grid-column: 3/4;
+        grid-row: 1;
+            background-color:  var(--text-container-bg);
+        p {
+                font-weight: 600;
+                color: var(--first-color);
+                text-shadow: var(--text-shadow-first-color);
+                font-size: 100%;
+                text-align: center;
+            }
+        }
+        .r1_2_c5_second {
+            grid-column: 3/4;
+            grid-row: 2;
+        
+            background: url(../../assets/fondos/1.jpg) center/cover;
+            background-repeat: no-repeat;
+            background-position: fixed;
+        }        
     }
+    .second-part{
+        display: grid;
+        grid-template-columns: 5fr 6fr;
+
+        .middle-cont_r1_2{
+            background: url(../../assets/fondos/3.jpg) center/cover;
+            background-repeat: no-repeat;
     
+        }
+        
+        .middle-cont_r3_4{
+            
+            align-content: center;
+            justify-items: center;
+            background-color: var(--text-container-bg);
+            text-align: center;
+            
+            h5 {
+                font-size: 120%;
+                color: var(--first-color);
+                text-shadow: var(--text-shadow-first-color);
+            }
+            p{
+                font-size: 110%;
+                font-style: italic;
+                color: var(--font-color);
+                text-shadow: var(--text-shadow-first-color);
+            }
+            button{
+                background-color: var(--first-color);
+                border-color: var(--first-color);
+                padding: 1em 2em 1em 2em;
+                border-radius: 5px;
+                color: var(--font-color);
+                font-weight: 700;
+            }
+        }
+        
+    }
 }
-.r5_c1 {
-    grid-area: r5_c1;
-    background: url(../../assets/fondos/5.jpg) center/cover no-repeat;
-}
-.r5_c2_3 {
-    grid-area: r5_c2_3;
-    background-color: var(--first-color);
-}
-.r5_c4 {
-    grid-area: r5_c4;
-    background-color: cadetblue;
-    background: url(../../assets/fondos/6.jpg) center/cover no-repeat;
-}
-.r5_c5 {
-    grid-area: r5_c5;
-    background-color: chocolate;
-}
+
+
+
+
+    
+
+
 
