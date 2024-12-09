@@ -113,6 +113,12 @@ function agruparGastos(
   return gastosAgrupados;
 }
 
+// Transformar listado de etiquetas
+function transformarListadoEtiquetas(etiquetas) {
+  let etiquetasTiene = etiquetas.split(/[,;.:\s]+/);
+  return etiquetasTiene;
+}
+
 // FUNCION CONSTRUCTORA DE GASTO
 // Revisar por defecto.
 function CrearGasto(descripcion, value, date, ...etiquetas) {
@@ -208,4 +214,5 @@ export {
   calcularBalance,
   filtrarGastos,
   agruparGastos,
+  transformarListadoEtiquetas,
 };

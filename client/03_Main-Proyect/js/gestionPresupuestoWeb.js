@@ -92,6 +92,13 @@ function mostrarGastoWeb(idElemento, gasto){
         gastoDiv.appendChild(editButtonForm);
         
         element.appendChild(gastoDiv);
+
+        
+        
+        let submitHandlerFormFiltrado = new filtrarGastosWeb();
+        let filtrarform = document.getElementById("formulario-filtrado");
+        filtrarform.addEventListener("submit", submitHandlerFormFiltrado);
+
     }
 }
 
@@ -310,6 +317,40 @@ function BorrarEtiquetasHandle(){
     this.handleEvent = function(event){
         this.gasto.borrarEtiquetas(this.etiqueta);
         repintar();
+    }
+}
+
+function filtrarGastosWeb() {
+    this.handleEvent = function(event){
+        event.preventDefault();
+        
+        var formulario = event.currentTarget;
+        // GET ETIQUETAS FROM
+        let etiquetasForm = formulario.elements["formulario-filtrado-etiquetas-tiene"].value;
+        let fechaDesde = formulario.elements["formulario-filtrado-fecha-desde"].value;
+        let fechaHasta = formulario.elements["formulario-filtrado-fecha-hasta"].value;
+        let valorMinimo = formulario.elements["formulario-filtrado-valor-minimo"].value;
+        let valorMaximo = formulario.elements["formulario-filtrado-valor-maximo"].value;
+        let descripcionContiene = formulario.elements["formulario-filtrado-descripcion"].value;
+
+
+
+        let filterObject = {
+            fechaDesde: (fechaDesde != "")? fechaDesde : undefined,
+            fechaHasta: (fechaHasta != "")? fechaHasta : undefined,
+            valorMinimo : (valorMinimo != "")? valorMinimo : undefined,
+            valorMaximo : (valorMaximo != "")? valorMaximo : undefined,
+            descripcionContiene: (descripcionContiene != "")? descripcionContiene : undefined,
+            etiquetasTiene: (etiquetasForm != "")? gest.transformarListadoEtiquetas(etiquetasForm) : undefined
+          }
+        
+        let gastosFiltrados = gest.filtrarGastos(filterObject);
+        // Vaciamos listado-gastos-completo
+        document.getElementById("listado-gastos-completo").innerHTML = "";
+
+        // Actualizamos listado-gastos-completo con lo filtrado.
+        gastosFiltrados.forEach((gasto) => mostrarGastoWeb("listado-gastos-completo", gasto));
+
     }
 }
 
