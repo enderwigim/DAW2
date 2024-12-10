@@ -62,5 +62,8 @@ li:hover {
     background-color: #fe978e00;
     border-color: var(--first-color);
 }
+a {
+    color: inherit;
+  text-decoration: inherit;
 }
-  
+}

@@ -1,16 +1,10 @@
 
 main{
-    background: url(../../assets/background.jpg) center/cover fixed;
-    /* ESTO HACE QUE OCUPE EL 1.5 DE LA PANTALLA. SIEMPRE 
-    SIN CONSIDERAR AL FOOTER, OSEA SE LO COME. */
-    /* height: 150dvh; */ 
-    min-height: 100vh;
-    height: auto;
+    background: var(--background-main-img) center/cover fixed;
    
 }
 
 .center-block {
-    height: 100%;
     padding: 2em;
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -22,6 +16,7 @@ main{
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;
         grid-template-rows: 1fr 1fr;
+        
         > * {
             margin: 0.5em 0.5em;
         }
@@ -45,7 +40,7 @@ main{
             grid-column: 2/3;
             grid-row: 1/span 2;
             /* background-color: #FE978E; */
-            background: url(../../assets/fondos/2.jpg) center/cover;
+            background: url(../../../assets/fondos/2.jpg) center/cover;
         
             background-repeat: no-repeat;
             background-position: fixed;
@@ -69,7 +64,7 @@ main{
             grid-column: 3/4;
             grid-row: 2;
         
-            background: url(../../assets/fondos/1.jpg) center/cover;
+            background: url(../../../assets/fondos/1.jpg) center/cover;
             background-repeat: no-repeat;
             background-position: fixed;
         }        
@@ -79,7 +74,7 @@ main{
         grid-template-columns: 5fr 6fr;
 
         .middle-cont_r1_2{
-            background: url(../../assets/fondos/3.jpg) center/cover;
+            background: url(../../../assets/fondos/3.jpg) center/cover;
             background-repeat: no-repeat;
     
         }

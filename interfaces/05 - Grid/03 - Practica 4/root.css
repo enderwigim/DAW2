@@ -6,4 +6,5 @@
     --text-shadow: #000005;
     --text-container-bg : #fff9f976;
     --text-shadow-first-color: 0.06em 0.06em 0.06em #000005;
+    --background-main-img : url("/assets/background.jpg");
 }

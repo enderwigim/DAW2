@@ -8,14 +8,14 @@ async function loadHTML(selector, url) {
         const data = await response.text();
         document.querySelector(selector).insertAdjacentHTML("beforeend", data);
     } catch (error) {
-        console.error(error); // Manejo de errores
+        console.error(error);
     }
 }
 
 
 (async function loadPageComponents() {
-    await loadHTML("body", "../components/header/header.html"); 
-    await loadHTML("body", "../components/nav/nav.html");      
-    await loadHTML("body", "../components/main/main.html");    
-    await loadHTML("body", "../components/footer/footer.html");
+    await loadHTML("body", "../../components/header/header.html"); 
+    await loadHTML("body", "../../components/nav/nav.html");      
+    await loadHTML("body", "../../components/homeFlex/main/main.html");    
+    await loadHTML("body", "../../components/homeGrid/footer/footer.html");
 })();
