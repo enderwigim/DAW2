@@ -50,9 +50,8 @@
 .register-button {
     width: 10em;
     border-radius: 5px;
-    background-color: var(--color-btn);
-    /*background-color: #FE978E; */
-    border-color: #FE978E;
+    background-color: var(--first-color);
+    border-color: var(--first-color);
     color: #fff9f9;
     font-weight: 600;
     height: 3em;
