@@ -1,0 +1,22 @@
+:root {
+    /* BACKGROUND */
+    --bg-header: linear-gradient(135deg, #32CD32, #87CEEB);
+    --bg-menu: linear-gradient(135deg, #1E90FF, #6A5ACD);
+    --bg-contenedor: linear-gradient(135deg, #1E90FF, #6A5ACD);
+    --bg-aside: linear-gradient( #FFD700, #FF8C00);
+    --bg-footer: linear-gradient(360deg, #40E0D0, #ADFF2F);
+    --bg-nav1: linear-gradient(135deg, #FF4500, #8B0000);
+    --bg-nav2: linear-gradient(135deg, #B0C4DE, #000000);
+    /* BORDES DE NAV1 Y 2 */
+    --border1: #FF4500;
+    --border2: #B0C4DE;
+
+    /* NEON */
+    --neon-header: #32CD32;
+    --neon-menu: #1E90FF;
+    --neon-nav1: #FF4500;
+    --neon-nav2: #B0C4DE;
+    --neon-cuerpo1: #1E90FF;
+    --neon-aside: #B0C4DE;
+    --neon-footer: #40E0D0
+}
