@@ -6,15 +6,18 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>CONSUMIR UN SERVICIO WEB YA EXISTENTE</h2>
     <h1>Titulaciones oficiales en la universidad de Alicante</h1>
     <form id="form1" runat="server">
         <div>
+            <article>
             <label>Curso academico (formato aaaa-aa)</label>
             <asp:TextBox ID="txtCurso" runat="server"></asp:TextBox>
             <asp:Button ID="btnObtenerInformacion" runat="server" Text="Obtener información" OnClick="btnObtenerInformacion_Click" />
+            </article>
             
         </div>
         <asp:Label ID="lblResultado" runat="server" Text=""></asp:Label>

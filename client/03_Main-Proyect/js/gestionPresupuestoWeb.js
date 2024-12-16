@@ -95,9 +95,7 @@ function mostrarGastoWeb(idElemento, gasto){
 
         
         
-        let submitHandlerFormFiltrado = new filtrarGastosWeb();
-        let filtrarform = document.getElementById("formulario-filtrado");
-        filtrarform.addEventListener("submit", submitHandlerFormFiltrado);
+
 
     }
 }
@@ -320,8 +318,8 @@ function BorrarEtiquetasHandle(){
     }
 }
 
-function filtrarGastosWeb() {
-    this.handleEvent = function(event){
+function filtrarGastosWeb(event) {
+
         event.preventDefault();
         
         var formulario = event.currentTarget;
@@ -351,9 +349,29 @@ function filtrarGastosWeb() {
         // Actualizamos listado-gastos-completo con lo filtrado.
         gastosFiltrados.forEach((gasto) => mostrarGastoWeb("listado-gastos-completo", gasto));
 
-    }
+    
+}
+let filtrarform = document.getElementById("formulario-filtrado");
+filtrarform.addEventListener("submit", filtrarGastosWeb);
+// PRACTICA 8
+function guardarGastosWeb() {
+    localStorage.setItem("GestorGastosDWEC", JSON.stringify(gest.listarGastos()));
 }
 
+let guardarGastosButton = document.getElementById("guardar-gastos");
+guardarGastosButton.addEventListener("click", guardarGastosWeb);
+
+function cargarGastosWeb() {
+    let gastosCargados = [];
+    if (localStorage.GestorGastosDWEC != undefined) {
+        gastosCargados = JSON.parse(localStorage.getItem("GestorGastosDWEC"));
+    }
+    gest.cargarGastos(gastosCargados);
+    repintar();
+}
+
+let cargarGastosButton = document.getElementById("cargar-gastos");
+cargarGastosButton.addEventListener("click", cargarGastosWeb);
 
 export {
     mostrarDatoEnId,

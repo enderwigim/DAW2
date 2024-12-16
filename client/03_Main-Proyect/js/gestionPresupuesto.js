@@ -119,6 +119,22 @@ function transformarListadoEtiquetas(etiquetas) {
   return etiquetasTiene;
 }
 
+function cargarGastos(gastosAlmacenamiento) {
+    // Reseteamos la variable global "gastos"
+    gastos = [];
+
+    // Procesamos cada gasto del listado pasado a la función
+    gastosAlmacenamiento.forEach(gasto => {
+      // CREAMOS EL NUEVO GASTO. VACIO DE DATOS, PERO CON SUS METODOS
+      let gastoRehidratado = new CrearGasto();
+      // REHIDRATAMOS EL GASTO
+      Object.assign(gastoRehidratado, gasto);
+      // LO PUSHEAMOS A GASTOS
+      gastos.push(gastoRehidratado)
+    })
+}
+
+
 // FUNCION CONSTRUCTORA DE GASTO
 // Revisar por defecto.
 function CrearGasto(descripcion, value, date, ...etiquetas) {
@@ -215,4 +231,5 @@ export {
   filtrarGastos,
   agruparGastos,
   transformarListadoEtiquetas,
+  cargarGastos,
 };

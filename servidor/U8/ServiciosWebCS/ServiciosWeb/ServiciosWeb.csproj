@@ -76,6 +76,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="styles.css" />
     <Content Include="Web.config" />
     <Content Include="Ejercicio1.aspx" />
     <Content Include="Connected Services\ServiceReference1\ServiciosWeb.ServiceReference1.ClaseAgrupaciones.datasource">
