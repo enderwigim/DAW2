@@ -64,19 +64,19 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="lblBruto" runat="server" Text="[lblBruto]"></asp:Label>
+                    <asp:Label ID="lblBruto" runat="server" Text=""></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="lblDescuento" runat="server" Text="[lblDescuento]"></asp:Label>
+                    <asp:Label ID="lblDescuento" runat="server" Text=""></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="lblBaseImponible" runat="server" Text="[lblBaseImponible]"></asp:Label>
+                    <asp:Label ID="lblBaseImponible" runat="server" Text=""></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="lblIva" runat="server" Text="[lblIVA]"></asp:Label>
+                    <asp:Label ID="lblIva" runat="server" Text=""></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="lblTotal" runat="server" Text="[lblTotal]"></asp:Label>
+                    <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
         </table>
