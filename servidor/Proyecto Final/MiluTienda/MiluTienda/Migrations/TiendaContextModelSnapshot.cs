@@ -39,6 +39,47 @@ namespace MiluTienda.Migrations
                     b.ToTable("Categorias");
                 });
 
+            modelBuilder.Entity("MiluTienda.Models.Clientes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CodPostal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nif")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Poblacion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clientes");
+                });
+
             modelBuilder.Entity("MiluTienda.Models.Estado", b =>
                 {
                     b.Property<int>("Id")
@@ -117,7 +158,7 @@ namespace MiluTienda.Migrations
                     b.Property<int>("EstadoId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Fecha")
+                    b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Preparado")
@@ -159,58 +200,19 @@ namespace MiluTienda.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PrecioBase")
+                    b.Property<decimal>("Precio")
                         .HasColumnType("decimal(9, 2)");
 
                     b.Property<int>("Stock")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Productos");
-                });
-
-            modelBuilder.Entity("MiluTienda.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CodPostal")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nif")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Poblacion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefono")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.Variante", b =>
@@ -263,7 +265,7 @@ namespace MiluTienda.Migrations
 
             modelBuilder.Entity("MiluTienda.Models.Pedido", b =>
                 {
-                    b.HasOne("MiluTienda.Models.Usuario", "Cliente")
+                    b.HasOne("MiluTienda.Models.Clientes", "Cliente")
                         .WithMany("Pedidos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -307,6 +309,11 @@ namespace MiluTienda.Migrations
                     b.Navigation("Productos");
                 });
 
+            modelBuilder.Entity("MiluTienda.Models.Clientes", b =>
+                {
+                    b.Navigation("Pedidos");
+                });
+
             modelBuilder.Entity("MiluTienda.Models.Estado", b =>
                 {
                     b.Navigation("Pedidos");
@@ -322,11 +329,6 @@ namespace MiluTienda.Migrations
                     b.Navigation("LineasPedido");
 
                     b.Navigation("Variantes");
-                });
-
-            modelBuilder.Entity("MiluTienda.Models.Usuario", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

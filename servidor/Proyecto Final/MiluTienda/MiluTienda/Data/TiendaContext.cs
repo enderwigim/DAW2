@@ -9,7 +9,7 @@ namespace MiluTienda.Data
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Estado> Estados { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
@@ -48,6 +48,10 @@ namespace MiluTienda.Data
                 .HasOne(lp => lp.Producto)
                 .WithMany(p => p.LineasPedido)
                 .HasForeignKey(lp => lp.ProductoId);
+            
+            modelBuilder.Entity<Producto>()
+                .Property(p => p.Stock)
+                .HasDefaultValue(0);
         }
     }
 }

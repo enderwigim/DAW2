@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiluTienda.Models
 {
     public class LineaPedido
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "La cantidad de producto es requerida")]
         public int Cantidad { get; set; }
 
         [Column(TypeName = "decimal(11, 2)")]
