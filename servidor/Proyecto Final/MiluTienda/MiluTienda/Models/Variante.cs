@@ -6,10 +6,12 @@ namespace MiluTienda.Models
     public class Variante
     {
         public int Id { get; set; }
+        [Display(Name = "Producto Origen")]
         public int ProductoId { get; set; }
-        public Producto Producto { get; set; }
-        public string Atributo { get; set; }
-        public string NombreVariante { get; set; }
+        
+        public Producto? Producto { get; set; }
+        public string? Atributo { get; set; }
+        public string? NombreVariante { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(9, 2)")]

@@ -1,0 +1,46 @@
+﻿@model MiluTienda.Models.Variante
+
+@{
+    ViewData["Title"] = "CreateVariante";
+}
+
+<h1>CreateVariante</h1>
+
+<h4>Variante</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateVariante">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- ProductoId (Este campo es invisible para el usuario, pero se envía en el formulario) -->
+            <input type="hidden" asp-for="ProductoId" value="@ViewBag.ProductoId" />
+
+            <div class="form-group">
+                <label asp-for="Atributo" class="control-label"></label>
+                <input asp-for="Atributo" class="form-control" />
+                <span asp-validation-for="Atributo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreVariante" class="control-label"></label>
+                <input asp-for="NombreVariante" class="form-control" />
+                <span asp-validation-for="NombreVariante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioVariante" class="control-label"></label>
+                <input asp-for="PrecioVariante" class="form-control" />
+                <span asp-validation-for="PrecioVariante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

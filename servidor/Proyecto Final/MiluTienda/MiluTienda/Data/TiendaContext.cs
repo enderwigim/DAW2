@@ -5,6 +5,7 @@ namespace MiluTienda.Data
 {
     public class TiendaContext : DbContext
     {
+        
         public TiendaContext(DbContextOptions<TiendaContext> options) : base(options)
         {
         }

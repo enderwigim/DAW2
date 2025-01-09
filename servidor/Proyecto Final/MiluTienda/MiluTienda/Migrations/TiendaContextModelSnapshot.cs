@@ -72,7 +72,6 @@ namespace MiluTienda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -105,19 +104,20 @@ namespace MiluTienda.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Cantidad")
+                    b.Property<int?>("Cantidad")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Descuento")
+                    b.Property<decimal?>("Descuento")
                         .HasColumnType("decimal(2, 0)");
 
-                    b.Property<int>("PedidoId")
+                    b.Property<int?>("PedidoId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Precio")
+                    b.Property<decimal?>("Precio")
                         .HasColumnType("decimal(11, 2)");
 
-                    b.Property<int>("ProductoId")
+                    b.Property<int?>("ProductoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -140,7 +140,7 @@ namespace MiluTienda.Migrations
                     b.Property<DateTime?>("Anulado")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Cobrado")
@@ -155,10 +155,10 @@ namespace MiluTienda.Migrations
                     b.Property<DateTime?>("Enviado")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EstadoId")
+                    b.Property<int?>("EstadoId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FechaCreacion")
+                    b.Property<DateTime?>("FechaCreacion")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("Preparado")
@@ -185,15 +185,12 @@ namespace MiluTienda.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Imagen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Marca")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -224,11 +221,9 @@ namespace MiluTienda.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Atributo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreVariante")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioVariante")
@@ -248,15 +243,11 @@ namespace MiluTienda.Migrations
                 {
                     b.HasOne("MiluTienda.Models.Pedido", "Pedido")
                         .WithMany("LineasPedido")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PedidoId");
 
                     b.HasOne("MiluTienda.Models.Producto", "Producto")
                         .WithMany("LineasPedido")
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductoId");
 
                     b.Navigation("Pedido");
 
@@ -267,15 +258,11 @@ namespace MiluTienda.Migrations
                 {
                     b.HasOne("MiluTienda.Models.Clientes", "Cliente")
                         .WithMany("Pedidos")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
 
                     b.HasOne("MiluTienda.Models.Estado", "Estado")
                         .WithMany("Pedidos")
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EstadoId");
 
                     b.Navigation("Cliente");
 
