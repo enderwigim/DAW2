@@ -56,13 +56,13 @@ namespace MiluTienda.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Descripcion")] Categoria categoria)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 _context.Add(categoria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            //}
-            //return View(categoria);
+            }
+            return View(categoria);
         }
 
         // GET: Categorias/Edit/5

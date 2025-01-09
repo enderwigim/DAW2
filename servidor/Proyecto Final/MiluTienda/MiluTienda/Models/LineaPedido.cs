@@ -8,17 +8,17 @@ namespace MiluTienda.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "La cantidad de producto es requerida")]
-        public int Cantidad { get; set; }
+        public int? Cantidad { get; set; }
 
         [Column(TypeName = "decimal(11, 2)")]
-        public decimal Precio { get; set; }
+        public decimal? Precio { get; set; }
         [Column(TypeName = "decimal(2, 0)")]
-        public decimal Descuento { get; set; }
+        public decimal? Descuento { get; set; }
 
         // Claves Foráneas
-        public int PedidoId { get; set; }
-        public Pedido Pedido { get; set; }
-        public int ProductoId { get; set; }
-        public Producto Producto { get; set; }
+        public int? PedidoId { get; set; }
+        public Pedido? Pedido { get; set; }
+        public int? ProductoId { get; set; }
+        public Producto? Producto { get; set; }
     }
 }
