@@ -18,7 +18,7 @@ namespace MiluTienda.Models
         public DateTime? Anulado { get; set; }
 
         // Claves Foráneas
-        public int? ClienteId { get; set; }
+        public int ClienteId { get; set; }
         public Clientes? Cliente { get; set; }
         public int? EstadoId { get; set; }
         public Estado? Estado { get; set; }

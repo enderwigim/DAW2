@@ -16,9 +16,23 @@ namespace MiluTienda.Models
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(9, 2)")]
-        [Display(Name = "Precio")]
-        [Required(ErrorMessage = "El precio es un campo requerido")]
         public decimal Precio { get; set; }
+
+        [Display(Name = "Precio")]
+        [RegularExpression(@"^[-0123456789]+[0-9.,]*$",
+        ErrorMessage = "El valor introducido debe ser de tipo monetario.")]
+        [Required(ErrorMessage = "El precio es un campo requerido")]
+        public string PrecioCadena
+        {
+            get
+            {
+                return Convert.ToString(Precio).Replace(',', '.');
+            }
+            set
+            {
+                Precio = Convert.ToDecimal(value.Replace('.', ','));
+            }
+        }
         public string? Marca { get; set; }
         // Establece un valor predeterminado de 0
         public int Stock { get; set; } = 0;  

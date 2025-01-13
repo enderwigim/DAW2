@@ -76,6 +76,17 @@ function mostrarGastoWeb(idElemento, gasto){
 
         deleteButton.addEventListener("click", deleteHandle);
         gastoDiv.appendChild(deleteButton);
+
+        // CREAR BOTONES API
+        let gasto_borrar_api = document.createElement("button");
+        gasto_borrar_api.classList.add("gasto-borrar-api")
+        gasto_borrar_api.innerHTML = "Gasto Borrar Api"
+        gastoDiv.appendChild(gasto_borrar_api);
+
+        let gasto_editar_api = document.createElement("button");
+        gasto_editar_api.innerHTML = "Gasto Editar Api"
+        gasto_borrar_api.classList.add("gasto-editar-formulario");
+        gastoDiv.appendChild(gasto_editar_api);
         
         let editButtonForm = document.createElement("button");
         editButtonForm.classList.add("gasto-editar-formulario");
@@ -92,6 +103,8 @@ function mostrarGastoWeb(idElemento, gasto){
         gastoDiv.appendChild(editButtonForm);
         
         element.appendChild(gastoDiv);
+
+
 
         
         
@@ -372,6 +385,45 @@ function cargarGastosWeb() {
 
 let cargarGastosButton = document.getElementById("cargar-gastos");
 cargarGastosButton.addEventListener("click", cargarGastosWeb);
+
+// PRACTICA 9
+function getGastosById() {
+    let userName = document.getElementById("nombre-usuario").value;
+    let url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${userName}`
+    // let response = await fetch(url);
+    // if (response.ok) {
+    //     let data = await response.json();
+    //     gest.cargarGastos(data);
+    //     repintar();
+    // } else {
+    //     alert("Error-HTTP: " + response.status);
+    // }
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(`Error HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            gest.cargarGastos(data);
+            repintar();
+        })
+        .catch((error) => {
+            alert(error.message);
+        })
+
+        }
+
+// async function cargarGastosApi() {
+//     await getGastosById()
+//         .then((resultado) => {
+//             gest.cargarGastos(resultado);
+//         })
+// }
+
+let cargarApiBtn = document.getElementById("cargar-gastos-api");
+cargarApiBtn.addEventListener("click", getGastosById);
 
 export {
     mostrarDatoEnId,

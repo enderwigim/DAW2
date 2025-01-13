@@ -16,6 +16,7 @@ namespace MiluTienda.Models
         [Required(ErrorMessage = "La población es requerida")]
         public string? Poblacion { get; set; }
         [Required(ErrorMessage = "El codigo postal es requerido")]
+        [Display(Name = "Codigo Postal")]
         public string? CodPostal { get; set; }
         [Display(Name = "NIF")]
         [Required(ErrorMessage = "El NIF es requerido")]

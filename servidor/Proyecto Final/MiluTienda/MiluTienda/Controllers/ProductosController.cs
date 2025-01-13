@@ -36,8 +36,6 @@ namespace MiluTienda.Controllers
 
             var producto = await _context.Productos
                 .Include(p => p.Categoria)
-                // ESTO INCLUYE LAS VARIANTES ASOCIADAS, PERMITIENDONOS ACCEDER A LAS DE ESE PRODUCTO.
-                .Include(p => p.Variantes)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
@@ -54,27 +52,12 @@ namespace MiluTienda.Controllers
             return View();
         }
 
-        // GET: Productos/Variantes/Create/5 (Ruta para crear variante para un producto específico)
-        public IActionResult CreateVariante(int productoId)
-        {
-            // Obtener el producto al que le vamos a agregar la variante
-            var producto = _context.Productos.Find(productoId);
-            if (producto == null)
-            {
-                return NotFound();
-            }
-
-            // Inicializar el formulario para la nueva variante
-            ViewBag.ProductoId = productoId;  // Pasamos el ProductoId a la vista
-            return View();
-        }
-
         // POST: Productos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Precio,Marca,Stock,Imagen,CategoriaId")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Precio,PrecioCadena,Marca,Stock,Imagen,CategoriaId")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +91,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Precio,Marca,Stock,Imagen,CategoriaId")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Precio,PrecioCadena,Marca,Stock,Imagen,CategoriaId")] Producto producto)
         {
             if (id != producto.Id)
             {

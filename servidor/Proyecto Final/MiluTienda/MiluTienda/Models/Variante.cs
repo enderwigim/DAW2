@@ -11,14 +11,28 @@ namespace MiluTienda.Models
         
         public Producto? Producto { get; set; }
         public string? Atributo { get; set; }
+
+        [Display(Name = "Nombre")]
         public string? NombreVariante { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(9, 2)")]
+        public decimal PrecioVariante { get; set; }
+
         [Display(Name = "Precio")]
         [RegularExpression(@"^[-0123456789]+[0-9.,]*$",
         ErrorMessage = "El valor introducido debe ser de tipo monetario.")]
         [Required(ErrorMessage = "El precio es un campo requerido")]
-        public decimal PrecioVariante { get; set; }
+        public string PrecioCadena
+        {
+            get
+            {
+                return Convert.ToString(PrecioVariante).Replace(',', '.');
+            }
+            set
+            {
+                PrecioVariante = Convert.ToDecimal(value.Replace('.', ','));
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ using MiluTienda.Models;
 
 namespace MiluTienda.Controllers
 {
-    
     public class VariantesController : Controller
     {
         private readonly TiendaContext _context;
@@ -26,8 +25,6 @@ namespace MiluTienda.Controllers
             var tiendaContext = _context.Variantes.Include(v => v.Producto);
             return View(await tiendaContext.ToListAsync());
         }
-
-        
 
         // GET: Variantes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -60,7 +57,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante")] Variante variante)
+        public async Task<IActionResult> Create([Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena")] Variante variante)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +91,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante")] Variante variante)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena")] Variante variante)
         {
             if (id != variante.Id)
             {

@@ -62,12 +62,13 @@ namespace MiluTienda.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Precio = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
-                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -94,7 +95,7 @@ namespace MiluTienda.Migrations
                     Cobrado = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Devuelto = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Anulado = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ClienteId = table.Column<int>(type: "int", nullable: true),
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
                     EstadoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -104,7 +105,8 @@ namespace MiluTienda.Migrations
                         name: "FK_Pedidos_Clientes_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Pedidos_Estados_EstadoId",
                         column: x => x.EstadoId,

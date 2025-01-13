@@ -12,8 +12,8 @@ using MiluTienda.Data;
 namespace MiluTienda.Migrations
 {
     [DbContext(typeof(TiendaContext))]
-    [Migration("20250109151838_Inicial4")]
-    partial class Inicial4
+    [Migration("20250113150437_Inicial2")]
+    partial class Inicial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,7 +143,7 @@ namespace MiluTienda.Migrations
                     b.Property<DateTime?>("Anulado")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ClienteId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Cobrado")
@@ -203,6 +203,10 @@ namespace MiluTienda.Migrations
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(9, 2)");
 
+                    b.Property<string>("PrecioCadena")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Stock")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -227,6 +231,10 @@ namespace MiluTienda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreVariante")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrecioCadena")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioVariante")
@@ -261,7 +269,9 @@ namespace MiluTienda.Migrations
                 {
                     b.HasOne("MiluTienda.Models.Clientes", "Cliente")
                         .WithMany("Pedidos")
-                        .HasForeignKey("ClienteId");
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MiluTienda.Models.Estado", "Estado")
                         .WithMany("Pedidos")
