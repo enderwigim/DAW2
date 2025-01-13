@@ -36,6 +36,7 @@ namespace MiluTienda.Controllers
 
             var producto = await _context.Productos
                 .Include(p => p.Categoria)
+                .Include(p => p.Variantes)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
@@ -159,6 +160,44 @@ namespace MiluTienda.Controllers
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.Id == id);
+        }
+
+        // GET: Productos/Variantes/Create/5
+        // SE UTILIZARÁ PARA MOSTRAR LA VISTA QUE CREE LA VARIANTE
+        public IActionResult CreateVariante(int productoId)
+        {
+            var producto = _context.Productos.Find(productoId);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            // Pasa el ProductoId y el producto en si a la vista
+            ViewBag.Producto = producto;
+            ViewBag.ProductoId = productoId;
+            return View();
+        }
+
+        // POST: Productos/Variantes/Create/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateVariante(int productoId, [Bind("Atributo,NombreVariante,PrecioCadena,PrecioVariante")] Variante variante)
+        {
+            if (ModelState.IsValid)
+            {
+                // Asigna el ProductoId a la variante
+                variante.ProductoId = productoId;
+
+                // Agrega la variante a la base de datos
+                _context.Add(variante);
+                await _context.SaveChangesAsync();
+
+                // Redirige a los detalles del producto
+                return RedirectToAction("Details", "Productos", new { id = productoId });
+            }
+
+            ViewBag.ProductoId = productoId;
+            return View(variante);
         }
     }
 }

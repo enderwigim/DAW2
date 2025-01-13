@@ -60,7 +60,42 @@
         </dd>
     </dl>
 </div>
+
+<!-- Mostrar las variantes del producto -->
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <h4>Variantes</h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre Variante</th>
+                    <th>Atributo Variante</th>
+                    <th>Precio Variante</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            @foreach (var variante in Model.Variantes)
+            {
+                <tbody>
+                    <tr>
+                    <td>@variante.NombreVariante</td>
+                    <td>@variante.Atributo</td>
+                    <td>@variante.PrecioVariante.ToString("C")</td>
+                    <td><a asp-controller="Variantes" asp-action="Edit" asp-route-id="@variante.Id">Editar Variante</a></td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+    <table class="table">
+        
+    </table>
+            
+
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
