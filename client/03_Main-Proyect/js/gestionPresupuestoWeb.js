@@ -78,15 +78,21 @@ function mostrarGastoWeb(idElemento, gasto){
         gastoDiv.appendChild(deleteButton);
 
         // CREAR BOTONES API
+
         let gasto_borrar_api = document.createElement("button");
         gasto_borrar_api.classList.add("gasto-borrar-api")
         gasto_borrar_api.innerHTML = "Gasto Borrar Api"
+
+        let gasto_event = new deleteGastoEvent();
+        gasto_event.gasto = gasto;
+
+        gasto_borrar_api.addEventListener("click", gasto_event);
         gastoDiv.appendChild(gasto_borrar_api);
 
-        let gasto_editar_api = document.createElement("button");
-        gasto_editar_api.innerHTML = "Gasto Editar Api"
-        gasto_borrar_api.classList.add("gasto-editar-formulario");
-        gastoDiv.appendChild(gasto_editar_api);
+        // let gasto_editar_api = document.createElement("button");
+        // gasto_editar_api.innerHTML = "Gasto Editar Api"
+        // gasto_borrar_api.classList.add("gasto-editar-formulario");
+        // gastoDiv.appendChild(gasto_editar_api);
         
         let editButtonForm = document.createElement("button");
         editButtonForm.classList.add("gasto-editar-formulario");
@@ -242,64 +248,43 @@ function SubmitEditHandler() {
         this.formulario.remove();
     }
 }
-function NuevoGastoWebFormulario(){
-    this.handleEvent = function() {
-        // GET FORMULARIO
-        let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
-        var formulario = plantillaFormulario.querySelector("form");
+// function NuevoGastoWebFormulario(){
+//     this.handleEvent = function() {
+//         // GET FORMULARIO
+//         let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
+//         var formulario = plantillaFormulario.querySelector("form");
 
-        // DISABLE anyadirgasto-formulario BUTTON
-        let activate = document.getElementById("anyadirgasto-formulario");
-        activate.setAttribute("disabled",true);
+//         // DISABLE anyadirgasto-formulario BUTTON
+//         let activate = document.getElementById("anyadirgasto-formulario");
+//         activate.setAttribute("disabled",true);
 
-        // CREATE SUBMIT HANDLER
-        let submitHandler = new SubmitNewHandler();
-        submitHandler.formulario = formulario;
+//         // CREATE SUBMIT HANDLER
+//         let submitHandler = new SubmitNewHandler();
+//         submitHandler.formulario = formulario;
 
-        formulario.addEventListener("submit", submitHandler);
+//         formulario.addEventListener("submit", submitHandler);
 
-        // GET CANCELBUTTON
-        let cancelButton = formulario.querySelector("button.cancelar");
+//         // GET CANCELBUTTON
+//         let cancelButton = formulario.querySelector("button.cancelar");
 
-        // CREATE CANCEL HANDLER
-        let cancelHandler = new CancelHandler();
-        cancelHandler.formulario = formulario;
-        cancelHandler.button = activate;
+//         // CREATE CANCEL HANDLER
+//         let cancelHandler = new CancelHandler();
+//         cancelHandler.formulario = formulario;
+//         cancelHandler.button = activate;
 
-        cancelButton.addEventListener("click", cancelHandler);
+//         cancelButton.addEventListener("click", cancelHandler);
 
-        let div = document.getElementById("controlesprincipales");
-        div.append(formulario);
-    }
-}
-function EditarHandleFormulario(){
-    this.handleEvent = function(){
-        // GET FORMULARIO
-        let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
-        var formulario = plantillaFormulario.querySelector("form");
+//         let submitApiButton = formulario.querySelector("button.gasto-enviar-api")
+//         let submitNewHandler = new SubmitNewApiHandler();
+//         submitHandler.formulario = formulario
+        
+//         submitApiButton.addEventListener("click", submitNewHandler);
 
-        // CREATE SUBMIT HANDLER
-        let submitHandler = new SubmitEditHandler();
-        submitHandler.formulario = formulario;
-        submitHandler.gasto = this.gasto;
-        submitHandler.button = this.button;
+//         let div = document.getElementById("controlesprincipales");
+//         div.append(formulario);
+//     }
+// }
 
-        formulario.addEventListener("submit", submitHandler);
-
-        // GET CANCELBUTTON
-        let cancelButton = formulario.querySelector("button.cancelar");
-
-        // CREATE CANCEL HANDLER
-        let cancelHandler = new CancelHandler();
-        cancelHandler.formulario = formulario;
-        cancelHandler.button = this.button;
-
-        cancelButton.addEventListener("click", cancelHandler)
-        this.button.setAttribute("disabled", true)
-
-        this.gastoDiv.append(formulario);
-    }
-}
 // ADD EVENT TO anyadir-formulario
 let addForm = document.getElementById("anyadirgasto-formulario");
 let addFormHandler = new NuevoGastoWebFormulario();
@@ -407,7 +392,8 @@ function getGastosById() {
         })
         .then((data) => {
             gest.cargarGastos(data);
-            repintar();
+            repintar()
+            
         })
         .catch((error) => {
             alert(error.message);
@@ -415,12 +401,205 @@ function getGastosById() {
 
         }
 
-// async function cargarGastosApi() {
-//     await getGastosById()
-//         .then((resultado) => {
-//             gest.cargarGastos(resultado);
-//         })
-// }
+function deleteGastoEvent() {
+    this.handleEvent = function(event){
+        let userName = document.getElementById("nombre-usuario").value;
+        let url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${userName}/${this.gasto.gastoId}`;
+        fetch(url, {
+            method: "DELETE"
+        })
+            .then((response) => {
+
+                if (!response.ok) {
+                    throw Error(`Error HTTP: ${response.status}`);
+                }
+                gest.borrarGasto(this.gasto.gastoId);
+                repintar();
+            })
+            .catch((error) => {
+                alert(error.message);
+            })
+    }
+}
+
+
+function SubmitEditApiHandler() {
+    this.handleEvent = function(event) {
+        let formulario = this.formulario;
+
+        // GATHER DATA
+        let newDescrip = formulario.elements.descripcion.value;
+        let newValor = (isNaN(formulario.elements.valor.value))? this.gasto : Number(formulario.elements.valor.value);
+        let newFecha = (formulario.elements.fecha.value == "")? undefined : formulario.elements.fecha.value;
+        let newEtiqueta = (formulario.elements.etiquetas.value == "")? undefined : formulario.elements.etiquetas.value.split(",");
+
+        if (!newDescrip || !newValor || isNaN(Number(newValor))) {
+            alert("Por favor, completa todos los campos correctamente.");
+            return;
+        }
+
+        // UPDATE DATA
+        this.gasto.actualizarDescripcion(newDescrip);
+        this.gasto.actualizarValor(newValor);
+        this.gasto.actualizarFecha(newFecha);
+        this.gasto.anyadirEtiquetas(newEtiqueta);
+
+        
+
+        let userName = document.getElementById("nombre-usuario").value;
+        let url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${userName}/${this.gasto.gastoId}`;
+        fetch(url, {
+            method: "PUT",
+            // HEADER SETEA EL TIPO DE CONTENIDO A RECIBIR
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // LO ENVIO A TRAVÉS DEL BODY
+            body: JSON.stringify(this.gasto)
+        })
+            .then((response) => {
+
+                if (!response.ok) {
+                    throw Error(`Error HTTP: ${response.status}`);
+                }
+                getGastosById();
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+        
+        this.button.removeAttribute("disabled");
+        this.formulario.remove();
+        
+    }
+}
+
+function EditarHandleFormulario(){
+    this.handleEvent = function(){
+        // GET FORMULARIO
+        let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
+        var formulario = plantillaFormulario.querySelector("form");
+
+        // CREATE SUBMIT HANDLER
+        let submitHandler = new SubmitEditHandler();
+        submitHandler.formulario = formulario;
+        submitHandler.gasto = this.gasto;
+        submitHandler.button = this.button;
+
+        let submitApi = formulario.querySelector("button.enviar");
+
+
+        submitApi.addEventListener("submit", submitHandler);
+
+        // GET CANCELBUTTON
+        let cancelButton = formulario.querySelector("button.cancelar");
+
+        // CREATE CANCEL HANDLER
+        let cancelHandler = new CancelHandler();
+        cancelHandler.formulario = formulario;
+        cancelHandler.button = this.button;
+
+        cancelButton.addEventListener("click", cancelHandler)
+        
+        // CREATE SUBMIT API
+        let submitApiButton = formulario.querySelector("button.gasto-enviar-api");
+        
+        let submitApiHandler = new SubmitEditApiHandler();
+        submitApiHandler.formulario = formulario;
+        submitApiHandler.gasto = this.gasto;
+        submitApiHandler.button = this.button;
+        
+        submitApiButton.addEventListener("click", submitApiHandler);
+        
+        
+        
+        this.button.setAttribute("disabled", true)
+        this.gastoDiv.append(formulario);
+    }
+}
+
+function SubmitNewApiHandler() {
+    this.handleEvent = function(event) {
+        let formulario = this.formulario;
+
+        // GATHER DATA
+        let newDescrip = formulario.elements.descripcion.value;
+        let newValor = (isNaN(formulario.elements.valor.value))? this.gasto : Number(formulario.elements.valor.value);
+        let newFecha = (formulario.elements.fecha.value == "")? undefined : formulario.elements.fecha.value;
+        let newEtiqueta = (formulario.elements.etiquetas.value == "")? undefined : formulario.elements.etiquetas.value.split(",");
+
+        if (!newDescrip || !newValor || isNaN(Number(newValor))) {
+            alert("Por favor, completa todos los campos correctamente.");
+            return;
+        }
+
+        let gasto = new gest.CrearGasto(newDescrip,newValor,newFecha,...newEtiqueta);
+        
+
+        let userName = document.getElementById("nombre-usuario").value;
+        let url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${userName}`;
+        fetch(url, {
+            method: "POST",
+            // HEADER SETEA EL TIPO DE CONTENIDO A RECIBIR
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // LO ENVIO A TRAVÉS DEL BODY
+            body: JSON.stringify(gasto)
+        })
+            .then((response) => {
+
+                if (!response.ok) {
+                    throw Error(`Error HTTP: ${response.status}`);
+                }
+                getGastosById();
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
+        
+        this.button.removeAttribute("disabled");
+        this.formulario.remove();
+        
+    }
+}
+
+function NuevoGastoWebFormulario(){
+    this.handleEvent = function() {
+        // GET FORMULARIO
+        let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
+        var formulario = plantillaFormulario.querySelector("form");
+
+        // DISABLE anyadirgasto-formulario BUTTON
+        let activate = document.getElementById("anyadirgasto-formulario");
+        activate.setAttribute("disabled",true);
+
+        // CREATE SUBMIT HANDLER
+        let submitHandler = new SubmitNewHandler();
+        submitHandler.formulario = formulario;
+
+        formulario.addEventListener("submit", submitHandler);
+
+        // GET CANCELBUTTON
+        let cancelButton = formulario.querySelector("button.cancelar");
+
+        // CREATE CANCEL HANDLER
+        let cancelHandler = new CancelHandler();
+        cancelHandler.formulario = formulario;
+        cancelHandler.button = activate;
+
+        cancelButton.addEventListener("click", cancelHandler);
+
+        let submitApiButton = formulario.querySelector("button.gasto-enviar-api")
+        let submitNewHandler = new SubmitNewApiHandler();
+        submitNewHandler.formulario = formulario
+        
+        submitApiButton.addEventListener("click", submitNewHandler);
+
+        let div = document.getElementById("controlesprincipales");
+        div.append(formulario);
+    }
+}
 
 let cargarApiBtn = document.getElementById("cargar-gastos-api");
 cargarApiBtn.addEventListener("click", getGastosById);

@@ -179,7 +179,7 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
     this.fecha = isNaN(Date.parse(date)) ? this.fecha : Date.parse(date);
   };
   this.anyadirEtiquetas = function (...nuevasEtiqueta) {
-    if (nuevasEtiqueta.length > 0) {
+    if (nuevasEtiqueta.length > 0 && nuevasEtiqueta != undefined) {
       let etiquetasAnyadir = nuevasEtiqueta.filter(
         (etiqueta) => !this.etiquetas.includes(etiqueta)
       );
