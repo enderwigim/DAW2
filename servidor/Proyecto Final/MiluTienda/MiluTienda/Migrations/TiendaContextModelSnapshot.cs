@@ -204,11 +204,6 @@ namespace MiluTienda.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Stock")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
@@ -225,6 +220,9 @@ namespace MiluTienda.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Atributo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Imagen")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreVariante")

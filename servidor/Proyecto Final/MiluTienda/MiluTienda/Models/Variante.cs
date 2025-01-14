@@ -34,5 +34,6 @@ namespace MiluTienda.Models
                 PrecioVariante = Convert.ToDecimal(value.Replace('.', ','));
             }
         }
+        public string? Imagen { get; set; }
     }
 }

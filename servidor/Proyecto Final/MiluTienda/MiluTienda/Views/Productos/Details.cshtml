@@ -40,12 +40,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Marca)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
+        @* <dt class = "col-sm-2"> *@
+        @*     @Html.DisplayNameFor(model => model.Stock) *@
+        @* </dt> *@
+        @* <dd class = "col-sm-10"> *@
+        @*     @Html.DisplayFor(model => model.Stock) *@
+        @* </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Imagen)
         </dt>
@@ -81,7 +81,23 @@
                     <td>@variante.NombreVariante</td>
                     <td>@variante.Atributo</td>
                     <td>@variante.PrecioVariante.ToString("C")</td>
-                    <td><a asp-controller="Variantes" asp-action="Edit" asp-route-id="@variante.Id">Editar Variante</a></td>
+                    <td>
+                        <div>
+                            @{
+                                var nombreImagen = "no-imagen.jpg";
+                                if (@variante.Imagen != null)
+                                {
+                                    nombreImagen = @variante.Imagen;
+                                }
+                            }
+                            <img src="~/imagenes/variantes/@nombreImagen" class="rounded-circle" height="50" width="50"
+                                 asp-append-version="true" />
+                        </div>
+                    </td>
+                    <td><a asp-controller="Variantes" asp-action="Edit" asp-route-id="@variante.Id">Editar</a></td>
+                    <td><a asp-controller="Variantes" asp-action="Details" asp-route-id="@variante.Id">Detalles</a></td>
+                    <td><a asp-controller="Variantes" asp-action="Delete" asp-route-id="@variante.Id">Borrar</a></td>
+                    <td><a asp-controller="Variantes" asp-action="CambiarImagen" asp-route-id="@variante.Id">Cambiar Imagen</a></td>
                     </tr>
                 </tbody>
             }

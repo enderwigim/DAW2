@@ -12,8 +12,8 @@ using MiluTienda.Data;
 namespace MiluTienda.Migrations
 {
     [DbContext(typeof(TiendaContext))]
-    [Migration("20250113150239_Inicial")]
-    partial class Inicial
+    [Migration("20250114175248_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,11 +207,6 @@ namespace MiluTienda.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Stock")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
@@ -230,7 +225,14 @@ namespace MiluTienda.Migrations
                     b.Property<string>("Atributo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Imagen")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NombreVariante")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrecioCadena")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PrecioVariante")

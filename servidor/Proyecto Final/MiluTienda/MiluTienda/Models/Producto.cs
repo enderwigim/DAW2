@@ -34,8 +34,7 @@ namespace MiluTienda.Models
             }
         }
         public string? Marca { get; set; }
-        // Establece un valor predeterminado de 0
-        public int Stock { get; set; } = 0;  
+
         public string? Imagen { get; set; }
 
         // Clave Foránea

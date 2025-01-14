@@ -50,9 +50,7 @@ namespace MiluTienda.Data
                 .WithMany(p => p.LineasPedido)
                 .HasForeignKey(lp => lp.ProductoId);
             
-            modelBuilder.Entity<Producto>()
-                .Property(p => p.Stock)
-                .HasDefaultValue(0);
+
         }
     }
 }

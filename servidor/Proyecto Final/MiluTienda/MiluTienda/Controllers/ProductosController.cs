@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace MiluTienda.Controllers
     public class ProductosController : Controller
     {
         private readonly TiendaContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductosController(TiendaContext context)
+        public ProductosController(TiendaContext context, IWebHostEnvironment HostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = HostEnvironment;
         }
 
         // GET: Productos
@@ -198,6 +201,77 @@ namespace MiluTienda.Controllers
 
             ViewBag.ProductoId = productoId;
             return View(variante);
+        }
+
+        // GET: Productos/CambiarImagen/5 
+        public async Task<IActionResult> CambiarImagen(int? id)
+        {
+            if (id == null || _context.Productos == null)
+            {
+                return NotFound();
+            }
+            var producto = await _context.Productos
+            .Include(p => p.Categoria)
+            .FirstOrDefaultAsync(m => m.Id == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return View(producto);
+        }
+        // POST: Productos/CambiarImagen/5 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CambiarImagen(int? id, IFormFile imagen)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            if (imagen == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Copiar archivo de imagen 
+                string strRutaImagenes = Path.Combine(_webHostEnvironment.WebRootPath, "imagenes/productos");
+                string strExtension = Path.GetExtension(imagen.FileName);
+                string strNombreFichero = producto.Id.ToString() + strExtension;
+                string strRutaFichero = Path.Combine(strRutaImagenes, strNombreFichero);
+                using (var fileStream = new FileStream(strRutaFichero, FileMode.Create))
+                {
+                    imagen.CopyTo(fileStream);
+                }
+
+                // Actualizar producto con nueva imagen 
+                producto.Imagen = strNombreFichero;
+                try
+                {
+                    _context.Update(producto);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductoExists(producto.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return View(producto);
         }
     }
 }

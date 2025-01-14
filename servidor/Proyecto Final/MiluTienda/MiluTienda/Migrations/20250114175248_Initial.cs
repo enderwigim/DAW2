@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MiluTienda.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,7 +67,6 @@ namespace MiluTienda.Migrations
                     Precio = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Stock = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -123,7 +122,9 @@ namespace MiluTienda.Migrations
                     ProductoId = table.Column<int>(type: "int", nullable: false),
                     Atributo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NombreVariante = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PrecioVariante = table.Column<decimal>(type: "decimal(9,2)", nullable: false)
+                    PrecioVariante = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
