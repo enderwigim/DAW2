@@ -6,51 +6,53 @@ namespace MiluTienda.Data
     public class TiendaContext : DbContext
     {
         
-        public TiendaContext(DbContextOptions<TiendaContext> options) : base(options)
-        {
-        }
+        public TiendaContext(DbContextOptions<TiendaContext> options) : base(options) { }
 
-        public DbSet<Clientes> Clientes { get; set; }
-        public DbSet<Estado> Estados { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Producto> Productos { get; set; }
-        public DbSet<Variante> Variantes { get; set; }
-        public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<LineaPedido> LineasPedido { get; set; }
+    // DbSet para cada una de las entidades
+    public DbSet<Categoria> Categorias { get; set; }
+    public DbSet<Clientes> Clientes { get; set; }
+    public DbSet<Estado> Estados { get; set; }
+    public DbSet<FamiliaProducto> FamiliaProductos { get; set; }
+    public DbSet<LineaPedido> LineasPedido { get; set; }
+    public DbSet<Pedido> Pedidos { get; set; }
+    public DbSet<Producto> Productos { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Producto>()
-                .HasOne(p => p.Categoria)
-                .WithMany(c => c.Productos)
-                .HasForeignKey(p => p.CategoriaId);
+    // Configuración de relaciones (puedes personalizar estas relaciones si es necesario)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Variante>()
-                .HasOne(v => v.Producto)
-                .WithMany(p => p.Variantes)
-                .HasForeignKey(v => v.ProductoId);
+        // Configurar relaciones y restricciones adicionales si es necesario
 
-            modelBuilder.Entity<Pedido>()
-                .HasOne(p => p.Cliente)
-                .WithMany(u => u.Pedidos)
-                .HasForeignKey(p => p.ClienteId);
+        // Ejemplo: Relación uno a muchos entre Producto y FamiliaProducto
+        modelBuilder.Entity<Producto>()
+            .HasOne(p => p.FamiliaProducto)
+            .WithMany(f => f.Productos)
+            .HasForeignKey(p => p.FamiliaProductoId);
 
-            modelBuilder.Entity<Pedido>()
-                .HasOne(p => p.Estado)
-                .WithMany(e => e.Pedidos)
-                .HasForeignKey(p => p.EstadoId);
+        // Relación uno a muchos entre Pedido y LineaPedido
+        modelBuilder.Entity<LineaPedido>()
+            .HasOne(lp => lp.Pedido)
+            .WithMany(p => p.LineasPedido)
+            .HasForeignKey(lp => lp.PedidoId);
 
-            modelBuilder.Entity<LineaPedido>()
-                .HasOne(lp => lp.Pedido)
-                .WithMany(p => p.LineasPedido)
-                .HasForeignKey(lp => lp.PedidoId);
+        // Relación uno a muchos entre FamiliaProducto y LineaPedido
+        modelBuilder.Entity<LineaPedido>()
+            .HasOne(lp => lp.Producto)
+            .WithMany(fp => fp.LineasPedido)
+            .HasForeignKey(lp => lp.ProductoId);
 
-            modelBuilder.Entity<LineaPedido>()
-                .HasOne(lp => lp.Producto)
-                .WithMany(p => p.LineasPedido)
-                .HasForeignKey(lp => lp.ProductoId);
-            
+        // Relación uno a muchos entre Cliente y Pedido
+        modelBuilder.Entity<Pedido>()
+            .HasOne(p => p.Cliente)
+            .WithMany(c => c.Pedidos)
+            .HasForeignKey(p => p.ClienteId);
 
-        }
+        // Relación uno a muchos entre Estado y Pedido
+        modelBuilder.Entity<Pedido>()
+            .HasOne(p => p.Estado)
+            .WithMany(e => e.Pedidos)
+            .HasForeignKey(p => p.EstadoId);
+    }
     }
 }

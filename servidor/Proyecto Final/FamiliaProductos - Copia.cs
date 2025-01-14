@@ -11,25 +11,25 @@ using MiluTienda.Models;
 
 namespace MiluTienda.Controllers
 {
-    public class VariantesController : Controller
+    public class FamiliaProductos : Controller
     {
         private readonly TiendaContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public VariantesController(TiendaContext context, IWebHostEnvironment HostEnvironment)
+        public FamiliaProductos(TiendaContext context, IWebHostEnvironment HostEnvironment)
         {
             _context = context;
             _webHostEnvironment = HostEnvironment;
         }
 
-        // GET: Variantes
+        // GET: Productos
         public async Task<IActionResult> Index()
         {
-            var tiendaContext = _context.Variantes.Include(v => v.Producto);
+            var tiendaContext = _context.Productos.Include(p => p.Categoria);
             return View(await tiendaContext.ToListAsync());
         }
 
-        // GET: Variantes/Details/5
+        // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,42 +37,43 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var variante = await _context.Variantes
-                .Include(v => v.Producto)
+            var producto = await _context.Productos
+                .Include(p => p.Categoria)
+                .Include(p => p.Variantes)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (variante == null)
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return View(variante);
+            return View(producto);
         }
 
-        // GET: Variantes/Create
+        // GET: Productos/Create
         public IActionResult Create()
         {
-            ViewData["ProductoId"] = new SelectList(_context.Productos, "Id", "Nombre");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
             return View();
         }
 
-        // POST: Variantes/Create
+        // POST: Productos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena")] Variante variante)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Precio,PrecioCadena,Marca,Stock,Imagen,CategoriaId")] Producto producto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(variante);
+                _context.Add(producto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Productos, "Id", "Nombre", variante.ProductoId);
-            return View(variante);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
+            return View(producto);
         }
 
-        // GET: Variantes/Edit/5
+        // GET: Productos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,23 +81,23 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var variante = await _context.Variantes.FindAsync(id);
-            if (variante == null)
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto == null)
             {
                 return NotFound();
             }
-            ViewData["ProductoId"] = new SelectList(_context.Productos, "Id", "Nombre", variante.ProductoId);
-            return View(variante);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
+            return View(producto);
         }
 
-        // POST: Variantes/Edit/5
+        // POST: Productos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena")] Variante variante)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Precio,PrecioCadena,Marca,Stock,Imagen,CategoriaId")] Producto producto)
         {
-            if (id != variante.Id)
+            if (id != producto.Id)
             {
                 return NotFound();
             }
@@ -105,12 +106,12 @@ namespace MiluTienda.Controllers
             {
                 try
                 {
-                    _context.Update(variante);
+                    _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VarianteExists(variante.Id))
+                    if (!ProductoExists(producto.Id))
                     {
                         return NotFound();
                     }
@@ -121,11 +122,11 @@ namespace MiluTienda.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductoId"] = new SelectList(_context.Productos, "Id", "Nombre", variante.ProductoId);
-            return View(variante);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
+            return View(producto);
         }
 
-        // GET: Variantes/Delete/5
+        // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,53 +134,92 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var variante = await _context.Variantes
-                .Include(v => v.Producto)
+            var producto = await _context.Productos
+                .Include(p => p.Categoria)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (variante == null)
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return View(variante);
+            return View(producto);
         }
 
-        // POST: Variantes/Delete/5
+        // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var variante = await _context.Variantes.FindAsync(id);
-            if (variante != null)
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto != null)
             {
-                _context.Variantes.Remove(variante);
+                _context.Productos.Remove(producto);
             }
 
             await _context.SaveChangesAsync();
-
-            return RedirectToAction("Details", "Productos", new { id = variante.ProductoId });
+            return RedirectToAction(nameof(Index));
         }
 
-        private bool VarianteExists(int id)
+        private bool ProductoExists(int id)
         {
-            return _context.Variantes.Any(e => e.Id == id);
+            return _context.Productos.Any(e => e.Id == id);
         }
-        // GET: Variantes/CambiarImagen/5 
-        public async Task<IActionResult> CambiarImagen(int? id)
+
+        // GET: Productos/Variantes/Create/5
+        // SE UTILIZARÁ PARA MOSTRAR LA VISTA QUE CREE LA VARIANTE
+        public IActionResult CreateVariante(int familiaId)
         {
-            if (id == null || _context.Variantes == null)
+            var familia = _context.Productos.Find(familiaId);
+            if (familia == null)
             {
                 return NotFound();
             }
-            var variante = await _context.Variantes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (variante == null)
+
+            // Pasa el ProductoId y el producto en si a la vista
+            ViewBag.Producto = familia;
+            ViewBag.ProductoId = familiaId;
+            return View();
+        }
+
+        // POST: Productos/Variantes/Create/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateVariante(int familiaProductoId, [Bind("Atributo,NombreVariante,PrecioCadena,PrecioVariante")] Variante variante)
+        {
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                // Asigna el ProductoId a la variante
+                variante.FamiliaProductoiD = familiaProductoId;
+
+                // Agrega la variante a la base de datos
+                _context.Add(variante);
+                await _context.SaveChangesAsync();
+
+                // Redirige a los detalles del producto
+                return RedirectToAction("Details", "Productos", new { id = familiaProductoId });
             }
+
+            ViewBag.ProductoId = familiaProductoId;
             return View(variante);
         }
-        // POST: Variantes/CambiarImagen/5 
+
+        // GET: Productos/CambiarImagen/5 
+        public async Task<IActionResult> CambiarImagen(int? id)
+        {
+            if (id == null || _context.Productos == null)
+            {
+                return NotFound();
+            }
+            var producto = await _context.Productos
+            .Include(p => p.Categoria)
+            .FirstOrDefaultAsync(m => m.Id == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return View(producto);
+        }
+        // POST: Productos/CambiarImagen/5 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CambiarImagen(int? id, IFormFile imagen)
@@ -189,8 +229,8 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var variante = await _context.Variantes.FindAsync(id);
-            if (variante == null)
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto == null)
             {
                 return NotFound();
             }
@@ -203,9 +243,9 @@ namespace MiluTienda.Controllers
             if (ModelState.IsValid)
             {
                 // Copiar archivo de imagen 
-                string strRutaImagenes = Path.Combine(_webHostEnvironment.WebRootPath, "imagenes/variantes");
+                string strRutaImagenes = Path.Combine(_webHostEnvironment.WebRootPath, "imagenes/productos");
                 string strExtension = Path.GetExtension(imagen.FileName);
-                string strNombreFichero = variante.Id.ToString() + strExtension;
+                string strNombreFichero = producto.Id.ToString() + strExtension;
                 string strRutaFichero = Path.Combine(strRutaImagenes, strNombreFichero);
                 using (var fileStream = new FileStream(strRutaFichero, FileMode.Create))
                 {
@@ -213,15 +253,15 @@ namespace MiluTienda.Controllers
                 }
 
                 // Actualizar producto con nueva imagen 
-                variante.Imagen = strNombreFichero;
+                producto.Imagen = strNombreFichero;
                 try
                 {
-                    _context.Update(variante);
+                    _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VarianteExists(variante.Id))
+                    if (!ProductoExists(producto.Id))
                     {
                         return NotFound();
                     }
@@ -231,7 +271,7 @@ namespace MiluTienda.Controllers
                     }
                 }
             }
-            return View(variante);
+            return View(producto);
         }
     }
 }

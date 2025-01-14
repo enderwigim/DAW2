@@ -11,22 +11,28 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.FamiliaProducto)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.FamiliaProducto.Nombre)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Atributo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Atributo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.NombreVariante)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
+            @Html.DisplayFor(model => model.NombreVariante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioVariante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrecioVariante)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PrecioCadena)
@@ -35,83 +41,20 @@
             @Html.DisplayFor(model => model.PrecioCadena)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Marca)
+            @Html.DisplayNameFor(model => model.Stock)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Marca)
+            @Html.DisplayFor(model => model.Stock)
         </dd>
-        @* <dt class = "col-sm-2"> *@
-        @*     @Html.DisplayNameFor(model => model.Stock) *@
-        @* </dt> *@
-        @* <dd class = "col-sm-10"> *@
-        @*     @Html.DisplayFor(model => model.Stock) *@
-        @* </dd> *@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Imagen)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Imagen)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria.Descripcion)
-        </dd>
     </dl>
 </div>
-
-<!-- Mostrar las variantes del producto -->
 <div>
-    <h4>Variantes</h4>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre Variante</th>
-                    <th>Atributo Variante</th>
-                    <th>Precio Variante</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            @foreach (var variante in Model.Variantes)
-            {
-                <tbody>
-                    <tr>
-                    <td>@variante.NombreVariante</td>
-                    <td>@variante.Atributo</td>
-                    <td>@variante.PrecioVariante.ToString("C")</td>
-                    <td>
-                        <div>
-                            @{
-                                var nombreImagen = "no-imagen.jpg";
-                                if (@variante.Imagen != null)
-                                {
-                                    nombreImagen = @variante.Imagen;
-                                }
-                            }
-                            <img src="~/imagenes/variantes/@nombreImagen" class="rounded-circle" height="50" width="50"
-                                 asp-append-version="true" />
-                        </div>
-                    </td>
-                    <td><a asp-controller="Variantes" asp-action="Edit" asp-route-id="@variante.Id">Editar</a></td>
-                    <td><a asp-controller="Variantes" asp-action="Details" asp-route-id="@variante.Id">Detalles</a></td>
-                    <td><a asp-controller="Variantes" asp-action="Delete" asp-route-id="@variante.Id">Borrar</a></td>
-                    <td><a asp-controller="Variantes" asp-action="CambiarImagen" asp-route-id="@variante.Id">Cambiar Imagen</a></td>
-                    </tr>
-                </tbody>
-            }
-        </table>
-
-    <table class="table">
-        
-    </table>
-            
-
-</div>
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
-

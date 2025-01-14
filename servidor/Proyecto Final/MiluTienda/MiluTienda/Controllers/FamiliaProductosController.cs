@@ -10,23 +10,23 @@ using MiluTienda.Models;
 
 namespace MiluTienda.Controllers
 {
-    public class ProductosController : Controller
+    public class FamiliaProductosController : Controller
     {
         private readonly TiendaContext _context;
 
-        public ProductosController(TiendaContext context)
+        public FamiliaProductosController(TiendaContext context)
         {
             _context = context;
         }
 
-        // GET: Productos
+        // GET: FamiliaProductos
         public async Task<IActionResult> Index()
         {
-            var tiendaContext = _context.Productos.Include(p => p.FamiliaProducto);
+            var tiendaContext = _context.FamiliaProductos.Include(f => f.Categoria);
             return View(await tiendaContext.ToListAsync());
         }
 
-        // GET: Productos/Details/5
+        // GET: FamiliaProductos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var producto = await _context.Productos
-                .Include(p => p.FamiliaProducto)
+            var familiaProducto = await _context.FamiliaProductos
+                .Include(f => f.Categoria)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
+            if (familiaProducto == null)
             {
                 return NotFound();
             }
 
-            return View(producto);
+            return View(familiaProducto);
         }
 
-        // GET: Productos/Create
+        // GET: FamiliaProductos/Create
         public IActionResult Create()
         {
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
             return View();
         }
 
-        // POST: Productos/Create
+        // POST: FamiliaProductos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FamiliaProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena,Stock,Imagen")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Marca,Imagen,CategoriaId")] FamiliaProducto familiaProducto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(producto);
+                _context.Add(familiaProducto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
-            return View(producto);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", familiaProducto.CategoriaId);
+            return View(familiaProducto);
         }
 
-        // GET: Productos/Edit/5
+        // GET: FamiliaProductos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var producto = await _context.Productos.FindAsync(id);
-            if (producto == null)
+            var familiaProducto = await _context.FamiliaProductos.FindAsync(id);
+            if (familiaProducto == null)
             {
                 return NotFound();
             }
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
-            return View(producto);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", familiaProducto.CategoriaId);
+            return View(familiaProducto);
         }
 
-        // POST: Productos/Edit/5
+        // POST: FamiliaProductos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FamiliaProductoId,Atributo,NombreVariante,PrecioVariante,PrecioCadena,Stock,Imagen")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Marca,Imagen,CategoriaId")] FamiliaProducto familiaProducto)
         {
-            if (id != producto.Id)
+            if (id != familiaProducto.Id)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace MiluTienda.Controllers
             {
                 try
                 {
-                    _context.Update(producto);
+                    _context.Update(familiaProducto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductoExists(producto.Id))
+                    if (!FamiliaProductoExists(familiaProducto.Id))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace MiluTienda.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
-            return View(producto);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", familiaProducto.CategoriaId);
+            return View(familiaProducto);
         }
 
-        // GET: Productos/Delete/5
+        // GET: FamiliaProductos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,35 +130,35 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            var producto = await _context.Productos
-                .Include(p => p.FamiliaProducto)
+            var familiaProducto = await _context.FamiliaProductos
+                .Include(f => f.Categoria)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
+            if (familiaProducto == null)
             {
                 return NotFound();
             }
 
-            return View(producto);
+            return View(familiaProducto);
         }
 
-        // POST: Productos/Delete/5
+        // POST: FamiliaProductos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var producto = await _context.Productos.FindAsync(id);
-            if (producto != null)
+            var familiaProducto = await _context.FamiliaProductos.FindAsync(id);
+            if (familiaProducto != null)
             {
-                _context.Productos.Remove(producto);
+                _context.FamiliaProductos.Remove(familiaProducto);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductoExists(int id)
+        private bool FamiliaProductoExists(int id)
         {
-            return _context.Productos.Any(e => e.Id == id);
+            return _context.FamiliaProductos.Any(e => e.Id == id);
         }
     }
 }

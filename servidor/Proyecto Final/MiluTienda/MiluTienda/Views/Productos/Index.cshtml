@@ -13,25 +13,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.FamiliaProducto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                @Html.DisplayNameFor(model => model.Atributo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Precio)
+                @Html.DisplayNameFor(model => model.NombreVariante)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.PrecioCadena) *@
-            @* </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.Marca)
+                @Html.DisplayNameFor(model => model.PrecioVariante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioCadena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
             </th>
             <th></th>
         </tr>
@@ -40,43 +40,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.FamiliaProducto.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @Html.DisplayFor(modelItem => item.Atributo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.PrecioCadena) *@
-            @* </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-
-            <td>
-                    <div>
-                        @{
-                            var nombreImagen = "no-imagen.jpg";
-                            if (item.Imagen != null)
-                            {
-                                nombreImagen = item.Imagen;
-                            }
-                        }
-                        <img src="~/imagenes/productos/@nombreImagen" class="rounded-circle" height="50" width="50"
-                             asp-append-version="true" />
-                    </div>
+                @Html.DisplayFor(modelItem => item.NombreVariante)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
+                @Html.DisplayFor(modelItem => item.PrecioVariante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioCadena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagen)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="CambiarImagen" asp-route-id="@item.Id">Cambiar Imagen</a>
-                    @* <a asp-action="CreateVariante" asp-route-productoId="@item.Id">Agregar Variante</a> *@
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

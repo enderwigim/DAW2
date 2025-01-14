@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiluTienda.Models.Variante>
+﻿@model IEnumerable<MiluTienda.Models.FamiliaProducto>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,20 +13,17 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Producto)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Atributo)
+                @Html.DisplayNameFor(model => model.Marca)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreVariante)
+                @Html.DisplayNameFor(model => model.Imagen)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrecioVariante)
+                @Html.DisplayNameFor(model => model.Categoria)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.PrecioCadena) *@
-            @* </th> *@
             <th></th>
         </tr>
     </thead>
@@ -34,20 +31,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Atributo)
+                @Html.DisplayFor(modelItem => item.Marca)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreVariante)
+                @Html.DisplayFor(modelItem => item.Imagen)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PrecioVariante)
+                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.PrecioCadena) *@
-            @* </td> *@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
