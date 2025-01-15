@@ -10,10 +10,6 @@ namespace MiluTienda.Models
         [Required(ErrorMessage = "El nombre del producto es un campo requerido")]
         public string Nombre { get; set; }
         
-        public string? Marca { get; set; }
-
-        public string? Imagen { get; set; }
-
         // Clave Foránea
         public int CategoriaId { get; set; }
         public Categoria? Categoria { get; set; }

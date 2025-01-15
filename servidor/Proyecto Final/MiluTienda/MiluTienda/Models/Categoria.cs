@@ -12,5 +12,7 @@ namespace MiluTienda.Models
 
         // Relación: Una Categoria puede tener muchos Productos
         public ICollection<FamiliaProducto>? FamiliaProducto { get; set; }
+
+        public ICollection<Producto>? Productos { get; set; }
     }
 }

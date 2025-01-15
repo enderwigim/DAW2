@@ -7,8 +7,6 @@ namespace MiluTienda.Models
     {
         public int Id { get; set; }
         
-        public string? Atributo { get; set; }
-
         [Display(Name = "Nombre")]
         [Required]
         public string Nombre { get; set; }
@@ -38,9 +36,15 @@ namespace MiluTienda.Models
         }
 
         public int Stock { get; set; } = 0;
+
         public string? Imagen { get; set; }
 
+        public string? Marca { get; set; }
+
         public bool Escaparate { get; set; }
+
+        public int CategoriaId { get; set; }
+        public Categoria? Categoria { get; set; }
 
         public ICollection<LineaPedido>? LineasPedido { get; set; }
         public int FamiliaProductoId { get; set; }

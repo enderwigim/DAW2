@@ -57,7 +57,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Marca,Imagen,CategoriaId")] FamiliaProducto familiaProducto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,CategoriaId")] FamiliaProducto familiaProducto)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Marca,Imagen,CategoriaId")] FamiliaProducto familiaProducto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,CategoriaId")] FamiliaProducto familiaProducto)
         {
             if (id != familiaProducto.Id)
             {

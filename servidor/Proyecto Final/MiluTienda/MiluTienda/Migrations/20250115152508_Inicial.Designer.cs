@@ -12,7 +12,7 @@ using MiluTienda.Data;
 namespace MiluTienda.Migrations
 {
     [DbContext(typeof(TiendaContext))]
-    [Migration("20250114193052_Inicial")]
+    [Migration("20250115152508_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -110,12 +110,6 @@ namespace MiluTienda.Migrations
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Imagen")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Marca")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,8 +206,8 @@ namespace MiluTienda.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Atributo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -226,6 +220,9 @@ namespace MiluTienda.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Imagen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Marca")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -243,6 +240,8 @@ namespace MiluTienda.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
 
                     b.HasIndex("FamiliaProductoId");
 
@@ -294,11 +293,19 @@ namespace MiluTienda.Migrations
 
             modelBuilder.Entity("MiluTienda.Models.Producto", b =>
                 {
+                    b.HasOne("MiluTienda.Models.Categoria", "Categoria")
+                        .WithMany("Productos")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("MiluTienda.Models.FamiliaProducto", "FamiliaProducto")
                         .WithMany("Productos")
                         .HasForeignKey("FamiliaProductoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Categoria");
 
                     b.Navigation("FamiliaProducto");
                 });
@@ -306,6 +313,8 @@ namespace MiluTienda.Migrations
             modelBuilder.Entity("MiluTienda.Models.Categoria", b =>
                 {
                     b.Navigation("FamiliaProducto");
+
+                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.Clientes", b =>

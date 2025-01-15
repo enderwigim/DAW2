@@ -30,8 +30,14 @@ namespace MiluTienda.Data
             .WithMany(f => f.Productos)
             .HasForeignKey(p => p.FamiliaProductoId);
 
-        // Relación uno a muchos entre Pedido y LineaPedido
-        modelBuilder.Entity<LineaPedido>()
+        modelBuilder.Entity<Producto>()
+            .HasOne(p => p.Categoria)
+            .WithMany(c => c.Productos)
+            .HasForeignKey(p => p.CategoriaId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+            // Relación uno a muchos entre Pedido y LineaPedido
+            modelBuilder.Entity<LineaPedido>()
             .HasOne(lp => lp.Pedido)
             .WithMany(p => p.LineasPedido)
             .HasForeignKey(lp => lp.PedidoId);
