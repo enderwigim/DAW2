@@ -36,12 +36,8 @@
                 @Html.DisplayNameFor(model => model.Imagen)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FamiliaProducto)
+                @Html.DisplayNameFor(model => model.Categoria)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FamiliaProducto.Categoria)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -74,9 +70,6 @@
                         }
                     }
                     <img src="~/imagenes/productos/@nombreImagen" class="rounded-circle" height="50" width="50" asp-append-version="true" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FamiliaProducto.Nombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Categoria.Descripcion)

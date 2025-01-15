@@ -12,7 +12,6 @@ namespace MiluTienda.Data
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Clientes> Clientes { get; set; }
     public DbSet<Estado> Estados { get; set; }
-    public DbSet<FamiliaProducto> FamiliaProductos { get; set; }
     public DbSet<LineaPedido> LineasPedido { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
     public DbSet<Producto> Productos { get; set; }
@@ -24,11 +23,6 @@ namespace MiluTienda.Data
 
         // Configurar relaciones y restricciones adicionales si es necesario
 
-        // Ejemplo: Relación uno a muchos entre Producto y FamiliaProducto
-        modelBuilder.Entity<Producto>()
-            .HasOne(p => p.FamiliaProducto)
-            .WithMany(f => f.Productos)
-            .HasForeignKey(p => p.FamiliaProductoId);
 
         modelBuilder.Entity<Producto>()
             .HasOne(p => p.Categoria)

@@ -57,23 +57,29 @@ namespace MiluTienda.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FamiliaProductos",
+                name: "Productos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
+                    PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Escaparate = table.Column<bool>(type: "bit", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FamiliaProductos", x => x.Id);
+                    table.PrimaryKey("PK_Productos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FamiliaProductos_Categorias_CategoriaId",
+                        name: "FK_Productos_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -109,39 +115,6 @@ namespace MiluTienda.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Productos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
-                    PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Escaparate = table.Column<bool>(type: "bit", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    FamiliaProductoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Productos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Productos_Categorias_CategoriaId",
-                        column: x => x.CategoriaId,
-                        principalTable: "Categorias",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Productos_FamiliaProductos_FamiliaProductoId",
-                        column: x => x.FamiliaProductoId,
-                        principalTable: "FamiliaProductos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LineasPedido",
                 columns: table => new
                 {
@@ -169,11 +142,6 @@ namespace MiluTienda.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FamiliaProductos_CategoriaId",
-                table: "FamiliaProductos",
-                column: "CategoriaId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_LineasPedido_PedidoId",
                 table: "LineasPedido",
                 column: "PedidoId");
@@ -197,11 +165,6 @@ namespace MiluTienda.Migrations
                 name: "IX_Productos_CategoriaId",
                 table: "Productos",
                 column: "CategoriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Productos_FamiliaProductoId",
-                table: "Productos",
-                column: "FamiliaProductoId");
         }
 
         /// <inheritdoc />
@@ -221,9 +184,6 @@ namespace MiluTienda.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estados");
-
-            migrationBuilder.DropTable(
-                name: "FamiliaProductos");
 
             migrationBuilder.DropTable(
                 name: "Categorias");

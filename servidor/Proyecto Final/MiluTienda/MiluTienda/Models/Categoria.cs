@@ -10,9 +10,6 @@ namespace MiluTienda.Models
         [Required(ErrorMessage = "La descripción es un campo requerido.")]
         public required string Descripcion { get; set; }
 
-        // Relación: Una Categoria puede tener muchos Productos
-        public ICollection<FamiliaProducto>? FamiliaProducto { get; set; }
-
         public ICollection<Producto>? Productos { get; set; }
     }
 }

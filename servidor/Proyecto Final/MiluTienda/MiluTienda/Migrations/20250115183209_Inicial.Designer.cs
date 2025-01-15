@@ -12,7 +12,7 @@ using MiluTienda.Data;
 namespace MiluTienda.Migrations
 {
     [DbContext(typeof(TiendaContext))]
-    [Migration("20250115152508_Inicial")]
+    [Migration("20250115183209_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -97,28 +97,6 @@ namespace MiluTienda.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estados");
-                });
-
-            modelBuilder.Entity("MiluTienda.Models.FamiliaProducto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.ToTable("FamiliaProductos");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.LineaPedido", b =>
@@ -216,9 +194,6 @@ namespace MiluTienda.Migrations
                     b.Property<bool>("Escaparate")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FamiliaProductoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Imagen")
                         .HasColumnType("nvarchar(max)");
 
@@ -243,20 +218,7 @@ namespace MiluTienda.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("FamiliaProductoId");
-
                     b.ToTable("Productos");
-                });
-
-            modelBuilder.Entity("MiluTienda.Models.FamiliaProducto", b =>
-                {
-                    b.HasOne("MiluTienda.Models.Categoria", "Categoria")
-                        .WithMany("FamiliaProducto")
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.LineaPedido", b =>
@@ -299,21 +261,11 @@ namespace MiluTienda.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("MiluTienda.Models.FamiliaProducto", "FamiliaProducto")
-                        .WithMany("Productos")
-                        .HasForeignKey("FamiliaProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Categoria");
-
-                    b.Navigation("FamiliaProducto");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.Categoria", b =>
                 {
-                    b.Navigation("FamiliaProducto");
-
                     b.Navigation("Productos");
                 });
 
@@ -325,11 +277,6 @@ namespace MiluTienda.Migrations
             modelBuilder.Entity("MiluTienda.Models.Estado", b =>
                 {
                     b.Navigation("Pedidos");
-                });
-
-            modelBuilder.Entity("MiluTienda.Models.FamiliaProducto", b =>
-                {
-                    b.Navigation("Productos");
                 });
 
             modelBuilder.Entity("MiluTienda.Models.Pedido", b =>

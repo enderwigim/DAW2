@@ -31,24 +31,32 @@
 <!-- Mostrar productos en el escaparate -->
 <div>
     <h4>Productos</h4>
-    @foreach (var producto in Model) {
-        <div class="card" style="width: 18rem;">
-            @{
-                var nombreImagen = "no-imagen.jpg";
-                if (producto.Imagen != null)
-                {
-                    nombreImagen = producto.Imagen;
-                }
-            }
-            <img src="~/imagenes/productos/@nombreImagen" height="100" width="100"
-                 asp-append-version="true" />
-            <div class="card-body">
-                <p class="card-text">@producto.Nombre</p>
-                <h5 class="card-title">@producto.Precio.ToString("C")</h5>
-                <a href="#" class="btn btn-primary">Comprar</a>
+    <div class="container">
+        <div class="row">
+
+        
+        @foreach (var producto in Model) {
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    @{
+                        var nombreImagen = "no-imagen.jpg";
+                        if (producto.Imagen != null)
+                        {
+                            nombreImagen = producto.Imagen;
+                        }
+                    }
+                    <img src="~/imagenes/productos/@nombreImagen" asp-append-version="true" />
+                    <div class="card-body">
+                        <p class="card-text">@producto.Nombre</p>
+                        <h5 class="card-title">@producto.Precio.ToString("C")</h5>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
             </div>
+        }
         </div>
-    }
+
+    </div>
 </div>
 
 <div>

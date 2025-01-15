@@ -47,9 +47,6 @@ namespace MiluTienda.Models
         public Categoria? Categoria { get; set; }
 
         public ICollection<LineaPedido>? LineasPedido { get; set; }
-        public int FamiliaProductoId { get; set; }
-        [Display(Name = "Familia Origen")]
-        public FamiliaProducto? FamiliaProducto { get; set; }
 
     }
 }

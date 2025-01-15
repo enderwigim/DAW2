@@ -24,7 +24,7 @@ namespace MiluTienda.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-            var tiendaContext = _context.Productos.Include(p => p.Categoria).Include(p => p.FamiliaProducto);
+            var tiendaContext = _context.Productos.Include(p => p.Categoria);
             return View(await tiendaContext.ToListAsync());
         }
 
@@ -38,7 +38,7 @@ namespace MiluTienda.Controllers
 
             var producto = await _context.Productos
                 .Include(p => p.Categoria)
-                .Include(p => p.FamiliaProducto)
+                
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
@@ -52,7 +52,6 @@ namespace MiluTienda.Controllers
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre");
             return View();
         }
 
@@ -70,7 +69,6 @@ namespace MiluTienda.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
             return View(producto);
         }
 
@@ -88,7 +86,6 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
             return View(producto);
         }
 
@@ -125,7 +122,6 @@ namespace MiluTienda.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["FamiliaProductoId"] = new SelectList(_context.FamiliaProductos, "Id", "Nombre", producto.FamiliaProductoId);
             return View(producto);
         }
 
@@ -139,7 +135,6 @@ namespace MiluTienda.Controllers
 
             var producto = await _context.Productos
                 .Include(p => p.Categoria)
-                .Include(p => p.FamiliaProducto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
