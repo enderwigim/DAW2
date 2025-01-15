@@ -184,7 +184,7 @@ function CrearGasto(descripcion, value, date, ...etiquetas) {
         (etiqueta) => !this.etiquetas.includes(etiqueta)
       );
       this.etiquetas = [...this.etiquetas, ...etiquetasAnyadir];
-    }
+    } 
     
   };
   this.borrarEtiquetas = function (...etiquetasBorrar) {

@@ -242,6 +242,7 @@ function SubmitEditHandler() {
         this.gasto.actualizarFecha(newFecha);
         this.gasto.anyadirEtiquetas(newEtiqueta);
 
+        
         this.button.removeAttribute("disabled");
 
         repintar();
@@ -414,10 +415,13 @@ function deleteGastoEvent() {
                     throw Error(`Error HTTP: ${response.status}`);
                 }
                 gest.borrarGasto(this.gasto.gastoId);
-                repintar();
+                
             })
             .catch((error) => {
                 alert(error.message);
+            })
+            .finally(() => {
+                getGastosById();
             })
     }
 }
@@ -442,9 +446,12 @@ function SubmitEditApiHandler() {
         this.gasto.actualizarDescripcion(newDescrip);
         this.gasto.actualizarValor(newValor);
         this.gasto.actualizarFecha(newFecha);
-        this.gasto.anyadirEtiquetas(newEtiqueta);
+        if (newEtiqueta != undefined) {
+            this.gasto.etiquetas = [...newEtiqueta];
+        } else {
+            this.gasto.etiquetas = [];
+        }
 
-        
 
         let userName = document.getElementById("nombre-usuario").value;
         let url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${userName}/${this.gasto.gastoId}`;
@@ -479,6 +486,21 @@ function EditarHandleFormulario(){
         // GET FORMULARIO
         let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
         var formulario = plantillaFormulario.querySelector("form");
+
+        // GET DATA FROM GASTO AND ADD IT TO THE FORM
+        let nombreGasto = this.gasto.descripcion;
+        let valor = this.gasto.valor.toString();
+        let date = this.gasto.fecha
+        let etiquetasGasto = this.gasto.etiquetas.toString();
+
+        let nombreInput = formulario.querySelector("#descripcion")
+        nombreInput.value = nombreGasto;
+        let valorInput = formulario.querySelector("#valor")
+        valorInput.value = valor;
+
+        let etiquetasInput = formulario.querySelector("#etiquetas");
+        etiquetasInput.value = etiquetasGasto;
+
 
         // CREATE SUBMIT HANDLER
         let submitHandler = new SubmitEditHandler();
@@ -526,7 +548,7 @@ function SubmitNewApiHandler() {
         let newDescrip = formulario.elements.descripcion.value;
         let newValor = (isNaN(formulario.elements.valor.value))? this.gasto : Number(formulario.elements.valor.value);
         let newFecha = (formulario.elements.fecha.value == "")? undefined : formulario.elements.fecha.value;
-        let newEtiqueta = (formulario.elements.etiquetas.value == "")? undefined : formulario.elements.etiquetas.value.split(",");
+        let newEtiqueta = (formulario.elements.etiquetas.value == "")? [] : formulario.elements.etiquetas.value.split(",");
 
         if (!newDescrip || !newValor || isNaN(Number(newValor))) {
             alert("Por favor, completa todos los campos correctamente.");
@@ -592,7 +614,8 @@ function NuevoGastoWebFormulario(){
 
         let submitApiButton = formulario.querySelector("button.gasto-enviar-api")
         let submitNewHandler = new SubmitNewApiHandler();
-        submitNewHandler.formulario = formulario
+        submitNewHandler.formulario = formulario;
+        submitNewHandler.button = activate;
         
         submitApiButton.addEventListener("click", submitNewHandler);
 
