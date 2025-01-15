@@ -15,7 +15,7 @@ namespace MiluTienda.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Escaparate");
         }
 
         public IActionResult Privacy()
