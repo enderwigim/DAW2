@@ -41,7 +41,7 @@ namespace MiluTienda
 
             testAdmin = new IdentityUser
             {
-                UserName = "admin@empresa.com",
+                UserName = "    ",
                 Email = "admin@empresa.com"
             };
             string admPasswd = "Admin-123";

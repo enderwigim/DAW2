@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,10 +12,13 @@ using MiluTienda.Models;
 
 namespace MiluTienda.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ProductosController : Controller
     {
         private readonly TiendaContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+
+        //[Authorize(Roles = "Administrador")]
         public ProductosController(TiendaContext context, IWebHostEnvironment HostEnvironment)
         {
             _context = context;
@@ -49,6 +53,7 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Productos/Create
+        //[Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");

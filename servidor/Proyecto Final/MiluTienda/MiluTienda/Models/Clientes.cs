@@ -23,6 +23,6 @@ namespace MiluTienda.Models
         public string? Nif { get; set; }
 
         // Relación: Un Usuario puede tener muchos Pedidos
-        public ICollection<Pedido> Pedidos { get; set; }
+        public ICollection<Pedido>? Pedidos { get; set; }
     }
 }

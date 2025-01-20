@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MiluTienda.Models;
 
 namespace MiluTienda.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ClientesController : Controller
     {
         private readonly TiendaContext _context;
@@ -20,6 +22,7 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Clientes
+        //[Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Clientes.ToListAsync());
