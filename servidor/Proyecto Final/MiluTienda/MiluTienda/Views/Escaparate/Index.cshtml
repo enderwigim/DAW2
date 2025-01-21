@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <p class="card-text">@producto.Nombre</p>
                         <h5 class="card-title">@producto.Precio.ToString("C")</h5>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <a asp-action="AgregarCarrito" asp-route-id="@producto.Id" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>

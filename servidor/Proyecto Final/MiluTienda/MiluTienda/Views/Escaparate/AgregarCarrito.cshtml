@@ -1,0 +1,66 @@
+﻿@model MiluTienda.Models.Producto
+
+@{
+    ViewData["Title"] = "Agregar Carrito";
+}
+
+<h1>Agregar Carrito</h1>
+
+<div>
+    <hr />
+    @{
+        var nombreImagen = "no-imagen.jpg";
+        if (Model.Imagen != null)
+        {
+            nombreImagen = Model.Imagen;
+        }
+    }
+    <img src="~/imagenes/productos/@nombreImagen" class="rounded-circle" height="300" width="300" asp-append-version="true" />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioCadena)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrecioCadena)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Categoria.Descripcion)
+        </dd>
+    </dl>
+
+    <!-- Formulario para confirmar la adición al carrito -->
+    <form asp-action="AgregarCarrito" method="post">
+        <input type="hidden" name="productoId" value="@Model.Id" />
+        <button type="submit" class="btn btn-success">Añadir al Carrito</button>
+    </form>
+</div>
+<div> 
+    <a asp-action="Index">Volver al Escaparate</a>
+</div>

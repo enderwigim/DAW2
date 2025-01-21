@@ -6,6 +6,14 @@ using System.Runtime.Intrinsics.X86;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Habilitar la sesión
+builder.Services.AddDistributedMemoryCache();  // Usamos memoria en caché para la sesión
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);  // Define el tiempo de expiración de la sesión
+});
+
+
 // Add services to the container. 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -42,6 +50,9 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 var app = builder.Build();
+
+// Usar sesión en la aplicación
+app.UseSession();
 
 // Configure the HTTP request pipeline. 
 if (app.Environment.IsDevelopment())
