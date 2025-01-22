@@ -19,32 +19,83 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Escaparate/Index/{id}
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? id, int page = 1)
         {
+            // Número de productos por página
+            int pageSize = 12;
+
+            // Variable para almacenar la lista de productos
+            List<Producto> productos;
+
             // Si se proporciona un id, mostrar productos de esa categoría
             if (id.HasValue)
             {
                 // Obtener productos de la categoría especificada
-                var productosPorCategoria = await _context.Productos
-                    .Where(p => p.CategoriaId == id.Value) // Filtrar por categoría
-                .ToListAsync();
+                var totalProductos = await _context.Productos
+                    .Where(p => p.CategoriaId == id.Value)
+                    .CountAsync();
+
+                productos = await _context.Productos
+                    .Where(p => p.CategoriaId == id.Value)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
 
                 ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
 
-                return View(productosPorCategoria); // Pasar los productos filtrados
+                // Crear el modelo de paginación
+                var model = new PaginatedList<Producto>(productos, totalProductos, page, pageSize);
+
+                return View(model); // Pasar los productos filtrados paginados
             }
             else
             {
                 // Si no se proporciona un id, mostrar solo los productos del escaparate
-                var productosEscaparate = await _context.Productos
+                var totalProductos = await _context.Productos
                     .Where(p => p.Escaparate == true) // Filtrar productos en escaparate
-                .ToListAsync();
+                    .CountAsync();
+
+                productos = await _context.Productos
+                    .Where(p => p.Escaparate == true)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
 
                 ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
 
-                return View(productosEscaparate); // Pasar los productos del escaparate
+                // Crear el modelo de paginación
+                var model = new PaginatedList<Producto>(productos, totalProductos, page, pageSize);
+
+                return View(model); // Pasar los productos del escaparate paginados
             }
         }
+
+        //public async Task<IActionResult> Index(int? id)
+        //{
+        //    // Si se proporciona un id, mostrar productos de esa categoría
+        //    if (id.HasValue)
+        //    {
+        //        // Obtener productos de la categoría especificada
+        //        var productosPorCategoria = await _context.Productos
+        //            .Where(p => p.CategoriaId == id.Value) // Filtrar por categoría
+        //        .ToListAsync();
+
+        //        ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
+
+        //        return View(productosPorCategoria); // Pasar los productos filtrados
+        //    }
+        //    else
+        //    {
+        //        // Si no se proporciona un id, mostrar solo los productos del escaparate
+        //        var productosEscaparate = await _context.Productos
+        //            .Where(p => p.Escaparate == true) // Filtrar productos en escaparate
+        //        .ToListAsync();
+
+        //        ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
+
+        //        return View(productosEscaparate); // Pasar los productos del escaparate
+        //    }
+        //}
 
         // GET: Escaparate/AgregarCarrito/5
         public async Task<IActionResult> AgregarCarrito(int? id)

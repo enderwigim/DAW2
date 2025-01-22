@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiluTienda.Models.Producto>
+﻿@model PaginatedList<MiluTienda.Models.Producto>
 
 @{
     ViewData["Title"] = "Escaparate";
@@ -33,32 +33,52 @@
     <h4>Productos</h4>
     <div class="container">
         <div class="row">
-
-        
-        @foreach (var producto in Model) {
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    @{
-                        var nombreImagen = "no-imagen.jpg";
-                        if (producto.Imagen != null)
-                        {
-                            nombreImagen = producto.Imagen;
+            @foreach (var producto in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        @{
+                            var nombreImagen = "no-imagen.jpg";
+                            if (producto.Imagen != null)
+                            {
+                                nombreImagen = producto.Imagen;
+                            }
                         }
-                    }
-                    <img src="~/imagenes/productos/@nombreImagen" asp-append-version="true" />
-                    <div class="card-body">
-                        <p class="card-text">@producto.Nombre</p>
-                        <h5 class="card-title">@producto.Precio.ToString("C")</h5>
-                        <a asp-action="AgregarCarrito" asp-route-id="@producto.Id" class="btn btn-primary">Comprar</a>
+                        <img src="~/imagenes/productos/@nombreImagen" asp-append-version="true" />
+                        <div class="card-body">
+                            <p class="card-text">@producto.Nombre</p>
+                            <h5 class="card-title">@producto.Precio.ToString("C")</h5>
+                            <a asp-action="AgregarCarrito" asp-route-id="@producto.Id" class="btn btn-primary">Comprar</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
         </div>
-
     </div>
 </div>
 
+<!-- Paginación -->
+<div class="d-flex justify-content-between">
+    <div>
+        @if (Model.HasPreviousPage)
+        {
+            <a asp-action="Index" asp-route-page="1" class="btn btn-primary">Primera</a>
+            <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-primary">Anterior</a>
+        }
+    </div>
+    <div>
+        <span>Página @Model.PageIndex de @Model.TotalPages</span>
+    </div>
+    <div>
+        @if (Model.HasNextPage)
+        {
+            <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-primary">Siguiente</a>
+            <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-primary">Última</a>
+        }
+    </div>
+</div>
+
+<!-- Mostrar todos los productos del escaparate -->
 <div>
     <a asp-action="Index" asp-route-id="null">Mostrar Todos los Productos del Escaparate</a>
 </div>
