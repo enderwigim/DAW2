@@ -125,6 +125,6 @@ namespace MiluTienda.Controllers
             // Redirigir a la vista de carrito pasando el id del pedido
             return RedirectToAction("Index", "Carrito", new { id = pedido.Id });
         }
-
+        
     }
 }

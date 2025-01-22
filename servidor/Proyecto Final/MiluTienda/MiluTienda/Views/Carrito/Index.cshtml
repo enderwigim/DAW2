@@ -112,7 +112,12 @@
 <div>
     <strong>Total Pedido: </strong> @(Model.LineasPedido.Sum(x => x.Precio * x.Cantidad))
 </div>
-
+<div>
+    <form asp-action="ConfirmarPedido" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-success">Confirmar Pedido</button>
+    </form>
+</div>
 
 <div>
     <a asp-action="Index" asp-controller="Escaparate">Volver al Escaparate</a>
