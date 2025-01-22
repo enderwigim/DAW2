@@ -23,10 +23,24 @@ namespace MiluTienda.Controllers
 
         // GET: Categorias
         //[Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            return View(await _context.Categorias.ToListAsync());
+            int pageSize = 10; 
+
+            
+            var totalCategorias = await _context.Categorias.CountAsync();
+
+            
+            var categorias = await _context.Categorias
+                .Skip((page - 1) * pageSize)  
+                .Take(pageSize)             
+                .ToListAsync();              
+
+            var model = new PaginatedList<Categoria>(categorias, totalCategorias, page, pageSize);
+
+            return View(model);
         }
+
 
         // GET: Categorias/Details/5
         public async Task<IActionResult> Details(int? id)

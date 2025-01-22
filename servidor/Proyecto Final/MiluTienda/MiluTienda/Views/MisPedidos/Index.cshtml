@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MiluTienda.Models.Pedido>
+
+<h1>Mis Pedidos</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id Pedido</th>
+            <th>Fecha de Creación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td>@pedido.Id</td>
+                <td>@pedido.FechaCreacion?.ToString("dd/MM/yyyy")</td>
+                <td>@pedido.Estado.Descripcion</td>
+                <td>
+                    <a href="@Url.Action("Details", "MisPedidos", new { id = pedido.Id })" class="btn btn-info">Ver Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

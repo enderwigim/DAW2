@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using MiluTienda.Data;
 using MiluTienda.Models;
+using System.Security.Principal;
 
 namespace MiluTienda.Controllers
 {
@@ -71,7 +73,7 @@ namespace MiluTienda.Controllers
 
             if (cliente == null)
             {
-                return NotFound();
+                return Redirect("/Identity/Account/Login");
             }
 
             // Buscar el producto en la base de datos

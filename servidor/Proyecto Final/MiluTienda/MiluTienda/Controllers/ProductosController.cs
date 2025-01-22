@@ -26,10 +26,26 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var tiendaContext = _context.Productos.Include(p => p.Categoria);
-            return View(await tiendaContext.ToListAsync());
+            // Número de elementos por página
+            int pageSize = 10;
+
+            // Obtener el número total de pedidos
+            var totalProductos = await _context.Productos.CountAsync();
+
+
+            var productos = await _context.Productos
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Include(p => p.Categoria)
+                .ToListAsync();
+
+            // Crear un modelo de paginación
+            var model = new PaginatedList<Producto>(productos, totalProductos, page, pageSize);
+
+
+            return View(model);
         }
 
         // GET: Productos/Details/5

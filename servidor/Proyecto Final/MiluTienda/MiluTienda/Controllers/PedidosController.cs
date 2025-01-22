@@ -21,12 +21,28 @@ namespace MiluTienda.Controllers
             _context = context;
         }
 
-        //[Authorize(Roles = "Administrador")]
+
         // GET: Pedidos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var tiendaContext = _context.Pedidos.Include(p => p.Cliente).Include(p => p.Estado);
-            return View(await tiendaContext.ToListAsync());
+            // Número de elementos por página
+            int pageSize = 10;
+
+            // Obtener el número total de pedidos
+            var totalPedidos = await _context.Pedidos.CountAsync();
+
+            // Obtener los pedidos correspondientes a la página actual
+            var pedidos = await _context.Pedidos
+                .Skip((page - 1) * pageSize)  
+                .Take(pageSize)               
+                .Include(p => p.Estado)
+                .Include(p => p.Cliente)      
+                .ToListAsync();
+
+            // Crear un modelo de paginación
+            var model = new PaginatedList<Pedido>(pedidos, totalPedidos, page, pageSize);
+
+            return View(model);
         }
 
         // GET: Pedidos/Details/5

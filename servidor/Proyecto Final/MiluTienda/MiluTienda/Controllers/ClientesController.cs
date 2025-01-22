@@ -23,9 +23,28 @@ namespace MiluTienda.Controllers
 
         // GET: Clientes
         //[Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
-            return View(await _context.Clientes.ToListAsync());
+
+            // Número de elementos por página
+            int pageSize = 10;
+
+            // Obtener el número total de pedidos
+            var totalClientes = await _context.Clientes.CountAsync();
+
+
+            var productos = await _context.Clientes
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Include(p => p.Pedidos)
+                .ToListAsync();
+
+            // Crear un modelo de paginación
+            var model = new PaginatedList<Clientes>(productos, totalClientes, page, pageSize);
+
+
+            return View(model);
+            
         }
 
         // GET: Clientes/Details/5

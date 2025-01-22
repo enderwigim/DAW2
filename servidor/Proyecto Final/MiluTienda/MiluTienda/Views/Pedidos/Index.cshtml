@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiluTienda.Models.Pedido>
+﻿@model PaginatedList<MiluTienda.Models.Pedido>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,34 +12,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Confirmado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preparado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Enviado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cobrado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Devuelto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Anulado)
-            </th>
-            <th>
-                Email Cliente
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Confirmado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Preparado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Enviado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Cobrado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Devuelto)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Anulado)</th>
+            <th>Email Cliente</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -81,3 +63,24 @@
 }
     </tbody>
 </table>
+
+<!-- Paginación -->
+<div class="d-flex justify-content-between">
+    <div>
+        @if (Model.HasPreviousPage)
+        {
+            <a asp-action="Index" asp-route-page="1" class="btn btn-primary">Primera</a>
+            <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-primary">Anterior</a>
+        }
+    </div>
+    <div>
+        <span>Página @Model.PageIndex de @Model.TotalPages</span>
+    </div>
+    <div>
+        @if (Model.HasNextPage)
+        {
+            <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-primary">Siguiente</a>
+            <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-primary">Última</a>
+        }
+    </div>
+</div>

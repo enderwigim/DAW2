@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiluTienda.Models.Producto>
+﻿@model PaginatedList<MiluTienda.Models.Producto>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,30 +13,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Precio)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Precio)
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Stock)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Stock)
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.Marca)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Marca)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Escaparate)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Escaparate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Imagen)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Imagen)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Categoria)
             </th>
         </tr>
     </thead>
@@ -84,3 +84,24 @@
 }
     </tbody>
 </table>
+
+<!-- Paginación -->
+<div>
+    <span>Página @Model.PageIndex de @Model.TotalPages</span>
+</div>
+
+<div>
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-page="1" class="btn btn-primary">Primera</a>
+        <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-primary">Anterior</a>
+    }
+</div>
+
+<div>
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-primary">Siguiente</a>
+        <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-primary">Última</a>
+    }
+</div>

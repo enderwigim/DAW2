@@ -1,0 +1,33 @@
+﻿@model MiluTienda.Models.Pedido
+
+<h1>Detalles del Pedido #@Model.Id</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var linea in Model.LineasPedido)
+        {
+            <tr>
+                <td>@linea.Producto.Descripcion</td>
+                <td>@linea.Cantidad</td>
+                <td>@linea.Precio</td>
+                <td>@(linea.Precio * linea.Cantidad).ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <strong>Total Pedido: </strong> @(Model.LineasPedido.Sum(x => x.Precio * x.Cantidad))
+</div>
+
+<div>
+    <a href="@Url.Action("Index", "MisPedidos")" class="btn btn-secondary">Volver a Mis Pedidos</a>
+</div>
