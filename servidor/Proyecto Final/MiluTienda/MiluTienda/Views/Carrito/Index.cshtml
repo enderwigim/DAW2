@@ -87,10 +87,14 @@
                 <td>@item.Producto.Descripcion</td>
                 <td>
                     <!-- Botones para ajustar la cantidad -->
-                    <form asp-action="ActualizarCantidad" method="post">
+                    <form asp-action="RestarCantidad" method="post">
                         <input type="hidden" name="id" value="@item.Id" />
-                        <input type="number" name="cantidad" value="@item.Cantidad" min="1" class="form-control" style="width: 60px; display: inline-block" />
-                        <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+                        <button type="submit" class="btn btn-primary btn-sm">-</button>
+                    </form>
+                    <span>@item.Cantidad</span>
+                    <form asp-action="AumentarCantidad" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-primary btn-sm">+</button>
                     </form>
                 </td>
                 <td>@item.Precio</td>

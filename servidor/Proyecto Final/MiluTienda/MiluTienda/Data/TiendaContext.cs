@@ -31,13 +31,14 @@ namespace MiluTienda.Data
             .OnDelete(DeleteBehavior.NoAction);
 
             // Relación uno a muchos entre Pedido y LineaPedido
-            modelBuilder.Entity<LineaPedido>()
-            .HasOne(lp => lp.Pedido)
-            .WithMany(p => p.LineasPedido)
-            .HasForeignKey(lp => lp.PedidoId);
+            modelBuilder.Entity<Pedido>()
+            .HasMany(p => p.LineasPedido)
+            .WithOne(lp => lp.Pedido)
+            .HasForeignKey(lp => lp.PedidoId)
+            .OnDelete(DeleteBehavior.Cascade); // Eliminar en cascada cuando se elimina el pedido
 
-        // Relación uno a muchos entre FamiliaProducto y LineaPedido
-        modelBuilder.Entity<LineaPedido>()
+            // Relación uno a muchos entre FamiliaProducto y LineaPedido
+            modelBuilder.Entity<LineaPedido>()
             .HasOne(lp => lp.Producto)
             .WithMany(fp => fp.LineasPedido)
             .HasForeignKey(lp => lp.ProductoId);

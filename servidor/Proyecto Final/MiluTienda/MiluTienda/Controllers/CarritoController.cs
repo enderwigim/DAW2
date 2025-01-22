@@ -40,22 +40,50 @@ namespace MiluTienda.Controllers
 
         // POST: Carrito/ActualizarCantidad/5/2
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ActualizarCantidad(int id, int cantidad)
+        public async Task<IActionResult> AumentarCantidad(int id)
         {
+            // Buscar la línea de pedido
             var lineaPedido = await _context.LineasPedido.FindAsync(id);
+
             if (lineaPedido == null)
             {
                 return NotFound();
             }
 
-            lineaPedido.Cantidad = cantidad;
+            // Aumentar la cantidad
+            lineaPedido.Cantidad++;
             _context.Update(lineaPedido);
             await _context.SaveChangesAsync();
 
-            // Redirigir de vuelta al carrito con el id del pedido
-            return RedirectToAction("Index", new { id = lineaPedido.PedidoId });
+            // Redirigir de vuelta al carrito
+            return RedirectToAction("Index", "Carrito", new { id = lineaPedido.PedidoId });
         }
+
+
+        // POST: Carrito/RestarCantidad/5
+        [HttpPost]
+        public async Task<IActionResult> RestarCantidad(int id)
+        {
+            // Buscar la línea de pedido
+            var lineaPedido = await _context.LineasPedido.FindAsync(id);
+
+            if (lineaPedido == null)
+            {
+                return NotFound();
+            }
+
+            // Restar la cantidad (asegurarse de que no sea menor que 1)
+            if (lineaPedido.Cantidad > 1)
+            {
+                lineaPedido.Cantidad--;
+                _context.Update(lineaPedido);
+                await _context.SaveChangesAsync();
+            }
+
+            // Redirigir de vuelta al carrito
+            return RedirectToAction("Index", "Carrito", new { id = lineaPedido.PedidoId });
+        }
+
 
         // POST: Carrito/EliminarProducto/5
         [HttpPost]
