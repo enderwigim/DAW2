@@ -70,32 +70,6 @@ namespace MiluTienda.Controllers
             }
         }
 
-        //public async Task<IActionResult> Index(int? id)
-        //{
-        //    // Si se proporciona un id, mostrar productos de esa categoría
-        //    if (id.HasValue)
-        //    {
-        //        // Obtener productos de la categoría especificada
-        //        var productosPorCategoria = await _context.Productos
-        //            .Where(p => p.CategoriaId == id.Value) // Filtrar por categoría
-        //        .ToListAsync();
-
-        //        ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
-
-        //        return View(productosPorCategoria); // Pasar los productos filtrados
-        //    }
-        //    else
-        //    {
-        //        // Si no se proporciona un id, mostrar solo los productos del escaparate
-        //        var productosEscaparate = await _context.Productos
-        //            .Where(p => p.Escaparate == true) // Filtrar productos en escaparate
-        //        .ToListAsync();
-
-        //        ViewData["Categorias"] = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
-
-        //        return View(productosEscaparate); // Pasar los productos del escaparate
-        //    }
-        //}
 
         // GET: Escaparate/AgregarCarrito/5
         public async Task<IActionResult> AgregarCarrito(int? id)

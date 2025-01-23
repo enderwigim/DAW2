@@ -25,28 +25,115 @@ namespace MiluTienda.Controllers
             _webHostEnvironment = HostEnvironment;
         }
 
-        // GET: Productos
-        public async Task<IActionResult> Index(int page = 1)
+        //// GET: Productos
+        //public async Task<IActionResult> Index(int page = 1)
+        //{
+        //    // Número de elementos por página
+        //    int pageSize = 10;
+
+        //    // Obtener el número total de pedidos
+        //    var totalProductos = await _context.Productos.CountAsync();
+
+
+        //    var productos = await _context.Productos
+        //        .Skip((page - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .Include(p => p.Categoria)
+        //        .ToListAsync();
+
+        //    // Crear un modelo de paginación
+        //    var model = new PaginatedList<Producto>(productos, totalProductos, page, pageSize);
+
+
+        //    return View(model);
+        //}
+
+        public async Task<IActionResult> Index(string Nombre, int? CategoriaId, string PrecioMin, string PrecioMax, int page = 1)
         {
+            // Convertir PrecioMin y PrecioMax a decimal si no están vacíos y tienen formato válido
+            decimal? precioMinDecimal = null;
+            decimal? precioMaxDecimal = null;
+
+            if (!string.IsNullOrEmpty(PrecioMin))
+            {
+                // Reemplazar coma por punto
+                PrecioMin = PrecioMin.Replace(',', '.');
+                if (decimal.TryParse(PrecioMin, out var tempMin))
+                {
+                    precioMinDecimal = tempMin;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(PrecioMax))
+            {
+                // Reemplazar coma por punto
+                PrecioMax = PrecioMax.Replace(',', '.');
+                if (decimal.TryParse(PrecioMax, out var tempMax))
+                {
+                    precioMaxDecimal = tempMax;
+                }
+            }
+
+
             // Número de elementos por página
             int pageSize = 10;
 
-            // Obtener el número total de pedidos
-            var totalProductos = await _context.Productos.CountAsync();
+            // Obtener la lista de categorías para el filtro
+            var categorias = await _context.Categorias.OrderBy(c => c.Descripcion).ToListAsync();
 
+            // Añadir la opción "Todas las Categorías" al inicio de la lista
+            // Esta no será una categoría de la base de datos, solo una opción visual
+            ViewData["Categorias"] = categorias;
 
-            var productos = await _context.Productos
+            // Filtrar productos según los parámetros
+            var productosQuery = _context.Productos.AsQueryable();
+
+            // Filtrar por nombre
+            if (!string.IsNullOrEmpty(Nombre))
+            {
+                productosQuery = productosQuery.Where(p => p.Nombre.Contains(Nombre));
+            }
+
+            // Filtrar por categoría
+            if (CategoriaId.HasValue && CategoriaId != 0) // No filtrar si CategoriaId es 0 (Todas las Categorías)
+            {
+                productosQuery = productosQuery.Where(p => p.CategoriaId == CategoriaId);
+            }
+
+            if (precioMinDecimal.HasValue)
+            {
+                productosQuery = productosQuery.Where(p => p.Precio >= precioMinDecimal.Value);
+            }
+
+            if (precioMaxDecimal.HasValue)
+            {
+                productosQuery = productosQuery.Where(p => p.Precio <= precioMaxDecimal.Value);
+            }
+
+            // Obtener el número total de productos
+            var totalProductos = await productosQuery.CountAsync();
+
+            // Obtener los productos filtrados y paginados
+            var productos = await productosQuery
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Include(p => p.Categoria)
                 .ToListAsync();
 
-            // Crear un modelo de paginación
+            // Crear el modelo de paginación
             var model = new PaginatedList<Producto>(productos, totalProductos, page, pageSize);
 
+            // Pasar los parámetros de búsqueda a la vista a través de ViewData
+            ViewData["Nombre"] = Nombre;
+            ViewData["CategoriaId"] = CategoriaId;
+            ViewData["PrecioMin"] = PrecioMin;
+            ViewData["PrecioMax"] = PrecioMax;
 
             return View(model);
         }
+
+
+
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)

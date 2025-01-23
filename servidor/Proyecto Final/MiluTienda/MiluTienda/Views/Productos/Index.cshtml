@@ -1,87 +1,74 @@
-﻿@model PaginatedList<MiluTienda.Models.Producto>
+﻿<form method="get">
+    <!-- Filtro por Nombre -->
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" name="Nombre" class="form-control" value="@ViewData["Nombre"]" />
+    </div>
 
-@{
-    ViewData["Title"] = "Index";
-}
+    <!-- Filtro por Categoría -->
+    <div class="form-group">
+        <label for="CategoriaId">Categoría</label>
+        <select name="CategoriaId" class="form-control">
+            @* Asigna el valor de la categoría seleccionada o 0 si no hay categoría seleccionada *@
+            @{
+                var selectedCategoryId = ViewData["CategoriaId"] as int? ?? 0;
+            }
 
-<h1>Index</h1>
+            <!-- Opción "Todas las Categorías" -->
+            <option value="@(selectedCategoryId == 0 ? "selected" : "")">Todas las categorias</option>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+            <!-- Otras categorías -->
+            @foreach (var categoria in ViewData["Categorias"] as List<MiluTienda.Models.Categoria>)
+            {
+                var isSelected = selectedCategoryId == categoria.Id ? "selected" : "";
+                @Html.Raw($"<option value=\"{categoria.Id}\"{isSelected}>{categoria.Descripcion}</option>");
+ 
+            }
+        </select>
+            
+    </div>
+
+    <!-- Filtro por Precio -->
+    <div class="form-group">
+        <label for="PrecioMin">Precio Mínimo</label>
+        <input type="text" name="PrecioMin" class="form-control" value="@ViewData["PrecioMin"]" />
+    </div>
+
+    <div class="form-group">
+        <label for="PrecioMax">Precio Máximo</label>
+        <input type="text" name="PrecioMax" class="form-control" value="@ViewData["PrecioMax"]" />
+    </div>
+
+    <!-- Botón de búsqueda -->
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<!-- Mostrar productos -->
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Precio)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Stock)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Marca)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Escaparate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Categoria)
-            </th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Marca</th>
+            <th>Escaparate</th>
+            <th>Categoría</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Escaparate)
-            </td>
-            <td>
-                    @{
-                        var nombreImagen = "no-imagen.jpg";
-                        if (item.Imagen != null)
-                        {
-                            nombreImagen = item.Imagen;
-                        }
-                    }
-                    <img src="~/imagenes/productos/@nombreImagen" class="rounded-circle" height="50" width="50" asp-append-version="true" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="CambiarImagen" asp-route-id="@item.Id">Cambiar Imagen</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Precio</td>
+                <td>@item.Stock</td>
+                <td>@item.Marca</td>
+                <td>@item.Escaparate</td>
+                <td>@item.Categoria.Descripcion</td>
+            </tr>
+        }
     </tbody>
 </table>
 

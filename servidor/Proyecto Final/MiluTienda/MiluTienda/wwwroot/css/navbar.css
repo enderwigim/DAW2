@@ -1,2 +1,251 @@
-﻿body {
+﻿/* Barra de navegación con el color de fondo principal */
+/*.navbar {
+    background-color: #FEF1BC;*/ /* Color principal de fondo */
+    /*border-bottom: 2px solid #d1c7a1;*/ /* Línea de borde sutil */
+    /*padding: 15px 0;*/ /* Padding de la barra de navegación */
+    /*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);*/ /* Sombra suave */
+/*}*/
+
+/* Logo centrado */
+/*.navbar-brand {
+    text-align: center;
+    margin: 0 auto;
+}*/
+
+    /* Estilo del logo */
+    /*.navbar-brand img {
+        max-height: 50px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);*/ /* Efecto hover para el logo */
+        /*}*/
+
+/* Estilo de los enlaces de navegación */
+/*.navbar-nav .nav-link {
+    color: #6c7a89 !important;*/ /* Color secundario de texto */
+    /*font-weight: bold;
+    padding: 12px 20px;*/ /* Padding extra para los enlaces */
+    /*transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    border-radius: 5px;*/ /* Bordes redondeados */
+/*}*/
+
+    /* Hover para los enlaces */
+    /*.navbar-nav .nav-link:hover {
+        color: #fff;*/ /* Texto blanco al pasar el ratón */
+        /*background-color: #9babb8;*/ /* Fondo del enlace */
+        /*border-radius: 5px;
+    }*/
+
+/* Menú desplegable en pantallas pequeñas */
+/*@media (max-width: 992px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #b6ad88;*/ /* Color del fondo del menú */
+        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/ /* Sombra */
+        /*padding: 15px;
+        display: none;
+        z-index: 1000;
+    }
+
+        .navbar-collapse.show {
+            display: block;
+        }*/
+
+    /* Enlaces en el menú desplegable */
+    /*.navbar-nav .nav-link {
+        color: #6c7a89;*/ /* Color de los enlaces */
+        /*padding: 12px 20px;*/ /* Padding para enlaces */
+    /*}
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+        }*/
+
+    /* Estilo para el botón hamburguesa */
+    /*.navbar-toggler {
+        border: 0;
+        background-color: transparent;
+    }
+
+}*/
+
+/* Botones Login y Register a la derecha */
+/*.d-flex.align-items-center.ms-auto {
+    color: #6c7a89;
+    font-weight: bold;
+}*/
+
+/* Estilo de los botones de Login y Register al pasar el ratón */
+/*.nav-item a:hover {
+    background-color: #3a3a3a;
+    color: #fff;
+    border-radius: 5px;
+}*/
+
+/* Ajustes para el padding de los enlaces */
+/*.navbar-nav .nav-item {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Ajustes para los items del navbar en pantallas grandes */
+/*.navbar-nav {
+    padding-left: 0;
+    padding-right: 0;
+}*/
+
+/* Estilo de los enlaces en el navbar en pantallas grandes */
+/*.navbar-nav .nav-item {
+    padding: 0 20px;*/ /* Padding más grande para los enlaces */
+/*}*/
+
+/* Ajustes generales */
+/*.navbar-nav .nav-item:last-child {
+    margin-right: 0;*/ /* Sin margen derecho en el último item */
+/*}*/
+
+/* Eliminar el borde al hacer clic en el botón hamburguesa */
+/*.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;*/ /* Elimina la sombra */
+/*}*/
+
+/* ===================== */
+/* Estilos generales del navbar */
+/* ===================== */
+
+/* ===================== */
+/* Estilos generales del navbar */
+/* ===================== */
+
+.navbar {
+    position: relative;
+    z-index: 1050;
+    padding: 10px 0;
 }
+.navbar-nav {
+    padding-left: 1em;
+}
+
+/* Distribuir elementos correctamente con flexbox */
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+/* Centrar el logo */
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+/* Contenedor de enlaces de autenticación */
+.auth-links {
+    display: flex;
+    gap: 20px; /* Espacio entre botones */
+    font-weight: bold;
+    align-items: center;
+}
+
+    /* Estilo de los enlaces */
+    .auth-links a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1.2rem; /* Fuente más grande por defecto */
+        transition: color 0.3s ease-in-out;
+    }
+
+        .auth-links a:hover {
+            color: #e91e63;
+        }
+
+/* ===================== */
+/* Menú colapsable en pantallas pequeñas */
+/* ===================== */
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px 50px; /* Aumenta el padding para alejarlo del borde */
+        z-index: 9999;
+    }
+
+    /* Alinear los elementos del menú desplegable con padding */
+    .navbar-nav {
+        text-align: left;
+        width: 100%;
+        padding-left: 1em;
+    }
+
+        /* Espaciado interno para alejar del borde izquierdo */
+        .navbar-nav .nav-item {
+            padding: 15px 0; /* Espaciado superior e inferior */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Espaciado dentro de los enlaces del menú */
+        .navbar-nav .nav-link {
+            font-size: 1rem; /* Tamaño más pequeño para móviles */
+            font-weight: normal;
+            color: #555;
+            padding: 10px 20px; /* Espaciado dentro del enlace */
+            border-radius: 5px;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #e91e63;
+                background-color: #f8f8f8;
+            }
+
+    /* Tamaño más pequeño para login/register en móviles */
+    .auth-links a {
+        font-size: 1rem;
+    }
+
+    /* Asegurar alineación correcta de los botones en pantallas pequeñas */
+    .auth-links {
+        position: static;
+        margin-left: auto;
+    }
+
+    /* Reducir el tamaño del logo en pantallas pequeñas */
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===================== */
+/* Ajustes para pantallas grandes */
+/* ===================== */
+
+@media (min-width: 1200px) {
+    .navbar-brand {
+        font-size: 2rem; /* Aumenta el tamaño del logo en pantallas grandes */
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1rem; /* Fuente más grande para escritorio */
+        padding-left: 1em;
+    }
+
+    .auth-links a {
+        font-size: 1rem; /* Botones más grandes en pantallas grandes */
+    }
+}
+
+
+
+
