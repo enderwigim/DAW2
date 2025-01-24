@@ -120,7 +120,10 @@ function mostrarGastoWeb(idElemento, gasto){
 }
 
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
-    let element = document.getElementById(idElemento);
+    var element = document.getElementById(idElemento);
+    // Borrar el contenido de la capa para que no se duplique el contenido al repintar
+    element.innerHTML = "";
+
 
     // Create DIV AND H1
     let mainDiv = document.createElement('div');
@@ -154,25 +157,96 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
         mainDiv.appendChild(keyValueDiv);
     }
                  
+
+    // Estilos
+    element.style.width = "33%";
+    element.style.display = "inline-block";
+    // Crear elemento <canvas> necesario para crear la gráfica
+    // https://www.chartjs.org/docs/latest/getting-started/
+    let chart = document.createElement("canvas");
+    // Variable para indicar a la gráfica el período temporal del eje X
+    // En función de la variable "periodo" se creará la variable "unit" (anyo -> year; mes -> month; dia -> day)
+    let unit = "";
+    switch (periodo) {
+    case "anyo":
+        unit = "year";
+        break;
+    case "mes":
+        unit = "month";
+        break;
+    case "dia":
+    default:
+        unit = "day";
+        break;
+    }
+
+    // Creación de la gráfica
+    // La función "Chart" está disponible porque hemos incluido las etiquetas <script> correspondientes en el fichero HTML
+    const myChart = new Chart(chart.getContext("2d"), {
+        // Tipo de gráfica: barras. Puedes cambiar el tipo si quieres hacer pruebas: https://www.chartjs.org/docs/latest/charts/line.html
+        type: 'bar',
+        data: {
+            datasets: [
+                {
+                    // Título de la gráfica
+                    label: `Gastos por ${periodo}`,
+                    // Color de fondo
+                    backgroundColor: "#555555",
+                    // Datos de la gráfica
+                    // "agrup" contiene los datos a representar. Es uno de los parámetros de la función "mostrarGastosAgrupadosWeb".
+                    data: agrup
+                }
+            ],
+        },
+        options: {
+            scales: {
+                x: {
+                    // El eje X es de tipo temporal
+                    type: 'time',
+                    time: {
+                        // Indicamos la unidad correspondiente en función de si utilizamos días, meses o años
+                        unit: unit
+                    }
+                },
+                y: {
+                    // Para que el eje Y empieza en 0
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    element.append(chart);
     // Add mainDiv to element
     element.appendChild(mainDiv);
 }
 
 function repintar(){
-    // SHOW PRESUPUESTO
-    mostrarDatoEnId("presupuesto", gest.mostrarPresupuesto());
-    // SHOW GASTOS TOTALES
-    mostrarDatoEnId('gastos-totales', gest.calcularTotalGastos());
-    // SHOW BALANCE
-    mostrarDatoEnId('balance-total', gest.calcularBalance());
-
-    // RESET EVERY EXPENSE
-    mostrarDatoEnId('listado-gastos-completo', "");
-
-    let gastos = gest.listarGastos();
-    gastos.forEach((gasto) => {
-        mostrarGastoWeb('listado-gastos-completo', gasto);
-    })
+    function repintar() {
+        // SHOW PRESUPUESTO
+        mostrarDatoEnId("presupuesto", gest.mostrarPresupuesto());
+        // SHOW GASTOS TOTALES
+        mostrarDatoEnId('gastos-totales', gest.calcularTotalGastos());
+        // SHOW BALANCE
+        mostrarDatoEnId('balance-total', gest.calcularBalance());
+    
+        // RESET EVERY EXPENSE
+        mostrarDatoEnId('listado-gastos-completo', "");
+    
+        let gastos = gest.listarGastos();
+        gastos.forEach((gasto) => {
+            mostrarGastoWeb('listado-gastos-completo', gasto);
+        });
+    
+        // Agrupar gastos por día, mes y año
+        let gastosAgrupadosDia = gest.agruparGastos(gastos, "dia");
+        let gastosAgrupadosMes = gest.agruparGastos(gastos, "mes");
+        let gastosAgrupadosAnyo = gest.agruparGastos(gastos, "anyo");
+    
+        // Mostrar gastos agrupados en las capas correspondientes
+        mostrarGastosAgrupadosWeb('agrupacion-dia', gastosAgrupadosDia, "dia");
+        mostrarGastosAgrupadosWeb('agrupacion-mes', gastosAgrupadosMes, "mes");
+        mostrarGastosAgrupadosWeb('agrupacion-anyo', gastosAgrupadosAnyo, "anyo");
+    }
     
 }
 
