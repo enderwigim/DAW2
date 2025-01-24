@@ -21,29 +21,50 @@ namespace MiluTienda.Controllers
             _context = context;
         }
 
-
-        // GET: Pedidos
-        public async Task<IActionResult> Index(int page = 1)
+        //GET: Pedidos/Index
+        public async Task<IActionResult> Index(string email, DateTime? fechaCreacion, int page = 1)
         {
             // Número de elementos por página
             int pageSize = 10;
 
-            // Obtener el número total de pedidos
-            var totalPedidos = await _context.Pedidos.CountAsync();
+            // Crear la consulta base
+            var pedidosQuery = _context.Pedidos.Include(p => p.Estado)
+                                               .Include(p => p.Cliente)
+                                               .AsQueryable();
 
-            // Obtener los pedidos correspondientes a la página actual
-            var pedidos = await _context.Pedidos
-                .Skip((page - 1) * pageSize)  
-                .Take(pageSize)               
-                .Include(p => p.Estado)
-                .Include(p => p.Cliente)      
+            // Filtrar por fecha de creación si es proporcionado
+            if (fechaCreacion.HasValue)
+            {
+                pedidosQuery = pedidosQuery.Where(p => p.FechaCreacion >= fechaCreacion.Value);
+            }
+
+
+            // Filtrar por email del cliente si es proporcionado
+            if (!string.IsNullOrEmpty(email))
+            {
+                pedidosQuery = pedidosQuery.Where(p => p.Cliente.Email.Contains(email));
+            }
+
+            // Obtener el número total de pedidos después de aplicar los filtros
+            var totalPedidos = await pedidosQuery.CountAsync();
+
+            // Obtener los pedidos filtrados y paginados
+            var pedidos = await pedidosQuery
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            // Crear un modelo de paginación
+            // Crear el modelo de paginación
             var model = new PaginatedList<Pedido>(pedidos, totalPedidos, page, pageSize);
+
+            // Pasar los parámetros de búsqueda a la vista a través de ViewData
+            ViewData["Email"] = email;
+            ViewData["FechaCreacion"] = fechaCreacion;
 
             return View(model);
         }
+
+
 
         // GET: Pedidos/Details/5
         public async Task<IActionResult> Details(int? id)

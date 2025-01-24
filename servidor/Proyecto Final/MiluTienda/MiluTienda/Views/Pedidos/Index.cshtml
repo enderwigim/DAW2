@@ -6,9 +6,38 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<!-- Filtro por Fecha y Email del Cliente -->
+<form method="get">
+    <div class="row g-2 align-items-end">
+        <!-- Campo de Fecha de creación -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fechaCreacion" class="form-label">Fecha de creación</label>
+                <input type="date" name="fechaCreacion" class="form-control" id="fechaCreacion" value="@ViewData["FechaInicio"]" />
+            </div>
+        </div>
+
+        <!-- Campo de Email -->
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" class="form-control" value="@ViewData["Email"]" placeholder="Ingrese el email del cliente" />
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="col-12 d-flex justify-content-between mt-2">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+<!-- Mostrar los pedidos -->
 <table class="table">
     <thead>
         <tr>
@@ -21,46 +50,34 @@
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Anulado)</th>
             <th>Email Cliente</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</th>
-            
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Confirmado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preparado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Enviado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cobrado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Devuelto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Anulado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                <td>@Html.DisplayFor(modelItem => item.Confirmado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Preparado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Enviado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cobrado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Devuelto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Anulado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cliente.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estado.Descripcion)</td>
+                <td>
+                    <!-- Botón Editar -->
+                    <a href="@Url.Action("Edit", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-warning" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <!-- Botón Avanzar -->
+                    <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
+                        <i class="fas fa-forward"></i>
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -84,3 +101,47 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var fechaInicioInput = document.getElementById("fechaInicio");
+            var fechaFinInput = document.getElementById("fechaFin");
+
+            // Si los inputs tienen valores, los formateamos
+            if (fechaInicioInput.value) {
+                var date = new Date(fechaInicioInput.value);
+                fechaInicioInput.value = date.toLocaleDateString('es-ES'); // dd/mm/yyyy
+            }
+
+            if (fechaFinInput.value) {
+                var date = new Date(fechaFinInput.value);
+                fechaFinInput.value = date.toLocaleDateString('es-ES'); // dd/mm/yyyy
+            }
+
+            // Al enviar el formulario, convertimos las fechas nuevamente al formato yyyy-mm-dd
+            document.querySelector("form").addEventListener("submit", function () {
+                var fechaInicioValue = fechaInicioInput.value.split('/'); // dd/mm/yyyy
+                if (fechaInicioValue.length === 3) {
+                    fechaInicioInput.value = fechaInicioValue[2] + '-' + fechaInicioValue[1] + '-' + fechaInicioValue[0]; // yyyy-mm-dd
+                }
+
+                var fechaFinValue = fechaFinInput.value.split('/');
+                if (fechaFinValue.length === 3) {
+                    fechaFinInput.value = fechaFinValue[2] + '-' + fechaFinValue[1] + '-' + fechaFinValue[0]; // yyyy-mm-dd
+                }
+            });
+        });
+    </script>
+}
+
+<script>
+    function clearFilters() {
+        // Limpia los valores del formulario
+        document.getElementById('fechaCreacion').value = '';
+        document.getElementsByName('email')[0].value = '';
+
+        // Redirige a la acción Index sin parámetros
+        window.location.href = '@Url.Action("Index", "Pedidos")';
+    }
+</script>

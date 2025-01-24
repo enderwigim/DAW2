@@ -22,30 +22,67 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Clientes
-        //[Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Index(int page)
+        public async Task<IActionResult> Index(string nombre, string email, string poblacion, string codPostal, string nif, int page = 1)
         {
-
             // Número de elementos por página
             int pageSize = 10;
 
-            // Obtener el número total de pedidos
-            var totalClientes = await _context.Clientes.CountAsync();
+            // Filtrar clientes según los parámetros
+            var clientesQuery = _context.Clientes.AsQueryable();
 
+            // Filtro por Nombre
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                clientesQuery = clientesQuery.Where(c => c.Nombre.Contains(nombre));
+            }
 
-            var productos = await _context.Clientes
+            // Filtro por Email
+            if (!string.IsNullOrEmpty(email))
+            {
+                clientesQuery = clientesQuery.Where(c => c.Email.Contains(email));
+            }
+
+            // Filtro por Población
+            if (!string.IsNullOrEmpty(poblacion))
+            {
+                clientesQuery = clientesQuery.Where(c => c.Poblacion.Contains(poblacion));
+            }
+
+            // Filtro por Código Postal
+            if (!string.IsNullOrEmpty(codPostal))
+            {
+                clientesQuery = clientesQuery.Where(c => c.CodPostal.Contains(codPostal));
+            }
+
+            // Filtro por NIF
+            if (!string.IsNullOrEmpty(nif))
+            {
+                clientesQuery = clientesQuery.Where(c => c.Nif.Contains(nif));
+            }
+
+            // Obtener el número total de clientes
+            var totalClientes = await clientesQuery.CountAsync();
+
+            // Obtener los clientes filtrados y paginados
+            var clientes = await clientesQuery
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Include(p => p.Pedidos)
                 .ToListAsync();
 
-            // Crear un modelo de paginación
-            var model = new PaginatedList<Clientes>(productos, totalClientes, page, pageSize);
+            // Crear el modelo de paginación
+            var model = new PaginatedList<Clientes>(clientes, totalClientes, page, pageSize);
 
+            // Pasar los parámetros de búsqueda a la vista a través de ViewData
+            ViewData["Nombre"] = nombre;
+            ViewData["Email"] = email;
+            ViewData["Poblacion"] = poblacion;
+            ViewData["CodPostal"] = codPostal;
+            ViewData["Nif"] = nif;
 
             return View(model);
-            
         }
+
+
 
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
