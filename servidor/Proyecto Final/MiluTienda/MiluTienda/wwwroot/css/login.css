@@ -1,0 +1,55 @@
+﻿/* Contenedor de login centrado con flexbox */
+.login-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #FFCCD2;
+    border: 2px solid #D86A91;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Asegurar centrado vertical adecuado respetando el navbar */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar el contenido horizontalmente */
+    padding-top: 20px; /* Espacio extra arriba */
+    padding-bottom: 20px; /* Espacio extra abajo */
+}
+
+
+
+
+/* Botón personalizado para login */
+.btn-custom {
+    background-color: #D86A91;
+    color: #fff;
+    border: 2px solid #D86A91;
+    transition: all 0.3s ease-in-out;
+}
+
+    .btn-custom:hover {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+    }
+
+/* Ajustes de los enlaces */
+.text-dark {
+    font-weight: 600;
+}
+
+    .text-dark:hover {
+        color: #D86A91 !important;
+    }
+
+/* Ajustes de los enlaces */
+.text-dark-normal {
+    font-weight: 600;
+}
+
+/* Sombras suaves */
+.shadow-lg {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

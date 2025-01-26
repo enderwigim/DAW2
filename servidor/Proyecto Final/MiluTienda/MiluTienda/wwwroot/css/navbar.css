@@ -1,135 +1,21 @@
-﻿/* Barra de navegación con el color de fondo principal */
-/*.navbar {
-    background-color: #FEF1BC;*/ /* Color principal de fondo */
-    /*border-bottom: 2px solid #d1c7a1;*/ /* Línea de borde sutil */
-    /*padding: 15px 0;*/ /* Padding de la barra de navegación */
-    /*box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);*/ /* Sombra suave */
-/*}*/
-
-/* Logo centrado */
-/*.navbar-brand {
-    text-align: center;
-    margin: 0 auto;
-}*/
-
-    /* Estilo del logo */
-    /*.navbar-brand img {
-        max-height: 50px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-        .navbar-brand img:hover {
-            transform: scale(1.1);*/ /* Efecto hover para el logo */
-        /*}*/
-
-/* Estilo de los enlaces de navegación */
-/*.navbar-nav .nav-link {
-    color: #6c7a89 !important;*/ /* Color secundario de texto */
-    /*font-weight: bold;
-    padding: 12px 20px;*/ /* Padding extra para los enlaces */
-    /*transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    border-radius: 5px;*/ /* Bordes redondeados */
-/*}*/
-
-    /* Hover para los enlaces */
-    /*.navbar-nav .nav-link:hover {
-        color: #fff;*/ /* Texto blanco al pasar el ratón */
-        /*background-color: #9babb8;*/ /* Fondo del enlace */
-        /*border-radius: 5px;
-    }*/
-
-/* Menú desplegable en pantallas pequeñas */
-/*@media (max-width: 992px) {
-    .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: #b6ad88;*/ /* Color del fondo del menú */
-        /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/ /* Sombra */
-        /*padding: 15px;
-        display: none;
-        z-index: 1000;
-    }
-
-        .navbar-collapse.show {
-            display: block;
-        }*/
-
-    /* Enlaces en el menú desplegable */
-    /*.navbar-nav .nav-link {
-        color: #6c7a89;*/ /* Color de los enlaces */
-        /*padding: 12px 20px;*/ /* Padding para enlaces */
-    /*}
-
-        .navbar-nav .nav-link:hover {
-            color: #fff;
-        }*/
-
-    /* Estilo para el botón hamburguesa */
-    /*.navbar-toggler {
-        border: 0;
-        background-color: transparent;
-    }
-
-}*/
-
-/* Botones Login y Register a la derecha */
-/*.d-flex.align-items-center.ms-auto {
-    color: #6c7a89;
-    font-weight: bold;
-}*/
-
-/* Estilo de los botones de Login y Register al pasar el ratón */
-/*.nav-item a:hover {
-    background-color: #3a3a3a;
-    color: #fff;
-    border-radius: 5px;
-}*/
-
-/* Ajustes para el padding de los enlaces */
-/*.navbar-nav .nav-item {
-    padding-left: 15px;
-    padding-right: 15px;
-}*/
-
-/* Ajustes para los items del navbar en pantallas grandes */
-/*.navbar-nav {
-    padding-left: 0;
-    padding-right: 0;
-}*/
-
-/* Estilo de los enlaces en el navbar en pantallas grandes */
-/*.navbar-nav .nav-item {
-    padding: 0 20px;*/ /* Padding más grande para los enlaces */
-/*}*/
-
-/* Ajustes generales */
-/*.navbar-nav .nav-item:last-child {
-    margin-right: 0;*/ /* Sin margen derecho en el último item */
-/*}*/
-
-/* Eliminar el borde al hacer clic en el botón hamburguesa */
-/*.navbar-toggler:focus {
-    outline: none;
-    box-shadow: none;*/ /* Elimina la sombra */
-/*}*/
-
-/* ===================== */
-/* Estilos generales del navbar */
-/* ===================== */
-
-/* ===================== */
+﻿/* ===================== */
 /* Estilos generales del navbar */
 /* ===================== */
 
 .navbar {
-    position: relative;
-    z-index: 1050;
-    padding: 10px 0;
+    position: fixed; /* Fix the navbar at the top of the page */
+    top: 0; /* Ensure it sticks at the top */
+    width: 100%; /* Ensure the navbar spans the full width */
+    z-index: 1050; /* Ensure the navbar stays on top of other elements */
+    padding: 0px;
+    background-color: #D86A91; /* Set background color to avoid transparency */
 }
-.navbar-nav {
-    padding-left: 1em;
+
+/* For logo image */
+.logo-img {
+    max-width: 100%; /* Ensure the image scales to fit its container */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100px; /* Set max width to avoid it getting too large */
 }
 
 /* Distribuir elementos correctamente con flexbox */
@@ -147,81 +33,63 @@
     margin: 0 auto;
 }
 
+.navbar-collapse {
+    background-color: #FFCCD2
+}
+
+.navbar-nav .nav-link{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 /* Contenedor de enlaces de autenticación */
 .auth-links {
     display: flex;
-    gap: 20px; /* Espacio entre botones */
+    gap: 20px; /* Aumenta la separación entre botones */
     font-weight: bold;
     align-items: center;
 }
 
-    /* Estilo de los enlaces */
-    .auth-links a {
-        color: #007bff;
-        text-decoration: none;
-        font-size: 1.2rem; /* Fuente más grande por defecto */
-        transition: color 0.3s ease-in-out;
+/* Alinear los botones verticalmente en pantallas pequeñas */
+@media (max-width: 576px) {
+    .auth-links {
+        flex-direction: column; /* Apila los botones en pantallas pequeñas */
+        align-items: flex-end; /* Alinea a la derecha */
+        gap: 15px; /* Mayor separación vertical */
+    }
+}
+
+/* Espaciado individual entre los botones */
+.auth-links a {
+    margin-bottom: 10px; /* Agrega espacio adicional entre botones */
+}
+
+    .auth-links a:last-child {
+        margin-bottom: 0; /* Evita margen innecesario en el último botón */
     }
 
-        .auth-links a:hover {
-            color: #e91e63;
-        }
 
 /* ===================== */
 /* Menú colapsable en pantallas pequeñas */
 /* ===================== */
-
 @media (max-width: 992px) {
     .navbar-collapse {
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: #fff;
+/*        background-color: #fff;*/
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px 50px; /* Aumenta el padding para alejarlo del borde */
+        padding: 20px 50px; /* Add padding to avoid it sticking to the edges */
         z-index: 9999;
     }
 
-    /* Alinear los elementos del menú desplegable con padding */
     .navbar-nav {
         text-align: left;
         width: 100%;
         padding-left: 1em;
     }
 
-        /* Espaciado interno para alejar del borde izquierdo */
-        .navbar-nav .nav-item {
-            padding: 15px 0; /* Espaciado superior e inferior */
-            border-bottom: 1px solid #eee;
-        }
-
-        /* Espaciado dentro de los enlaces del menú */
-        .navbar-nav .nav-link {
-            font-size: 1rem; /* Tamaño más pequeño para móviles */
-            font-weight: normal;
-            color: #555;
-            padding: 10px 20px; /* Espaciado dentro del enlace */
-            border-radius: 5px;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #e91e63;
-                background-color: #f8f8f8;
-            }
-
-    /* Tamaño más pequeño para login/register en móviles */
-    .auth-links a {
-        font-size: 1rem;
-    }
-
-    /* Asegurar alineación correcta de los botones en pantallas pequeñas */
-    .auth-links {
-        position: static;
-        margin-left: auto;
-    }
-
-    /* Reducir el tamaño del logo en pantallas pequeñas */
+    /* Reduce the logo size on smaller screens */
     .navbar-brand {
         font-size: 1.5rem;
     }
@@ -233,19 +101,61 @@
 
 @media (min-width: 1200px) {
     .navbar-brand {
-        font-size: 2rem; /* Aumenta el tamaño del logo en pantallas grandes */
+        font-size: 2rem; /* Increase the logo size on large screens */
     }
 
     .navbar-nav .nav-link {
-        font-size: 1rem; /* Fuente más grande para escritorio */
-        padding-left: 1em;
+        font-size: 1rem; /* Larger font for desktop */
+/*        padding-left: 1em;*/
     }
 
     .auth-links a {
-        font-size: 1rem; /* Botones más grandes en pantallas grandes */
+        font-size: 1rem; /* Larger buttons on desktop */
     }
 }
 
+body {
+    background-color: #F0EEE9;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-collapse .nav-item .nav-link:hover {
+    background-color: #D86A91;
+}
+.nav-link:hover {
+    background-color: #FFCCD2
+}
+
+/* BOTONES */
+.btn-custom {
+    background-color: #FFCCD2;
+    color: #000; /* Cambia a un color oscuro para contraste */
+    border: 1px solid #FFCCD2; /* Borde del mismo color */
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+    .btn-custom:hover {
+        background-color: #D86A91; /* Un tono más oscuro al pasar el mouse */
+        color: #000;
+    }
+
+.btn-outline-custom {
+    border: 1px solid #FFCCD2;
+    color: #FFCCD2;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.btn-outline-custom:hover {
+    background-color: #FFCCD2;
+    color: #000;
+}
 
 
-
+/* Ajuste de margen superior según el tamaño del navbar */
+main {
+    margin-top: auto; /* Elimina el hardcoding de altura */
+    padding-top: 10rem; /* Ajusta el espacio según el contenido */
+}

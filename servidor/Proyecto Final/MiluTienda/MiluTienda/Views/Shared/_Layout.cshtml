@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/MiluTienda.styles.css" asp-append-version="true" />
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    @RenderSection("Styles", false)
 </head>
 <body>
     <header>
@@ -24,8 +25,7 @@
 
                 <!-- Logo centrado -->
                 <a class="navbar-brand" asp-area="" asp-controller="Escaparate" asp-action="Index">
-                    @* <img src="~/images/logo.png" alt="MiluTienda Logo"> *@
-                    Milu Logo
+                    <img src="~/imagenes/logo.png" alt="MiluTienda Logo" class="logo-img">
                 </a>
 
                 <!-- Botones de Login y Registro alineados con el logo -->
