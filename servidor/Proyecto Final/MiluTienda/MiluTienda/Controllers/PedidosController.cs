@@ -135,7 +135,7 @@ namespace MiluTienda.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaCreacion,Confirmado,Preparado,Enviado,Cobrado,Devuelto,Anulado,ClienteId,EstadoId")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EstadoId")] Pedido pedido)
         {
             if (id != pedido.Id)
             {
@@ -146,7 +146,25 @@ namespace MiluTienda.Controllers
             {
                 try
                 {
-                    _context.Update(pedido);
+                    // Aquí solo actualizas el estado, no el cliente ni otras propiedades
+                    var existingPedido = await _context.Pedidos.FindAsync(id);
+
+                    if (existingPedido == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // No cambiar el ClienteId, solo actualizar EstadoId
+                    existingPedido.EstadoId = pedido.EstadoId;
+                    existingPedido.Confirmado = (pedido.EstadoId == 2) ? DateTime.Now : existingPedido.Confirmado;
+                    existingPedido.Preparado = (pedido.EstadoId == 3) ? DateTime.Now : existingPedido.Preparado;
+                    existingPedido.Enviado = (pedido.EstadoId == 4) ? DateTime.Now : existingPedido.Enviado;
+                    existingPedido.Cobrado = (pedido.EstadoId == 5) ? DateTime.Now : existingPedido.Cobrado;
+                    existingPedido.Devuelto = (pedido.EstadoId == 6) ? DateTime.Now : existingPedido.Devuelto;
+                    existingPedido.Anulado = (pedido.EstadoId == 7) ? DateTime.Now : existingPedido.Anulado;
+
+                    // Guardar los cambios
+                    _context.Update(existingPedido);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -162,10 +180,11 @@ namespace MiluTienda.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "CodPostal", pedido.ClienteId);
+
             ViewData["EstadoId"] = new SelectList(_context.Estados, "Id", "Descripcion", pedido.EstadoId);
             return View(pedido);
         }
+
 
         // GET: Pedidos/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -206,5 +225,67 @@ namespace MiluTienda.Controllers
         {
             return _context.Pedidos.Any(e => e.Id == id);
         }
+
+        // POST: Pedidos/Delete/5
+        public async Task<IActionResult> AvanzarEstado(int id)
+        {
+            // Buscar el pedido por ID
+            var pedido = await _context.Pedidos
+                .Include(p => p.Estado)  // Incluir el estado del pedido
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            // Verificar si el pedido existe
+            if (pedido == null)
+            {
+                return NotFound();  // Si no existe, retornar 404
+            }
+
+            // Verificar que el pedido no esté en el último estado posible
+            if (pedido.EstadoId == 4) // Asumiendo que 6 es el último estado (puede variar dependiendo de tu modelo de estado)
+            {
+                return BadRequest("El pedido ya está en el estado final.");
+            }
+
+            // Obtener el siguiente estado
+            var siguienteEstado = _context.Estados
+                .FirstOrDefault(e => e.Id == pedido.EstadoId + 1); // Incrementar el EstadoId en 1
+
+            if (siguienteEstado == null)
+            {
+                return NotFound("El siguiente estado no existe.");
+            }
+
+            // Actualizar el estado del pedido
+            pedido.EstadoId = siguienteEstado.Id;
+
+            // Asignar la fecha correspondiente al nuevo estado
+            switch (siguienteEstado.Descripcion)
+            {
+                case "Confirmado":
+                    pedido.Confirmado = DateTime.Now;
+                    break;
+                case "Preparado":
+                    pedido.Preparado = DateTime.Now;
+                    break;
+                case "Enviado":
+                    pedido.Enviado = DateTime.Now;
+                    break;
+                case "Cobrado":
+                    pedido.Cobrado = DateTime.Now;
+                    break;
+                default:
+                    break;
+            }
+
+            // Guardar los cambios en la base de datos
+            _context.Update(pedido);
+            await _context.SaveChangesAsync();
+
+            // Redirigir al usuario a la página de detalles del pedido
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

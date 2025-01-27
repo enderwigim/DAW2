@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pedidos</h1>
 
 <!-- Filtro por Fecha y Email del Cliente -->
 <form method="get">
@@ -41,15 +41,15 @@
 <table class="table">
     <thead>
         <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Id)</th>
+            <th><strong>@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</strong></th>
+            <th>Email Cliente</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Confirmado)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Preparado)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Enviado)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Cobrado)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Enviado)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Devuelto)</th>
             <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Anulado)</th>
-            <th>Email Cliente</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -57,24 +57,34 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estado.Descripcion)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cliente.Email)</td>
                 <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
                 <td>@Html.DisplayFor(modelItem => item.Confirmado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Preparado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Enviado)</td>
                 <td>@Html.DisplayFor(modelItem => item.Cobrado)</td>
+                <td>@Html.DisplayFor(modelItem => item.Enviado)</td>
                 <td>@Html.DisplayFor(modelItem => item.Devuelto)</td>
                 <td>@Html.DisplayFor(modelItem => item.Anulado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Cliente.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.Estado.Descripcion)</td>
                 <td>
-                    <!-- Botón Editar -->
-                    <a href="@Url.Action("Edit", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-warning" title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <!-- Botón Avanzar -->
-                    <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
-                        <i class="fas fa-forward"></i>
-                    </a>
+                    @* <!-- Botón Editar --> *@
+                    @* <a href="@Url.Action("Edit", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-warning" title="Editar"> *@
+                    @*     <i class="fas fa-edit"></i> *@
+                    @* </a> *@
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="@Url.Action("Details", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-warning" title="Borrar">
+                            <i class="bi bi-info-circle"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Borrar">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
+                        @if (item.EstadoId < 4) {
+                            <!-- Botón Avanzar -->
+                            <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
+                                <i class="fas fa-forward"></i>
+                            </a>
+                        }
+                    </div>
                 </td>
             </tr>
         }

@@ -5,11 +5,24 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-custom text-dark">Logout</button>
-        </form>
-    </li>
+           <div class="d-flex flex-row">
+                <li class="nav-item me-3">
+                @if (User.IsInRole("Usuario")) {
+                    <a id="cart-cont" class="nav-link position-relative"
+                       asp-controller="Carrito"
+                       asp-action="Index">
+                        <i class="bi bi-cart"></i>
+                    </a>
+                }
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                            asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="nav-link btn btn-custom text-dark">Logout</button>
+                    </form>
+                </li>
+
+           </div>
 }
 else
 {

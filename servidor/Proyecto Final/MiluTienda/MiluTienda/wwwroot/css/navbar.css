@@ -120,12 +120,16 @@ body {
     flex-direction: column;
 }
 
-.navbar-collapse .nav-item .nav-link:hover {
+/*.navbar-collapse .nav-item .nav-link:hover {
+    background-color: #D86A91;
+}*/
+.nav-link:hover:not(#cart-cont) {
     background-color: #D86A91;
 }
-.nav-link:hover {
-    background-color: #FFCCD2
+.bi-cart:hover {
+    color: #FFCCD2;
 }
+
 
 /* BOTONES */
 .btn-custom {
@@ -159,3 +163,4 @@ main {
     margin-top: auto; /* Elimina el hardcoding de altura */
     padding-top: 10rem; /* Ajusta el espacio según el contenido */
 }
+

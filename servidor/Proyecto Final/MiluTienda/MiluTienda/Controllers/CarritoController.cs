@@ -14,8 +14,9 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Carrito/Index/5
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index()
         {
+            int? id = HttpContext.Session.GetInt32("NumPedido");
             if (id == null)
             {
                 return RedirectToAction("Vacio");
