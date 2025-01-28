@@ -20,25 +20,27 @@
 <body>
     <header>
         <nav class="navbar navbar-light border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+            <div class="container-fluid d-flex align-items-center">
 
                 <!-- Botón de menú para pantallas pequeñas -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Logo centrado -->
-                <a class="navbar-brand" asp-area="" asp-controller="Escaparate" asp-action="Index">
-                    <img src="~/imagenes/logo.png" alt="MiluTienda Logo" class="logo-img">
-                </a>
+                <!-- Contenedor para centrar el logo -->
+                <div class="logo-container mx-auto">
+                    <a class="navbar-brand" asp-area="" asp-controller="Escaparate" asp-action="Index">
+                        <img src="~/imagenes/logo.png" alt="MiluTienda Logo" class="logo-img">
+                    </a>
+                </div>
 
-                <!-- Botones de Login y Registro alineados con el logo -->
-                <div class="auth-links">
+                <!-- Botones de Login y Registro alineados a la derecha -->
+                <div class="auth-links ms-auto">
                     <partial name="_LoginPartial" />
                 </div>
-            </div>
 
+            </div>
             <!-- Menú colapsable -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">

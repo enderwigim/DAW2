@@ -23,6 +23,8 @@ namespace MiluTienda.Controllers
             }
 
             var pedido = await _context.Pedidos
+                .Include(c => c.Cliente)
+                .Include(e => e.Estado)
                 .Include(p => p.LineasPedido)
                 .ThenInclude(lp => lp.Producto)
                 .FirstOrDefaultAsync(p => p.Id == id);
@@ -39,8 +41,8 @@ namespace MiluTienda.Controllers
             return View();
         }
 
-        // POST: Carrito/ActualizarCantidad/5/2
-        [HttpPost]
+        // GET: Carrito/ActualizarCantidad/5
+        [HttpGet]
         public async Task<IActionResult> AumentarCantidad(int id)
         {
             // Buscar la línea de pedido
@@ -57,12 +59,11 @@ namespace MiluTienda.Controllers
             await _context.SaveChangesAsync();
 
             // Redirigir de vuelta al carrito
-            return RedirectToAction("Index", "Carrito", new { id = lineaPedido.PedidoId });
+            return RedirectToAction("Index", "Carrito");
         }
 
-
-        // POST: Carrito/RestarCantidad/5
-        [HttpPost]
+        // GET: Carrito/RestarCantidad/5
+        [HttpGet]
         public async Task<IActionResult> RestarCantidad(int id)
         {
             // Buscar la línea de pedido
@@ -73,7 +74,7 @@ namespace MiluTienda.Controllers
                 return NotFound();
             }
 
-            // Restar la cantidad (asegurarse de que no sea menor que 1)
+            // Restar la cantidad asegurándose de que no sea menor que 1
             if (lineaPedido.Cantidad > 1)
             {
                 lineaPedido.Cantidad--;
@@ -82,8 +83,9 @@ namespace MiluTienda.Controllers
             }
 
             // Redirigir de vuelta al carrito
-            return RedirectToAction("Index", "Carrito", new { id = lineaPedido.PedidoId });
+            return RedirectToAction("Index", "Carrito");
         }
+
 
 
         // POST: Carrito/EliminarProducto/5

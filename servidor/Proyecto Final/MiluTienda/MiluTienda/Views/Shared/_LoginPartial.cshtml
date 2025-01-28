@@ -5,24 +5,21 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-           <div class="d-flex flex-row">
-                <li class="nav-item me-3">
+           <div id="logOut" class="d-flex align-items-center gap-3 flex-wrap">
                 @if (User.IsInRole("Usuario")) {
                     <a id="cart-cont" class="nav-link position-relative"
                        asp-controller="Carrito"
                        asp-action="Index">
-                        <i class="bi bi-cart"></i>
+                        <i class="bi bi-cart fs-5"></i>
                     </a>
                 }
-                </li>
-                <li class="nav-item">
-                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
-                            asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-custom text-dark">Logout</button>
-                    </form>
-                </li>
 
-           </div>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-custom text-dark">Logout</button>
+                </form>
+            </div>
+
 }
 else
 {
@@ -32,3 +29,23 @@ else
 
 }
 </ul>
+
+<script>
+    function adjustLogoutContainer() {
+        var logOutDiv = document.getElementById("logOut");
+
+        if (logOutDiv) { // Verifica que el elemento existe
+            if (window.matchMedia("(max-width: 400px)").matches) {
+                logOutDiv.className = ""; // Quita todas las clases
+            } else {
+                logOutDiv.className = "d-flex align-items-center gap-3 flex-wrap"; // Restaura clases
+            }
+        }
+    }
+
+    // Ejecutar al cargar la página
+    document.addEventListener("DOMContentLoaded", adjustLogoutContainer);
+
+    // Ejecutar cuando se cambia el tamaño de la pantalla
+    window.addEventListener("resize", adjustLogoutContainer);
+</script>

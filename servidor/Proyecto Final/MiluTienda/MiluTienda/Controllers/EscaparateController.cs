@@ -113,15 +113,23 @@ namespace MiluTienda.Controllers
             // Crear un nuevo pedido si no existe uno en la sesión
             Pedido pedido;
 
-            // Verificar si ya hay un pedido en la sesión
             if (HttpContext.Session.GetInt32("NumPedido") == null)
             {
+                // Verificar que el estado "Pendiente" existe en la base de datos
+                var estadoPendiente = await _context.Estados
+                    .FirstOrDefaultAsync(e => e.Descripcion == "Pendiente");
+
+                if (estadoPendiente == null)
+                {
+                    return NotFound("Estado 'Pendiente' no encontrado en la base de datos.");
+                }
+
                 // Crear un nuevo pedido
                 pedido = new Pedido
                 {
                     ClienteId = cliente.Id,
                     FechaCreacion = DateTime.Now,
-                    EstadoId = _context.Estados.FirstOrDefault(e => e.Descripcion == "Pendiente").Id // Estado "Pendiente"
+                    EstadoId = estadoPendiente.Id,
                 };
 
                 // Guardar el pedido y asignar el número de pedido en la sesión
@@ -134,24 +142,46 @@ namespace MiluTienda.Controllers
                 // Obtener el pedido existente desde la sesión
                 var numPedido = HttpContext.Session.GetInt32("NumPedido");
                 pedido = await _context.Pedidos.FindAsync(numPedido);
+
+                if (pedido == null)
+                {
+                    return NotFound("Pedido no encontrado.");
+                }
             }
 
-            // Crear una línea de pedido con el producto
-            var lineaPedido = new LineaPedido
-            {
-                PedidoId = pedido.Id,
-                Producto = producto,
-                Precio = producto.Precio,
-                Cantidad = 1
-            };
+            // Verificar si ya existe una línea de pedido para este producto
+            var lineaPedidoExistente = await _context.LineasPedido
+                .FirstOrDefaultAsync(lp => lp.PedidoId == pedido.Id && lp.ProductoId == productoId);
 
-            // Agregar la línea de pedido y guardar los cambios
-            _context.LineasPedido.Add(lineaPedido);
+            if (lineaPedidoExistente != null)
+            {
+                // Si existe, incrementar la cantidad
+                lineaPedidoExistente.Cantidad += 1;
+            }
+            else
+            {
+                // Si no existe, crear una nueva línea de pedido
+                var nuevaLineaPedido = new LineaPedido
+                {
+                    PedidoId = pedido.Id,
+                    ProductoId = producto.Id,
+                    Producto = producto,
+                    Precio = producto.Precio,
+                    Cantidad = 1
+                };
+
+                _context.LineasPedido.Add(nuevaLineaPedido);
+            }
+
+            // Guardar los cambios
             await _context.SaveChangesAsync();
 
             // Redirigir a la vista de carrito pasando el id del pedido
             return RedirectToAction("Index", "Carrito", new { id = pedido.Id });
         }
-        
+
+
+
+
     }
 }
