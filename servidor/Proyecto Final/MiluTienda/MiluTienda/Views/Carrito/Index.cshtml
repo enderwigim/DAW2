@@ -91,7 +91,10 @@
                 <td>@item.Producto.Descripcion</td>
                 <td>
                     <!-- Botones para ajustar la cantidad -->
-                    <a asp-action="RestarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-primary btn-sm">-</a>
+                    @if (item.Cantidad != 1) {
+                        <a asp-action="RestarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-primary btn-sm">-</a>
+
+                    }
                     <span>@item.Cantidad</span>
                     <a asp-action="AumentarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-primary btn-sm">+</a>
                 </td>

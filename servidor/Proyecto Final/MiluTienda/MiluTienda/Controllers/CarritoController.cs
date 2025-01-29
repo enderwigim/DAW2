@@ -32,7 +32,14 @@ namespace MiluTienda.Controllers
             {
                 return RedirectToAction("Vacio");
             }
+            bool containsLineasPedido = (pedido.LineasPedido.Count == 0) ? false : true;
+
+            if (!containsLineasPedido)
+            { 
+                return RedirectToAction("Vacio");
+            }
             return View(pedido);
+            
         }
 
         // GET: Carrito/Vacio
