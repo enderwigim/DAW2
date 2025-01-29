@@ -1,0 +1,104 @@
+﻿.card {
+    margin: 10px;
+    border: 3px solid #D86A91;
+    background-color: #ffffff;
+    text-align: center;
+    font-style: oblique;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+}
+
+.card .card-body {
+    border-top: 2px solid #D86A91;
+    background-color: #FFCCD2;
+}
+
+img{
+    width: 100%;
+    max-height: 180px;
+}
+
+@media screen and (min-width: 900px) {
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.card-img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+    .card-img-container .card-img-top {
+        width: 100%;
+    }
+
+        .card-img-container .card-img-top img {
+            padding: 1em;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+
+    .card-img-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .card-img-container::after {
+        content: "\f105";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        color: #D86A91;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+    .card-img-container:hover::before, .card-img-container:hover::after {
+        opacity: 1;
+    }
+
+@media screen and (max-width: 480px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .card {
+        margin: 5px;
+        padding: 8px;
+    }
+
+    .card-img-container {
+        height: 100px;
+    }
+
+    .card-img-top {
+        height: 80px;
+        max-width: 100%;
+        -o-object-fit: contain;
+        object-fit: contain;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+}
