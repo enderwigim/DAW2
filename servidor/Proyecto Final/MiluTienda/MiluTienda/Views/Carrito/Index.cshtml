@@ -75,8 +75,8 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Id Producto</th>
-            <th>Descripción del Producto</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Total</th>
@@ -87,8 +87,17 @@
         @foreach (var item in Model.LineasPedido)
         {
             <tr>
-                <td>@item.ProductoId</td>
-                <td>@item.Producto.Descripcion</td>
+                <td>
+                    @{
+                        var nombreImagen = "no-imagen.jpg";
+                        if (item.Producto.Imagen != null)
+                        {
+                            nombreImagen = item.Producto.Imagen;
+                        }
+                    }
+                    <img src="~/imagenes/productos/@nombreImagen" class="img-fluid" asp-append-version="true" style="height:50px;width:50px"/>
+                </td>
+                <td>@item.Producto.Nombre</td>
                 <td>
                     <!-- Botones para ajustar la cantidad -->
                     @if (item.Cantidad != 1) {
