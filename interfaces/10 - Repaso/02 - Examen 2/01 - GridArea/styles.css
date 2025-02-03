@@ -1,0 +1,73 @@
+.container {
+    display: grid;
+    grid-template-areas: "B B B C D"
+                         "E F G G D"
+                         "E H G G I"
+                         "J H K L L";
+    padding: 3em;
+    gap: 1em;
+    height: 60VH;
+    border: 5px solid #07425E;
+    border-radius: 10px;
+}
+.A {
+    background-color: #009F5E;
+    grid-area: B;
+    border-radius: 10px;
+    z-index: -1;
+}
+.B {
+    background-color: #009E9A;
+    grid-area: B;
+    border-radius: 10px;
+}
+.C {
+    background-color: #0080B8;
+    grid-area: C;
+    border-radius: 10px;
+}
+.D {
+    background-color: #4056A0;
+    grid-area: D;
+    border-radius: 10px;
+}
+.E {
+    background-color: #72B450;
+    grid-area: E;
+    border-radius: 10px;
+}
+.F {
+    background-color: #47AD6F;
+    grid-area: F;
+    border-radius: 10px;
+}
+.G {
+    background-color: #918096;
+    grid-area: G;
+    border-radius: 10px;
+}
+.H {
+    background-color: #D59D62;
+    grid-area: H;
+    border-radius: 10px;
+}
+.I {
+    background-color: #A763A2;
+    grid-area: I;
+    border-radius: 10px;
+}
+.J {
+    background-color: #EB8378;
+    grid-area: J;
+    border-radius: 10px;
+}
+.K {
+    background-color: #E7769F;
+    grid-area: K;
+    border-radius: 10px;
+}
+.L {
+    background-color: #E7769F;
+    grid-area: L;
+    border-radius: 10px;
+}
