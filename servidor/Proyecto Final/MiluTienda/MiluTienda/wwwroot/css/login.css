@@ -29,11 +29,13 @@
     transition: all 0.3s ease-in-out;
 }
 
-    .btn-custom:hover {
-        background-color: #FFCCD2;
-        color: #000;
-        border: 2px solid #D86A91;
-    }
+.btn-custom:hover {
+    background-color: #FFCCD2;
+    color: #000;
+    border: 2px solid #D86A91;
+}
+
+
 
 /* Ajustes de los enlaces */
 .text-dark {

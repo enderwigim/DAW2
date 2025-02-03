@@ -164,6 +164,16 @@ main {
     padding-top: 10rem; /* Ajusta el espacio según el contenido */
 }
 
+/* Botón personalizado para login */
+.btn-custom-inverse {
+    background-color: #FFCCD2;
+    color: #000;
+    border: 2px solid #D86A91;
+    transition: all 0.3s ease-in-out;
+}
 
-
-
+    .btn-custom-inverse:hover {
+        background-color: #D86A91;
+        color: #fff;
+        border: 2px solid #D86A91;
+    }

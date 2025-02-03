@@ -226,7 +226,7 @@ namespace MiluTienda.Controllers
             return _context.Pedidos.Any(e => e.Id == id);
         }
 
-        // POST: Pedidos/Delete/5
+        // GET: Pedidos/AvanzarEstado/5
         public async Task<IActionResult> AvanzarEstado(int id)
         {
             // Buscar el pedido por ID
