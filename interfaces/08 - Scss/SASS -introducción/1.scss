@@ -1,0 +1,73 @@
+
+// Instalar las extnsiones:
+        // Live Sass Compiler
+        // Sass (.sass only)
+
+// SASS es un CSS con código ampliado:super poderes, podemos:
+
+// crear la variables SASS
+$color1:rgb(43, 33, 7);
+$color2:rgb(141, 92, 43);
+$ht1:1em;
+// recordemos que crear variables css era:
+// :root{
+//     --color1:blue;
+// }
+
+body {
+    background-color: $color2;
+}
+
+h1 {
+    color: $color1;
+    margin: $ht1;
+}
+
+
+// crear bloques de estilos SASS:
+            @mixin block-1{
+                padding: 5em;
+                margin: 3px;
+                border: 5px solid black;
+                background-color: rgb(240, 186, 93);
+                text-align: center;
+                font-style:oblique;
+            }
+
+            main, section{
+                @include block-1();
+            }
+           
+            // main:hover{background-color: chartreuse} 
+
+// antes( main:hover{background-color: chartreuse}) 
+// ahora el prefijo & aplica al elemento superior:
+            main, section{
+                @include block-1();  
+                &:hover{
+                    background-color: cornflowerblue;
+                 }
+            }
+            
+
+// definir funciones como en un lenguaje de programación
+// defino la función incremento que me delvolverá un valor
+            // @function incremento($valor){
+            //     @return $valor * $ht1;
+            // }
+
+            // section{
+            //     font-size:incremento(2);
+            // }
+
+
+// ampliar los valores m y p de bootstrap
+            // @for $myp from 1 to 20{
+            //     .m-#{$myp}{
+            //         margin: $myp * $ht1
+            //     }
+
+            //     .p-#{$myp}{
+            //         margin: $myp * $ht1
+            //     }
+            // }
