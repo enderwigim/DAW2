@@ -4,6 +4,13 @@ $backgroundColor: #FFCCD2;
 $small: 480px;
 $medium: 900px;
 
+body {
+    background-color: #eaeaea;
+}
+main {
+    padding: 1em;
+}
+// Productos escaparate
 @mixin block-escaparate {
     margin: 10px;
     border: 3px solid $borderProductColor;
@@ -25,7 +32,7 @@ $medium: 900px;
         }
     }
 }
-
+// Imagen de los productos
 @mixin card-img {
     position: relative;
     overflow: hidden;
@@ -78,9 +85,41 @@ $medium: 900px;
     @include card-img()
 }
 
+
+.categories-container {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.category-item {
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: #f0f0f0;
+    }
+}
+
+.category-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+        color: $borderProductColor;
+    }
+}
+
 @media screen and (max-width: $small) {
     .col-md-4 {
-        flex: 0 0 100%; // En móviles, una sola columna
+        flex: 0 0 100%;
         max-width: 100%;
     }
 
@@ -90,7 +129,7 @@ $medium: 900px;
     }
 
     .card-img-container {
-        height: 100px; // Ajustar altura en móviles
+        height: 100px;
     }
 
     .card-img-top {
@@ -108,33 +147,3 @@ $medium: 900px;
     }
 }
 
-.categories-container {
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #f9f9f9;
-}
-
-.category-item {
-    padding: 10px;
-    transition: background-color 0.3s ease-in-out;
-
-    &:last-child {
-        border-bottom: none; // Quitar el borde inferior del último elemento
-    }
-
-    &:hover {
-        background-color: #f0f0f0;
-    }
-}
-
-.category-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-
-    &:hover {
-        color: $borderProductColor; // Usando el color que definiste en tu SCSS
-    }
-}
