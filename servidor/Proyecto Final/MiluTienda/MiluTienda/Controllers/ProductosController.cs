@@ -35,7 +35,7 @@ namespace MiluTienda.Controllers
             if (!string.IsNullOrEmpty(PrecioMin))
             {
                 // Reemplazar coma por punto
-                PrecioMin = PrecioMin.Replace(',', '.');
+                PrecioMin = PrecioMin.Replace('.', ',');
                 if (decimal.TryParse(PrecioMin, out var tempMin))
                 {
                     precioMinDecimal = tempMin;
