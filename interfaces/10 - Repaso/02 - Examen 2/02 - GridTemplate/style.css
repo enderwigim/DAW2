@@ -1,0 +1,32 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    height: 500px;
+    .uno{
+        grid-column: 1 / 1;
+        grid-row: 1 / 4;
+        background-color: aqua;
+    }
+    .dos{
+        grid-column: 2 / 4;
+        grid-row: 1 / 1;
+        background-color: brown;
+    }
+    .tres{
+        grid-column: 2 / 3;
+        grid-row: 2 / 4;
+        background-color: coral;
+    }
+    .cuatro{
+        grid-column: 3 / 3;
+        grid-row: 2 / 2;
+        background-color: darkgreen;
+    }
+    .cinco{
+        grid-column: 3 / 3;
+        grid-row: 3 / 3;
+        background-color: darkgray;
+    }
+}
