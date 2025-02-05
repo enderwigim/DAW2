@@ -47,7 +47,7 @@ namespace MiluTienda.Controllers
             // Buscar el pedido correspondiente al id
             var pedido = await _context.Pedidos
                 .Include(p => p.LineasPedido)
-                .ThenInclude(lp => lp.Producto) // Incluir detalles del producto
+                .ThenInclude(lp => lp.Producto) 
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pedido == null)

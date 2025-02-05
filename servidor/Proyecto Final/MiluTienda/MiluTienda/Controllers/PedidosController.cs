@@ -77,6 +77,8 @@ namespace MiluTienda.Controllers
             var pedido = await _context.Pedidos
                 .Include(p => p.Cliente)
                 .Include(p => p.Estado)
+                .Include(p => p.LineasPedido)
+                    .ThenInclude(lp => lp.Producto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedido == null)
             {

@@ -96,9 +96,12 @@ namespace MiluTienda.Controllers
             var cliente = await _context.Clientes
                 .FirstOrDefaultAsync(c => c.Email == userId);  // Obtener el cliente por email
 
-            if (cliente == null)
+            if (userId == null && cliente == null)
             {
                 return Redirect("/Identity/Account/Login");
+            } else if (cliente == null)
+            {
+                return RedirectToAction("Index");
             }
 
             // Buscar el producto en la base de datos

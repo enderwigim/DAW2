@@ -71,8 +71,8 @@
                     @* <a href="@Url.Action("Edit", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-warning" title="Editar"> *@
                     @*     <i class="fas fa-edit"></i> *@
                     @* </a> *@
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="@Url.Action("Details", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-warning" title="Borrar">
+                    <div class="btn-group" role="group">
+                        <a href="@Url.Action("Details", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-info" title="Detalles">
                             <i class="bi bi-info-circle"></i>
                         </a>
                         <a href="@Url.Action("Delete", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Borrar">

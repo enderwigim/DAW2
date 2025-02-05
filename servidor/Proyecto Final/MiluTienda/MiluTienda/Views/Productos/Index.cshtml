@@ -54,6 +54,7 @@
             <th>Marca</th>
             <th>Escaparate</th>
             <th>Categoría</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -67,6 +68,17 @@
                 <td>@item.Marca</td>
                 <td>@item.Escaparate</td>
                 <td>@item.Categoria.Descripcion</td>
+                
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info"><i class="bi bi-info-circle"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>
+                        <a asp-action="CambiarImagen" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-image-fill"></i></a>
+                    </div>
+                </td>
+
+                
             </tr>
         }
     </tbody>
