@@ -7,11 +7,11 @@
 
 <div class="page-container">
     <div class="login-container p-4 shadow-lg rounded">
-        <h1 class="text-center text-dark-normal mb-4">Log in</h1>
+        <h1 class="text-center text-dark-normal mb-4">Iniciar Sesión</h1>
 
         <section>
             <form id="account" method="post">
-                <h2 class="text-center text-dark-normal mb-3">Welcome back!</h2>
+                <h2 class="text-center text-dark-normal mb-3">Bienvenido</h2>
                 <hr class="mb-4" />
 
                 <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3" role="alert"></div>
@@ -28,20 +28,12 @@
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
 
-                <div class="form-check mb-3">
-                    <input class="form-check-input" asp-for="Input.RememberMe" />
-                    <label asp-for="Input.RememberMe" class="form-check-label text-dark">
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
-                </div>
-
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-custom">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-custom">Iniciar Sesión</button>
                 </div>
 
                 <div class="text-center mt-3">
-                    <p><a asp-page="./ForgotPassword" class="text-decoration-none text-dark">Forgot your password?</a></p>
-                    <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none text-dark">Register as a new user</a></p>
+                    <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none text-dark">Registrarse como un nuevo usuario</a></p>
                 </div>
             </form>
         </section>

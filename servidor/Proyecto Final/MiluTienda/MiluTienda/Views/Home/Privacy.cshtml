@@ -1,6 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Política de Privacidad";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header text-center bg-custom">
+            <h2 class="fw-bold text-white">Política de Privacidad</h2>
+        </div>
+        <div class="card-body p-4">
+            <p class="lead">Tu privacidad es importante para nosotros. En MiluTienda, nos comprometemos a proteger tu información personal y garantizar la seguridad de tus datos.</p>
+
+            <h4 class="mt-4">📜 Información que Recopilamos</h4>
+            <p>Podemos recopilar información como tu nombre, dirección de correo electrónico, número de teléfono y datos de pago cuando interactúas con nuestro sitio.</p>
+
+            <h4 class="mt-4">🔒 Protección de tus Datos</h4>
+            <p>Implementamos medidas de seguridad avanzadas para proteger tu información contra accesos no autorizados.</p>
+
+            <h4 class="mt-4">📧 Contacto</h4>
+            <p>Si tienes preguntas sobre nuestra política de privacidad, no dudes en <a href="mailto:soporte@milutienda.com">contactarnos</a>.</p>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Index" class="btn btn-custom">Volver al Inicio</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Fondo del encabezado */
+    .bg-custom {
+        background-color: #D86A91;
+    }
+
+    /* Estilo del botón */
+    .btn-custom {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+        padding: 0.5rem 1.5rem;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .btn-custom:hover {
+        background-color: #D86A91;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+</style>

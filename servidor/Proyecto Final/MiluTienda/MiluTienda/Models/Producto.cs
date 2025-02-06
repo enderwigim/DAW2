@@ -35,10 +35,7 @@ namespace MiluTienda.Models
             }
         }
 
-        //[Column(TypeName = "decimal(3, 2)")]
-        //public decimal? Descuento { get; set; }
 
-        public int Stock { get; set; } = 0;
 
         public string? Imagen { get; set; }
 

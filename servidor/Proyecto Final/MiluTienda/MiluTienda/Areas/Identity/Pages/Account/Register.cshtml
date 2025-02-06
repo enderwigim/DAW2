@@ -6,11 +6,11 @@
 
 <div class="page-container">
     <div class="login-container p-4 shadow-lg rounded">
-        <h1 class="text-center text-dark-normal mb-4">Create a new account</h1>
+        <h1 class="text-center text-dark-normal mb-4">Crear una nueva cuenta</h1>
 
         <section>
             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h2 class="text-center text-dark-normal mb-3">Welcome!</h2>
+                <h2 class="text-center text-dark-normal mb-3">¡Bienvenido!</h2>
                 <hr class="mb-4" />
 
                 <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3" role="alert"></div>
@@ -23,22 +23,22 @@
 
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password">Password</label>
+                    <label asp-for="Input.Password">Contraseña</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                    <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
 
                 <div>
-                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-custom">Register</button>
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-custom">Registrarse</button>
                 </div>
 
                 <div class="text-center mt-3">
-                    <p><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none text-dark">Already have an account? Log in</a></p>
+                    <p><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none text-dark">¿Tienes una cuenta? Inicia sesión</a></p>
                 </div>
             </form>
         </section>

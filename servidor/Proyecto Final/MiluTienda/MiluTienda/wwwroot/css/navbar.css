@@ -3,12 +3,12 @@
 /* ===================== */
 
 .navbar {
-    position: fixed; /* Fix the navbar at the top of the page */
-    top: 0; /* Ensure it sticks at the top */
-    width: 100%; /* Ensure the navbar spans the full width */
-    z-index: 1050; /* Ensure the navbar stays on top of other elements */
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1050;
     padding: 0px;
-    background-color: #D86A91; /* Set background color to avoid transparency */
+    background-color: #D86A91;
 }
 
 /* For logo image */
@@ -142,7 +142,7 @@ body {
 
     .btn-custom:hover {
         background-color: #D86A91; /* Un tono más oscuro al pasar el mouse */
-        color: #000;
+        color: #FFCCD2;
     }
 
 .btn-outline-custom {

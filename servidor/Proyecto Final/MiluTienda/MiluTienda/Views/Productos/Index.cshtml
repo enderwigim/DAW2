@@ -1,46 +1,48 @@
-﻿<form method="get">
+﻿<!-- Botón para añadir un nuevo producto -->
+<div class="d-flex justify-content-end mb-3">
+    <a asp-action="Create" class="btn btn-custom-inverse btn-lg shadow-sm">
+        <i class="bi bi-plus-circle"></i> Añadir Producto
+    </a>
+</div>
+
+<form method="get">
     <div class="row g-2 mb-2">
         <!-- Filtro por Nombre -->
         <div class="form-group col-md-6">
-            <input type="text" name="Nombre" class="form-control" value="@ViewData["Nombre"]" placeholder="Nombre"/>
+            <input type="text" name="Nombre" class="form-control" value="@ViewData["Nombre"]" placeholder="Nombre" />
         </div>
 
         <!-- Filtro por Categoría -->
         <div class="form-group col-md-6">
             <select name="CategoriaId" class="form-control">
-                @* Asigna el valor de la categoría seleccionada o 0 si no hay categoría seleccionada *@
                 @{
                     var selectedCategoryId = ViewData["CategoriaId"] as int? ?? 0;
                 }
 
                 <!-- Opción "Todas las Categorías" -->
-                <option value="@(selectedCategoryId == 0 ? "selected" : "")">Todas las categorias</option>
+                <option value="@(selectedCategoryId == 0 ? "selected" : "")">Todas las categorías</option>
 
-                <!-- Otras categorías -->
                 @foreach (var categoria in ViewData["Categorias"] as List<MiluTienda.Models.Categoria>)
                 {
                     var isSelected = selectedCategoryId == categoria.Id ? "selected" : "";
-                    @Html.Raw($"<option value=\"{categoria.Id}\"{isSelected}>{categoria.Descripcion}</option>");
- 
+                    @Html.Raw($"<option value=\"{categoria.Id}\"{isSelected}>{categoria.Descripcion}</option>")
+                    ;
                 }
             </select>
-            
         </div>
 
         <!-- Filtro por Precio -->
         <div class="form-group col-md-6">
-            <input type="text" name="PrecioMin" class="form-control" value="@ViewData["PrecioMin"]" placeholder="Precio Mínimo"/>
+            <input type="text" name="PrecioMin" class="form-control" value="@ViewData["PrecioMin"]" placeholder="Precio Mínimo" />
         </div>
 
         <div class="form-group col-md-6">
-            <input type="text" name="PrecioMax" class="form-control" value="@ViewData["PrecioMax"]" placeholder="Precio Maximo"/>
+            <input type="text" name="PrecioMax" class="form-control" value="@ViewData["PrecioMax"]" placeholder="Precio Máximo" />
         </div>
     </div>
 
-
     <!-- Botón de búsqueda -->
     <button type="submit" class="btn btn-custom-inverse">Buscar</button>
-
 </form>
 
 <!-- Mostrar productos -->
@@ -50,9 +52,9 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio</th>
-            <th>Stock</th>
             <th>Marca</th>
             <th>Escaparate</th>
+            <th>Imagen</th>
             <th>Categoría</th>
             <th>Acciones</th>
         </tr>
@@ -64,11 +66,29 @@
                 <td>@item.Nombre</td>
                 <td>@item.Descripcion</td>
                 <td>@item.Precio</td>
-                <td>@item.Stock</td>
                 <td>@item.Marca</td>
-                <td>@item.Escaparate</td>
+                @if (item.Escaparate)
+                    {
+                    <td>Si</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+                @if (item.Imagen == null)
+                {
+                    <td>
+                        <img src="~/imagenes/productos/no-imagen.jpg" alt="Alternate Text" style="width:50px; height:50px;" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <img src="~/imagenes/productos/@item.Imagen" alt="Alternate Text" style="width:50px; height:50px;" />
+                    </td>
+                }
                 <td>@item.Categoria.Descripcion</td>
-                
+
                 <td>
                     <div class="btn-group" role="group">
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
@@ -77,8 +97,6 @@
                         <a asp-action="CambiarImagen" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-image-fill"></i></a>
                     </div>
                 </td>
-
-                
             </tr>
         }
     </tbody>
@@ -104,3 +122,4 @@
         <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-custom-inverse">Última</a>
     }
 </div>
+
