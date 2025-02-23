@@ -1,0 +1,81 @@
+/* TRANSICIONES
+Las transiciones se usan sobre todo para hacer cambios en los eventos de:
+•	:hover
+•	:focus */
+
+.button {
+  margin-bottom: 30px;
+  padding: 10px 20px 10px 20px;
+  background-color: #b9e224;
+  border: 1px solid #616974;
+  border-radius: 4px;
+  cursor: pointer;
+  /* lo normal es añadir una transition para que el cambio no sea muy brusco: 
+  con las propiedades que hemos incluido en el :hover , :focus, etc. */
+  transition: background-color 1s, box-shadow 1s;
+}
+ 
+/* al pasar el cursor sobre el botón se añade una sombra 
+y cambia el color de fondo. */
+.button:hover {
+  background-color: #fa9c30;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+/* La forma concreta de la propiedad transition es:
+transition: propiedadCSS duracion timing-function retardo */
+
+/* ANIMACIONES
+Las animaciones define múltiples estados controlando su duración, 
+repetición y dirección, suelen usarse desde JavaScript */
+
+.cuadrado {
+    display:grid;
+    justify-content: center;
+    align-content: center;
+    text-decoration:underline;
+    width: 200px;
+    height: 200px;
+    background-color: #ff0000;
+    border-radius: 4px;
+    animation-name: volver-izquierda;
+    animation-duration: 3s;
+  }
+.cuadrado:hover {
+  transform: rotate(45deg);
+  background-color: blue;
+  transition: 3s;
+}
+
+   
+/* .c-girar {
+  animation-name: animacion-girar;
+  animation-duration: 3s;
+} */
+  
+/* Dentro de @keyframes definimos cada uno de los "fotogramas" que queremos que tenga la animación. */
+   
+@keyframes animacion-girar-derecha {
+  0% {
+    transform: rotate(0deg);
+    background-color: blue;
+  }
+   
+  100% {
+    transform: rotate(45deg);
+    background-color: blue;
+    /* transform: translate(50px, 100px); */
+    /* transform: translate3d(50px,50px,100px); */
+  }  
+}
+  
+@keyframes volver-izquierda {
+  0% {
+    transform: rotate(45deg);
+  }
+   
+  100% {
+    transform: rotate(0deg);
+    /* transform: translate(50px, 100px); */
+    /* transform: translate3d(50px,50px,100px); */
+  }  
+}

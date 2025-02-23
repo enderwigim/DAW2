@@ -1,162 +1,114 @@
 ﻿@model MiluTienda.Models.Pedido
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Pedido";
 }
 
-<h1>Detalles Pedido #@Model.Id</h1>
-
-<div class="row">
-    <!-- Columna para datos del Pedido -->
-    <div class="col-md-6">
-        <h4>Pedido</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.FechaCreacion)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Confirmado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Confirmado)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Preparado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Preparado)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Enviado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Enviado)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Cobrado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Cobrado)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Devuelto)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Devuelto)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Anulado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Anulado)
-            </dd>
-            <dt class="col-sm-4">
-                @Html.DisplayNameFor(model => model.Estado)
-            </dt>
-            <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Estado.Descripcion)
-            </dd>
-        </dl>
+<div class="container my-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Detalles del Pedido #@Model.Id</h1>
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
     </div>
 
-    <!-- Columna para datos del Cliente -->
-    <div class="col-md-6">
-        <h4>Cliente</h4>
-        <hr />
-        @if (Model.Cliente != null)
-        {
-            <dl class="row">
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Nombre)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Nombre)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Email)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Email)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Telefono)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Telefono)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Direccion)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Direccion)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Poblacion)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Poblacion)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.CodPostal)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.CodPostal)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Cliente.Nif)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Nif)
-                </dd>
-            </dl>
-        }
-        else
-        {
-            <p>No se encontraron datos del cliente.</p>
-        }
-    </div>
-</div>
+    <div class="row">
+        <!-- Columna de detalles del pedido -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-pink">
+                <div class="card-body">
+                    <h4 class="text-pink">Información del Pedido</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4 text-pink">Fecha de Creación:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.FechaCreacion)</dd>
+                        <dt class="col-sm-4 text-pink">Estado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Estado.Descripcion)</dd>
+                        <dt class="col-sm-4 text-pink">Confirmado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Confirmado)</dd>
+                        <dt class="col-sm-4 text-pink">Preparado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Preparado)</dd>
+                        <dt class="col-sm-4 text-pink">Enviado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Enviado)</dd>
+                        <dt class="col-sm-4 text-pink">Cobrado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Cobrado)</dd>
+                        <dt class="col-sm-4 text-pink">Devuelto:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Devuelto)</dd>
+                        <dt class="col-sm-4 text-pink">Anulado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Anulado)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
 
-<!-- Tabla de líneas de pedido -->
-<div class="mt-4">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Imagen</th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var linea in Model.LineasPedido)
-            {
-                <tr>
-                    <td>@linea.Producto.Descripcion</td>
-                    @if (@linea.Producto.Imagen == null)
+        <!-- Columna de información del cliente -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-pink">
+                <div class="card-body">
+                    <h4 class="text-pink">Información del Cliente</h4>
+                    <hr />
+                    @if (Model.Cliente != null)
                     {
-                        <td>
-                            <img src="~/imagenes/productos/no-imagen.jpg" alt="Alternate Text" style="width:50px; height:50px;" />
-                        </td>
+                        <dl class="row">
+                            <dt class="col-sm-4 text-pink">Nombre:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Nombre)</dd>
+                            <dt class="col-sm-4 text-pink">Email:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Email)</dd>
+                            <dt class="col-sm-4 text-pink">Teléfono:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Telefono)</dd>
+                            <dt class="col-sm-4 text-pink">Dirección:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Direccion)</dd>
+                            <dt class="col-sm-4 text-pink">Población:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Poblacion)</dd>
+                            <dt class="col-sm-4 text-pink">Código Postal:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.CodPostal)</dd>
+                            <dt class="col-sm-4 text-pink">NIF:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Nif)</dd>
+                        </dl>
                     }
                     else
                     {
-                        <td>
-                            <img src="~/imagenes/productos/@linea.Producto.Imagen" alt="Alternate Text" style="width:50px; height:50px;" />
-                        </td>
+                        <p>No se encontraron datos del cliente.</p>
                     }
-                    <td>@linea.Cantidad</td>
-                    <td>@linea.Precio€</td>
-                    <td>@(linea.Precio * linea.Cantidad)€</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    <!-- Tabla de productos en el pedido -->
+    <div class="mt-4">
+        <h4 class="text-pink">Productos del Pedido</h4>
+        <table class="table table-hover table-bordered text-center shadow-sm">
+            <thead class="table-pink">
+                <tr>
+                    <th class="text-dark">Producto</th>
+                    <th class="text-dark">Imagen</th>
+                    <th class="text-dark">Cantidad</th>
+                    <th class="text-dark">Precio</th>
+                    <th class="text-dark">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var linea in Model.LineasPedido)
+                {
+                    <tr>
+                        <td class="align-middle">@linea.Producto.Descripcion</td>
+                        <td class="align-middle">
+                            <img src="~/imagenes/productos/@(linea.Producto.Imagen ?? "no-imagen.jpg")" alt="Imagen Producto" class="img-fluid rounded shadow" style="width: 50px; height: 50px; border: 2px solid #D86A91;">
+                        </td>
+                        <td class="align-middle">@linea.Cantidad</td>
+                        <td class="align-middle">@linea.Precio€</td>
+                        <td class="align-middle">@(linea.Precio * linea.Cantidad)€</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
+    </div>
 </div>

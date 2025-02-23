@@ -1,79 +1,89 @@
 ﻿@model MiluTienda.Models.Clientes
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Mis Datos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Mis datos</h1>
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-person"></i> Mis Datos</h3>
+        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- Id: Campo oculto -->
-            <input type="hidden" asp-for="Id" />
+                <!-- Id: Campo oculto -->
+                <input type="hidden" asp-for="Id" />
 
-            <!-- Nombre -->
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
+                <div class="row">
+                    <!-- Primera columna -->
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Nombre" class="form-label fw-bold"></label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Ingrese su nombre" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
 
-            <!-- Email: No debe ser modificado (oculto por seguridad) -->
-            <div class="form-group" hidden>
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Telefono" class="form-label fw-bold"></label>
+                            <input asp-for="Telefono" class="form-control" placeholder="Ingrese su teléfono" />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
 
-            <!-- Teléfono -->
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Direccion" class="form-label fw-bold"></label>
+                            <input asp-for="Direccion" class="form-control" placeholder="Ingrese su dirección" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
 
-            <!-- Dirección -->
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Poblacion" class="form-label fw-bold"></label>
+                            <input asp-for="Poblacion" class="form-control" placeholder="Ingrese su población" />
+                            <span asp-validation-for="Poblacion" class="text-danger"></span>
+                        </div>
+                    </div>
 
-            <!-- Población -->
-            <div class="form-group">
-                <label asp-for="Poblacion" class="control-label"></label>
-                <input asp-for="Poblacion" class="form-control" />
-                <span asp-validation-for="Poblacion" class="text-danger"></span>
-            </div>
+                    <!-- Segunda columna -->
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="CodPostal" class="form-label fw-bold"></label>
+                            <input asp-for="CodPostal" class="form-control" placeholder="Ej: 28080" />
+                            <span asp-validation-for="CodPostal" class="text-danger"></span>
+                        </div>
 
-            <!-- Código Postal -->
-            <div class="form-group">
-                <label asp-for="CodPostal" class="control-label"></label>
-                <input asp-for="CodPostal" class="form-control" />
-                <span asp-validation-for="CodPostal" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Nif" class="form-label fw-bold"></label>
+                            <input asp-for="Nif" class="form-control" placeholder="Ej: 12345678X" />
+                            <span asp-validation-for="Nif" class="text-danger"></span>
+                        </div>
 
-            <!-- NIF -->
-            <div class="form-group">
-                <label asp-for="Nif" class="control-label"></label>
-                <input asp-for="Nif" class="form-control" />
-                <span asp-validation-for="Nif" class="text-danger"></span>
-            </div>
+                        <div class="form-group mb-3" hidden>
+                            <label asp-for="Email" class="form-label fw-bold"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Botón de guardar -->
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <!-- Botón de envío -->
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-lg btn-custom-inverse text-white shadow">
+                        <i class="bi bi-save"></i> Guardar Datos
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index" asp-controller="Home">Volver</a>
+    <!-- Botón de volver -->
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Volver atrás
+        </a>
+    </div>
 </div>
 
 @section Scripts {

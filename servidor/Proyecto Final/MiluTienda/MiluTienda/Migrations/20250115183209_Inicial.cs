@@ -66,7 +66,6 @@ namespace MiluTienda.Migrations
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Precio = table.Column<decimal>(type: "decimal(9,2)", nullable: false),
                     PrecioCadena = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Marca = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Escaparate = table.Column<bool>(type: "bit", nullable: false),

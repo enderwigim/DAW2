@@ -1,0 +1,19 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f1f1f1;
+}
+.cuadrado {
+    display: grid;
+    place-items: center;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    transition: all 3s;
+}
+.cuadrado:hover {
+    width: 600px;
+    transition: all 3s;
+}

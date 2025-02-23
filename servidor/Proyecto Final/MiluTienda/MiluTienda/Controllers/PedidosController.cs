@@ -22,7 +22,7 @@ namespace MiluTienda.Controllers
         }
 
         //GET: Pedidos/Index
-        public async Task<IActionResult> Index(string email, DateTime? fechaCreacion, int page = 1)
+        public async Task<IActionResult> Index(string email, int page = 1)
         {
             // Número de elementos por página
             int pageSize = 10;
@@ -32,11 +32,6 @@ namespace MiluTienda.Controllers
                                                .Include(p => p.Cliente)
                                                .AsQueryable();
 
-            // Filtrar por fecha de creación si es proporcionado
-            if (fechaCreacion.HasValue)
-            {
-                pedidosQuery = pedidosQuery.Where(p => p.FechaCreacion >= fechaCreacion.Value);
-            }
 
 
             // Filtrar por email del cliente si es proporcionado
@@ -59,7 +54,6 @@ namespace MiluTienda.Controllers
 
             // Pasar los parámetros de búsqueda a la vista a través de ViewData
             ViewData["Email"] = email;
-            ViewData["FechaCreacion"] = fechaCreacion;
 
             return View(model);
         }

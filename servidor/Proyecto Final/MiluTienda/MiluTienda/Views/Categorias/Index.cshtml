@@ -1,54 +1,81 @@
 ﻿@model PaginatedList<MiluTienda.Models.Categoria>
 
-<h1>Categorías</h1>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Categorías</h1>
+        <a asp-action="Create" class="btn btn-custom-inverse">
+            <i class="bi bi-plus-circle"></i> Crear nueva categoría
+        </a>
+    </div>
 
-<p>
-    <a asp-action="Create">Crear nueva categoria</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-hover table-bordered text-center shadow-sm">
+        <thead class="table-pink">
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)</th>
+                <th class="text-dark">Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                    <td class="align-middle">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning mx-1">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info mx-1">
+                            <i class="bi bi-info-circle"></i> Detalles
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger mx-1">
+                            <i class="bi bi-trash3"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<!-- Paginación -->
-<div>
-    <span>Página @Model.PageIndex de @Model.TotalPages</span>
+    <!-- Paginación -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="Index" asp-route-page="1" class="btn btn-outline-secondary mx-1">Primera</a>
+                <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-outline-secondary mx-1">Anterior</a>
+            }
+        </div>
+        <div class="text-pink fw-bold">
+            Página @Model.PageIndex de @Model.TotalPages
+        </div>
+        <div>
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-outline-secondary mx-1">Siguiente</a>
+                <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary mx-1">Última</a>
+            }
+        </div>
+    </div>
 </div>
+<style>
+    .text-pink {
+        color: #D86A91;
+    }
 
-<div class="d-flex justify-content-between">
-    <div>
-        @if (Model.HasPreviousPage)
-        {
-            <a asp-action="Index" asp-route-page="1" class="btn btn-primary">Primera</a>
-            <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-primary">Anterior</a>
-        }
-    </div>
-    <div>
-        <span>Página @Model.PageIndex de @Model.TotalPages</span>
-    </div>
-    <div>
-        @if (Model.HasNextPage)
-        {
-            <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-primary">Siguiente</a>
-            <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-primary">Última</a>
-        }
-    </div>
-</div>
+    .table-pink {
+        background-color: #FFCCD2;
+    }
+
+    .btn-custom-inverse {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-custom-inverse:hover {
+        background-color: #D86A91;
+        color: #fff;
+    }
+
+</style>

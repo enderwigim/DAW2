@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="bota-cont">
+        <img src="img/bota.png" class="bota" onclick="patear()">
+    </section>
+    <div class="pelota"></div>
+
+    <script>
+        function patear() {
+            let bota = document.querySelector('.bota');
+            let pelota = document.querySelector('.pelota');
+            if (bota.classList.contains('patear')) {
+                bota.classList.remove('patear');
+                pelota.classList.remove('caer')
+
+            } else {
+
+                bota.classList.add('patear');
+                setTimeout(() => {
+                    pelota.classList.add('caer');
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

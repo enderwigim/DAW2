@@ -1,0 +1,64 @@
+body {
+
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url('img/fondo.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+
+    
+}
+
+.bota-cont {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.bota {
+    width: 100px;
+    height: 100px;
+}
+.patear {
+    width: 110px;
+    height: 110px;
+    animation-name: bota-golpe;
+    animation-duration: 3s;
+}
+
+
+@keyframes bota-golpe {
+    50% {
+      transform: rotate(90deg);
+    }
+     
+    100% {
+      transform: rotate(0deg);
+    }  
+  }
+
+
+.pelota {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 5%;
+    left: 55%;
+    transform: translateX(0%);
+    border-radius: 100px;   
+    
+}
+.caer{
+    animation-name: pelota-cae;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pelota-cae {
+    100% {
+        top: 87%;
+    }
+}

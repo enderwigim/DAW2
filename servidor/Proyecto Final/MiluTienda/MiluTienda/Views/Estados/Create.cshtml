@@ -1,33 +1,68 @@
 ﻿@model MiluTienda.Models.Estado
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Estado";
 }
 
-<h1>Create</h1>
+<div class="container my-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Crear Nuevo Estado</h1>
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
+    </div>
 
-<h4>Estado</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <!-- Formulario de creación -->
+    <div class="card shadow-sm border-pink">
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Descripcion" class="form-label text-pink">Descripción</label>
+                    <input asp-for="Descripcion" class="form-control border-pink" />
+                    <span asp-validation-for="Descripcion"></span>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="d-flex justify-content-end gap-3">
+                    <button type="submit" class="btn btn-custom-inverse">
+                        <i class="bi bi-plus-circle"></i> Crear
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<style>
+    .text-pink {
+        color: #D86A91;
+    }
+
+    .border-pink {
+        border: 2px solid #D86A91;
+    }
+
+    .btn-custom-inverse {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-custom-inverse:hover {
+        background-color: #D86A91;
+        color: #fff;
+    }
+</style>

@@ -1,60 +1,72 @@
 ﻿@model MiluTienda.Models.Clientes
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Cliente";
 }
 
-<h1>Details</h1>
+<div class="container my-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Detalles del Cliente</h1>
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
+    </div>
 
-<div>
-    <h4>Clientes</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Poblacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Poblacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodPostal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodPostal)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nif)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nif)
-        </dd>
-    </dl>
+    <!-- Información del cliente -->
+    <div class="card shadow-sm border-pink">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 text-pink">Nombre:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+
+                <dt class="col-sm-3 text-pink">Email:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3 text-pink">Teléfono:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Telefono)</dd>
+
+                <dt class="col-sm-3 text-pink">Dirección:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Direccion)</dd>
+
+                <dt class="col-sm-3 text-pink">Población:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Poblacion)</dd>
+
+                <dt class="col-sm-3 text-pink">Código Postal:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CodPostal)</dd>
+
+                <dt class="col-sm-3 text-pink">NIF:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Nif)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
+    </div>
 </div>
-<div>
-    <!-- <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> | -->
-    <a asp-action="Index" class="btn btn-custom-inverse">Back to List</a>
-</div>
+
+<style>
+    .text-pink {
+        color: #D86A91;
+    }
+
+    .border-pink {
+        border: 2px solid #D86A91;
+    }
+
+    .btn-custom-inverse {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-custom-inverse:hover {
+        background-color: #D86A91;
+        color: #fff;
+    }
+</style>

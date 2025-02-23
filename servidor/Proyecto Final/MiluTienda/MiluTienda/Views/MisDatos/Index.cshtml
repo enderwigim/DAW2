@@ -4,45 +4,56 @@
     ViewData["Title"] = "Mis Datos";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-person-circle"></i> Mis Datos</h3>
+        </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <h4>Detalles del Usuario</h4>
-        <hr />
-        <dl class="row">
-            <!-- Nombre -->
-            <dt class="col-sm-4">Nombre:</dt>
-            <dd class="col-sm-8">@Model.Nombre</dd>
+        <div class="card-body">
+            <dl class="row">
+                <!-- Nombre -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-person"></i> Nombre:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Nombre</dd>
 
-            <!-- Email -->
-            <dt class="col-sm-4">Correo Electrónico:</dt>
-            <dd class="col-sm-8">@Model.Email</dd>
+                <!-- Email -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-envelope"></i> Correo Electrónico:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Email</dd>
 
-            <!-- Teléfono -->
-            <dt class="col-sm-4">Teléfono:</dt>
-            <dd class="col-sm-8">@Model.Telefono</dd>
+                <!-- Teléfono -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-telephone"></i> Teléfono:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Telefono</dd>
 
-            <!-- Dirección -->
-            <dt class="col-sm-4">Dirección:</dt>
-            <dd class="col-sm-8">@Model.Direccion</dd>
+                <!-- Dirección -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-house"></i> Dirección:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Direccion</dd>
 
-            <!-- Población -->
-            <dt class="col-sm-4">Población:</dt>
-            <dd class="col-sm-8">@Model.Poblacion</dd>
+                <!-- Población -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-geo-alt"></i> Población:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Poblacion</dd>
 
-            <!-- Código Postal -->
-            <dt class="col-sm-4">Código Postal:</dt>
-            <dd class="col-sm-8">@Model.CodPostal</dd>
+                <!-- Código Postal -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-mailbox"></i> Código Postal:</dt>
+                <dd class="col-sm-8 text-dark">@Model.CodPostal</dd>
 
-            <!-- NIF -->
-            <dt class="col-sm-4">NIF:</dt>
-            <dd class="col-sm-8">@Model.Nif</dd>
-        </dl>
+                <!-- NIF -->
+                <dt class="col-sm-4 fw-bold text-secondary"><i class="bi bi-file-earmark-person"></i> NIF:</dt>
+                <dd class="col-sm-8 text-dark">@Model.Nif</dd>
+            </dl>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |
-    <a asp-action="Logout" asp-controller="Account" class="btn btn-secondary">Cerrar sesión</a>
+    <!-- Botones de acción -->
+    <div class="text-center mt-3 d-flex justify-content-center align-items-center gap-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-lg btn-custom-inverse text-white shadow">
+            <i class="bi bi-pencil-square"></i> Editar Datos
+        </a>
+        <form asp-area="Identity" asp-page="/Account/Logout"
+              asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </button>
+        </form>
+
+    </div>
 </div>

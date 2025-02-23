@@ -1,75 +1,80 @@
 ﻿@model MiluTienda.Models.Pedido
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Pedido";
 }
 
-<h1>Delete</h1>
+<div class="container my-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Eliminar Pedido #@Model.Id</h1>
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Volver a la lista
+        </a>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Pedido</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Confirmado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Confirmado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Preparado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Preparado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Enviado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Enviado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cobrado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cobrado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Devuelto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Devuelto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Anulado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Anulado)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cliente.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cliente.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado.Descripcion)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="alert alert-danger text-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i> ¿Estás seguro de que deseas eliminar este pedido?
+    </div>
+
+    <div class="row">
+        <!-- Columna de detalles del pedido -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-pink">
+                <div class="card-body">
+                    <h4 class="text-pink">Información del Pedido</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4 text-pink">Fecha de Creación:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.FechaCreacion)</dd>
+                        <dt class="col-sm-4 text-pink">Estado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Estado.Descripcion)</dd>
+                        <dt class="col-sm-4 text-pink">Confirmado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Confirmado)</dd>
+                        <dt class="col-sm-4 text-pink">Enviado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Enviado)</dd>
+                        <dt class="col-sm-4 text-pink">Cobrado:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Cobrado)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna de información del cliente -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-pink">
+                <div class="card-body">
+                    <h4 class="text-pink">Información del Cliente</h4>
+                    <hr />
+                    @if (Model.Cliente != null)
+                    {
+                        <dl class="row">
+                            <dt class="col-sm-4 text-pink">Nombre:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Nombre)</dd>
+                            <dt class="col-sm-4 text-pink">Email:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Email)</dd>
+                            <dt class="col-sm-4 text-pink">Teléfono:</dt>
+                            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cliente.Telefono)</dd>
+                        </dl>
+                    }
+                    else
+                    {
+                        <p>No se encontraron datos del cliente.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <form asp-action="Delete" class="m-0">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+        </form>
+        <a asp-action="Index" class="btn btn-custom-inverse">
+            <i class="bi bi-arrow-left-circle"></i> Cancelar
+        </a>
+    </div>
 </div>

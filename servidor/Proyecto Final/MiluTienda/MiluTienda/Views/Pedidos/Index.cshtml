@@ -1,157 +1,145 @@
 ﻿@model PaginatedList<MiluTienda.Models.Pedido>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Pedidos";
 }
 
-<h1>Pedidos</h1>
-
-<!-- Filtro por Fecha y Email del Cliente -->
-<form method="get">
-    <div class="row g-2 align-items-end">
-        <!-- Campo de Fecha de creación -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="fechaCreacion" class="form-label">Fecha de creación</label>
-                <input type="date" name="fechaCreacion" class="form-control" id="fechaCreacion" value="@ViewData["FechaInicio"]" />
-            </div>
-        </div>
-
-        <!-- Campo de Email -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" value="@ViewData["Email"]" placeholder="Ingrese el email del cliente" />
-            </div>
-        </div>
-
-        <!-- Botones de acción -->
-        <div class="col-12 d-flex justify-content-between mt-2">
-            <button type="submit" class="btn btn-custom-inverse">Filtrar</button>
-            <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
-        </div>
+<div class="container my-4">
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-pink">Pedidos</h1>
     </div>
-</form>
 
+    <!-- Filtro por Fecha y Email del Cliente -->
+    <form method="get" class="mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-6">
+                <label for="email" class="form-label text-pink">Email del Cliente</label>
+                <input type="text" name="email" class="form-control border-pink" placeholder="Ingrese el email del cliente" value="@ViewData["Email"]" />
+            </div>
 
+            <!-- Botones de acción -->
+            <div class="col-12 d-flex justify-content-end gap-3 mt-3">
+                <button type="submit" class="btn btn-custom-inverse">
+                    <i class="bi bi-funnel"></i> Filtrar
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="clearFilters()">
+                    <i class="bi bi-x-circle"></i> Limpiar
+                </button>
+            </div>
+        </div>
+    </form>
 
-
-
-<!-- Mostrar los pedidos -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Id)</th>
-            <th><strong>@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</strong></th>
-            <th>Email Cliente</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Confirmado)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Cobrado)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Enviado)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Devuelto)</th>
-            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Anulado)</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <!-- Mostrar los pedidos -->
+    <table class="table table-hover table-bordered text-center shadow-sm">
+        <thead class="table-pink">
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                <td>@Html.DisplayFor(modelItem => item.Estado.Descripcion)</td>
-                <td>@Html.DisplayFor(modelItem => item.Cliente.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
-                <td>@Html.DisplayFor(modelItem => item.Confirmado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Cobrado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Enviado)</td>
-                <td>@Html.DisplayFor(modelItem => item.Devuelto)</td>
-                <td>@Html.DisplayFor(modelItem => item.Anulado)</td>
-                <td>
-                    @* <!-- Botón Editar --> *@
-                    @* <a href="@Url.Action("Edit", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-warning" title="Editar"> *@
-                    @*     <i class="fas fa-edit"></i> *@
-                    @* </a> *@
-                    <div class="btn-group" role="group">
-                        <a href="@Url.Action("Details", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-info" title="Detalles">
-                            <i class="bi bi-info-circle"></i>
-                        </a>
-                        <a href="@Url.Action("Delete", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Borrar">
-                            <i class="bi bi-trash3-fill"></i>
-                        </a>
-                        @if (item.EstadoId < 4 && item.Estado.Descripcion != "Pendiente") {
-                            <!-- Botón Avanzar -->
-                            <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
-                                <i class="fas fa-forward"></i>
-                            </a>
-                        }
-                    </div>
-                </td>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Id)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Estado)</th>
+                <th class="text-dark">Email Cliente</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().FechaCreacion)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Confirmado)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Cobrado)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Enviado)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Devuelto)</th>
+                <th class="text-dark">@Html.DisplayNameFor(model => model.FirstOrDefault().Anulado)</th>
+                <th class="text-dark">Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Id)</td>
+                    
+                    <td class="align-middle">
+                        <span class="badge @(item.Estado.Descripcion == "Pendiente" ? "bg-warning text-dark" : item.Estado.Descripcion == "Enviado" ? "bg-primary" : "bg-success")">
+                            @Html.DisplayFor(modelItem => item.Estado.Descripcion)
+                        </span>
+                    </td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Cliente.Email)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Confirmado)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Cobrado)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Enviado)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Devuelto)</td>
+                    <td class="align-middle">@Html.DisplayFor(modelItem => item.Anulado)</td>
+                    <td class="align-middle">
+                        <div class="btn-group" role="group">
+                            <a href="@Url.Action("Details", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-info" title="Detalles">
+                                <i class="bi bi-info-circle"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Borrar">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
+                            @if (item.EstadoId < 4 && item.Estado.Descripcion != "Pendiente")
+                            {
+                                <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
+                                    <i class="bi bi-forward-fill"></i>
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<!-- Paginación -->
-<div class="d-flex justify-content-between">
-    <div>
-        @if (Model.HasPreviousPage)
-        {
-            <a asp-action="Index" asp-route-page="1" class="btn btn-custom-inverse">Primera</a>
-            <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-custom-inverse">Anterior</a>
-        }
-    </div>
-    <div>
-        <span>Página @Model.PageIndex de @Model.TotalPages</span>
-    </div>
-    <div>
-        @if (Model.HasNextPage)
-        {
-            <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-custom-inverse">Siguiente</a>
-            <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-custom-inverse">Última</a>
-        }
+    <!-- Paginación -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div>
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="Index" asp-route-page="1" class="btn btn-outline-secondary mx-1">Primera</a>
+                <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-outline-secondary mx-1">Anterior</a>
+            }
+        </div>
+        <div class="text-pink fw-bold">
+            Página @Model.PageIndex de @Model.TotalPages
+        </div>
+        <div>
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-outline-secondary mx-1">Siguiente</a>
+                <a asp-action="Index" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary mx-1">Última</a>
+            }
+        </div>
     </div>
 </div>
 
+
+
+<style>
+    .text-pink {
+        color: #D86A91;
+    }
+
+    .border-pink {
+        border: 2px solid #D86A91;
+    }
+
+    .table-pink {
+        background-color: #FFCCD2;
+    }
+
+    .btn-custom-inverse {
+        background-color: #FFCCD2;
+        color: #000;
+        border: 2px solid #D86A91;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-custom-inverse:hover {
+            background-color: #D86A91;
+            color: #fff;
+        }
+</style>
+
 @section Scripts {
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var fechaInicioInput = document.getElementById("fechaInicio");
-            var fechaFinInput = document.getElementById("fechaFin");
-
-            // Si los inputs tienen valores, los formateamos
-            if (fechaInicioInput.value) {
-                var date = new Date(fechaInicioInput.value);
-                fechaInicioInput.value = date.toLocaleDateString('es-ES'); // dd/mm/yyyy
-            }
-
-            if (fechaFinInput.value) {
-                var date = new Date(fechaFinInput.value);
-                fechaFinInput.value = date.toLocaleDateString('es-ES'); // dd/mm/yyyy
-            }
-
-            // Al enviar el formulario, convertimos las fechas nuevamente al formato yyyy-mm-dd
-            document.querySelector("form").addEventListener("submit", function () {
-                var fechaInicioValue = fechaInicioInput.value.split('/'); // dd/mm/yyyy
-                if (fechaInicioValue.length === 3) {
-                    fechaInicioInput.value = fechaInicioValue[2] + '-' + fechaInicioValue[1] + '-' + fechaInicioValue[0]; // yyyy-mm-dd
-                }
-
-                var fechaFinValue = fechaFinInput.value.split('/');
-                if (fechaFinValue.length === 3) {
-                    fechaFinInput.value = fechaFinValue[2] + '-' + fechaFinValue[1] + '-' + fechaFinValue[0]; // yyyy-mm-dd
-                }
-            });
-        });
+        function clearFilters() {
+            document.getElementsByName('email')[0].value = '';
+            window.location.href = '@Url.Action("Index", "Pedidos")';
+        }
     </script>
 }
-
-<script>
-    function clearFilters() {
-        // Limpia los valores del formulario
-        document.getElementById('fechaCreacion').value = '';
-        document.getElementsByName('email')[0].value = '';
-
-        // Redirige a la acción Index sin parámetros
-        window.location.href = '@Url.Action("Index", "Pedidos")';
-    }
-</script>

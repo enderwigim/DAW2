@@ -1,27 +1,54 @@
 ﻿@model IEnumerable<MiluTienda.Models.Pedido>
 
-<h1>Mis Pedidos</h1>
+@{
+    ViewData["Title"] = "Mis Pedidos";
+}
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Id Pedido</th>
-            <th>Fecha de Creación</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pedido in Model)
-        {
-            <tr>
-                <td>@pedido.Id</td>
-                <td>@pedido.FechaCreacion?.ToString("dd/MM/yyyy")</td>
-                <td>@pedido.Estado.Descripcion</td>
-                <td>
-                    <a href="@Url.Action("Details", "MisPedidos", new { id = pedido.Id })" class="btn btn-info">Ver Detalles</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-bag"></i> Mis Pedidos</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th><i class="bi bi-hash"></i> Id Pedido</th>
+                            <th><i class="bi bi-calendar"></i> Fecha de Creación</th>
+                            <th><i class="bi bi-info-circle"></i> Estado</th>
+                            <th><i class="bi bi-gear"></i> Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var pedido in Model)
+                        {
+                            <tr>
+                                <td><strong>#@pedido.Id</strong></td>
+                                <td>@pedido.FechaCreacion?.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <span class="badge @(pedido.Estado.Descripcion == "Pendiente" ? "bg-warning text-dark" : pedido.Estado.Descripcion == "Enviado" ? "bg-primary" : "bg-success")">
+                                        @pedido.Estado.Descripcion
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", "MisPedidos", new { id = pedido.Id })" class="btn btn-sm btn-custom-inverse text-white shadow">
+                                        <i class="bi bi-eye"></i> Ver Detalles
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-3">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+    </div>
+</div>
