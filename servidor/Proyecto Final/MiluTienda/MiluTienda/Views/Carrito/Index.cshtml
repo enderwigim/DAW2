@@ -1,140 +1,178 @@
 ﻿@model MiluTienda.Models.Pedido
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Carrito";
 }
 
-<h1>Carrito</h1>
-
-<div>
-    <div class="row">
-        <!-- Columna Izquierda: Información del Pedido -->
-        <div class="col-md-6">
-            <h4>Pedido</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Id)
-                </dt>
-                <dd class="col-sm-8">
-                    @Model.Id
-                </dd>
-
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.FechaCreacion)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.FechaCreacion)
-                </dd>
-
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.Estado)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Estado.Descripcion)
-                </dd>
-            </dl>
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-cart4"></i> Carrito de Compras</h3>
         </div>
 
-        <!-- Columna Derecha: Información del Cliente -->
-        <div class="col-md-6">
-            <h4>Datos del Cliente</h4>
+        <div class="card-body">
+            <!-- Información del Pedido y Cliente en 2 columnas -->
+            <div class="row mb-4">
+                <!-- Información del Pedido -->
+                <div class="col-md-6 border-end">
+                    <h4 class="text-center text-muted">Pedido</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-file-earmark-text"></i> Nº Pedido:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Model.Id</dd>
+
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-calendar-event"></i> Fecha Creación:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.FechaCreacion)</dd>
+
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-check2-circle"></i> Estado:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.Estado.Descripcion)</dd>
+                    </dl>
+                </div>
+
+                <!-- Información del Cliente -->
+                <div class="col-md-6">
+                    <h4 class="text-center text-muted">Datos del Cliente</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-person-circle"></i> Nombre:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.Cliente.Nombre)</dd>
+
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-envelope"></i> Email:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.Cliente.Email)</dd>
+
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-telephone"></i> Teléfono:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.Cliente.Telefono)</dd>
+
+                        <dt class="col-sm-5 text-end fw-bold">
+                            <i class="bi bi-house"></i> Dirección:
+                        </dt>
+                        <dd class="col-sm-7 text-start">@Html.DisplayFor(model => model.Cliente.Direccion)</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <!-- Detalles del Pedido -->
+            <h4 class="text-center text-muted">Detalles del Pedido</h4>
             <hr />
-            <dl class="row">
-                <dt class="col-sm-4">
-                    Nombre
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Nombre)
-                </dd>
-                <dt class="col-sm-4">
-                    Email
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Email)
-                </dd>
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th class="text-center">Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.LineasPedido)
+                    {
+                        <tr>
+                            <td>
+                                @* Imagen del producto *@
+                                @{
+                                    var nombreImagen = "no-imagen.jpg";
+                                    if (item.Producto.Imagen != null)
+                                    {
+                                        nombreImagen = item.Producto.Imagen;
+                                    }
+                                }
+                                <img src="~/imagenes/productos/@nombreImagen" class="img-fluid rounded shadow-sm" style="height: 50px; width: 50px;" />
+                            </td>
+                            <td>@item.Producto.Nombre</td>
+                            <td class="text-center">
+                                <!-- Botones para ajustar la cantidad -->
+                                @if (item.Cantidad > 1)
+                                {
+                                    <a asp-action="RestarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-dash"></i>
+                                    </a>
+                                }
+                                <span class="mx-2">@item.Cantidad</span>
+                                <a asp-action="AumentarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            </td>
+                            <td>@item.Precio€</td>
+                            <td>@(item.Precio * item.Cantidad)€</td>
+                            <td>
+                                <!-- Botón para eliminar el producto -->
+                                <form asp-action="EliminarProducto" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash3-fill"></i> Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-                <dt class="col-sm-4">
-                    Teléfono
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Telefono)
-                </dd>
+            <!-- Total general -->
+            <div class="text-end fw-bold mb-3">
+                <h4>Total Pedido: <span class="text-success">@(Model.LineasPedido.Sum(x => x.Precio * x.Cantidad))€</span></h4>
+            </div>
 
-                <dt class="col-sm-4">
-                    Dirección
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.Cliente.Direccion)
-                </dd>
-            </dl>
+            <!-- Botones de Acción con el mismo tamaño y centrados -->
+            <div class="text-center mt-4 d-flex justify-content-center gap-3">
+                <form asp-action="ConfirmarPedido" method="post" class="w-50">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn-success btn-lg w-100 shadow-sm">
+                        <i class="bi bi-check-circle"></i> Confirmar Pedido
+                    </button>
+                </form>
+                <a asp-action="Index" asp-controller="Escaparate" class="btn btn-outline-secondary btn-lg w-100 shadow-sm text-center">
+                    <i class="bi bi-arrow-left"></i> Volver al Escaparate
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Total</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.LineasPedido)
-        {
-            <tr>
-                <td>
-                    @{
-                        var nombreImagen = "no-imagen.jpg";
-                        if (item.Producto.Imagen != null)
-                        {
-                            nombreImagen = item.Producto.Imagen;
-                        }
-                    }
-                    <img src="~/imagenes/productos/@nombreImagen" class="img-fluid" asp-append-version="true" style="height:50px;width:50px"/>
-                </td>
-                <td>@item.Producto.Nombre</td>
-                <td>
-                    <!-- Botones para ajustar la cantidad -->
-                    @if (item.Cantidad != 1) {
-                        <a asp-action="RestarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-primary btn-sm">-</a>
-
-                    }
-                    <span>@item.Cantidad</span>
-                    <a asp-action="AumentarCantidad" asp-controller="Carrito" asp-route-id="@item.Id" class="btn btn-primary btn-sm">+</a>
-                </td>
-                <td>@item.Precio€</td>
-                @{
-                    var total = @item.Precio * @item.Cantidad;
-                }
-                <td>@total€</td>
-                <td>
-                    <!-- Botón para eliminar el producto -->
-                    <form asp-action="EliminarProducto" method="post">
-                        <input type="hidden" name="id" value="@item.Id" />
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
+@section Styles {
+    <style>
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            border: none;
         }
-    </tbody>
-</table>
 
-<!-- Total general -->
-<div>
-    <strong>Total Pedido: </strong> @(Model.LineasPedido.Sum(x => x.Precio * x.Cantidad))
-</div>
-<div>
-    <form asp-action="ConfirmarPedido" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <button type="submit" class="btn btn-success">Confirmar Pedido</button>
-    </form>
-</div>
+        .card-body {
+            padding: 2rem;
+        }
 
-<div>
-    <a asp-action="Index" asp-controller="Escaparate">Volver al Escaparate</a>
-</div>
+        .btn-lg {
+            font-size: 1.2rem;
+            padding: 0.8rem 2rem;
+            width: 100%;
+        }
+
+        .btn-outline-primary {
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #007bff;
+                color: white;
+            }
+
+        .shadow-sm {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+}

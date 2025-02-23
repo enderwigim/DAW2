@@ -1,0 +1,62 @@
+﻿@model MiluTienda.Areas.Identity.Pages.Account.RegisterModel.InputModel
+
+@{
+    ViewData["Title"] = "Crear Administrador";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-person-plus-fill"></i> Crear Nuevo Administrador</h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <h5 class="text-center text-muted">Crea una nueva cuenta de Administrador</h5>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <!-- Email -->
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label fw-bold"><i class="bi bi-envelope-fill"></i> Correo Electrónico</label>
+                    <input asp-for="Email" class="form-control" placeholder="Ingrese el correo electrónico" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group mb-3">
+                    <label asp-for="Password" class="form-label fw-bold"><i class="bi bi-lock-fill"></i> Contraseña</label>
+                    <input asp-for="Password" class="form-control" placeholder="Ingrese la contraseña" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Confirmación de Contraseña -->
+                <div class="form-group mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label fw-bold"><i class="bi bi-lock-fill"></i> Confirmar Contraseña</label>
+                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirme la contraseña" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <!-- Botón de registro -->
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-lg btn-custom-inverse text-white shadow-sm">
+                        <i class="bi bi-person-check-fill"></i> Registrar Administrador
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Botón de volver -->
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary shadow-sm">
+            <i class="bi bi-arrow-left"></i> Volver a la Lista de Usuarios
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

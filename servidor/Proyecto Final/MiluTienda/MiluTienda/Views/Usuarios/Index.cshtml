@@ -1,39 +1,52 @@
-﻿@model IEnumerable<MvcSoporte.Models.ViewUsuarioConRol>
+﻿@model IEnumerable<MiluTienda.Models.UsuariosConRol>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Usuarios";
 }
 
-<h1>Usuarios</h1>
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-pink text-white text-center">
+            <h3><i class="bi bi-people-fill"></i> Usuarios del Sistema</h3>
+        </div>
 
-<br />
+        <div class="card-body">
+            <!-- Botón para agregar un nuevo administrador -->
+            <div class="text-end mb-3">
+                <a asp-action="Create" class="btn btn-custom-inverse text-white shadow-sm">
+                    <i class="bi bi-person-plus"></i> Nuevo Administrador
+                </a>
+            </div>
 
-<table class="table">
-    <tr>
-        <th>
-            Usuario
-        </th>
-        <th>
-            Nombre de Usuario
-        </th>
-        <th>
-            Rol
-        </th>
-    </tr>
+            <!-- Tabla de Usuarios -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th><i class="bi bi-envelope"></i> Usuario</th>
+                            <th><i class="bi bi-person-circle"></i> Nombre de Usuario</th>
+                            <th><i class="bi bi-shield-lock"></i> Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Email</td>
+                                <td>@item.NombreUsuario</td>
+                                <td>@item.RolDeUsuario</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelIdtem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelIdtem => item.RolDeUsuario)
-            </td>
-        </tr>
-    }
-</table> 
+    <!-- Botón de volver -->
+    <div class="text-center mt-3">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary shadow-sm">
+            <i class="bi bi-arrow-left"></i> Volver al Inicio
+        </a>
+    </div>
+</div>
