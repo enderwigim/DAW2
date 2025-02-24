@@ -72,7 +72,7 @@
                             <a href="@Url.Action("Delete", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Borrar">
                                 <i class="bi bi-trash3-fill"></i>
                             </a>
-                            @if (item.EstadoId < 4 && item.Estado.Descripcion != "Pendiente")
+                            @if (item.EstadoId <= 4 && item.Estado.Descripcion != "Pendiente")
                             {
                                 <a href="@Url.Action("AvanzarEstado", "Pedidos", new { id = item.Id })" class="btn btn-sm btn-success" title="Avanzar Estado">
                                     <i class="bi bi-forward-fill"></i>
@@ -109,31 +109,9 @@
 
 
 
-<style>
-    .text-pink {
-        color: #D86A91;
-    }
-
-    .border-pink {
-        border: 2px solid #D86A91;
-    }
-
-    .table-pink {
-        background-color: #FFCCD2;
-    }
-
-    .btn-custom-inverse {
-        background-color: #FFCCD2;
-        color: #000;
-        border: 2px solid #D86A91;
-        transition: all 0.3s ease-in-out;
-    }
-
-        .btn-custom-inverse:hover {
-            background-color: #D86A91;
-            color: #fff;
-        }
-</style>
+@section Styles {
+    <link href="~/css/generales.css" rel="stylesheet" asp-append-version="true" />
+}
 
 @section Scripts {
     <script>

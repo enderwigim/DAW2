@@ -134,16 +134,12 @@ namespace MiluTienda.Controllers
         }
 
         // GET: Productos/Create
-        //[Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
             return View();
         }
 
-        // POST: Productos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Atributo,Nombre,Descripcion,Precio,PrecioCadena,Stock,Imagen,Marca,Escaparate,CategoriaId,FamiliaProductoId")] Producto producto)
@@ -176,11 +172,9 @@ namespace MiluTienda.Controllers
         }
 
         // POST: Productos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Atributo,Nombre,Descripcion,Precio,PrecioCadena,Stock,Imagen,Marca,Escaparate,CategoriaId,FamiliaProductoId")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Atributo,Nombre,Descripcion,Precio,PrecioCadena,Marca,Escaparate,CategoriaId,FamiliaProductoId")] Producto producto)
         {
             if (id != producto.Id)
             {
@@ -191,6 +185,15 @@ namespace MiluTienda.Controllers
             {
                 try
                 {
+                    var productoOriginal = await _context.Productos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+
+                    if (productoOriginal == null)
+                    {
+                        return NotFound();
+                    }
+
+                    producto.Imagen = productoOriginal.Imagen;
+
                     _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }

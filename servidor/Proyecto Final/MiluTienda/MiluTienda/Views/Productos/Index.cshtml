@@ -108,15 +108,12 @@
     <span>Página @Model.PageIndex de @Model.TotalPages</span>
 </div>
 
-<div>
+<div class="d-flex gap-2">
     @if (Model.HasPreviousPage)
     {
         <a asp-action="Index" asp-route-page="1" class="btn btn-custom-inverse">Primera</a>
         <a asp-action="Index" asp-route-page="@((Model.PageIndex - 1))" class="btn btn-custom-inverse">Anterior</a>
     }
-</div>
-
-<div>
     @if (Model.HasNextPage)
     {
         <a asp-action="Index" asp-route-page="@((Model.PageIndex + 1))" class="btn btn-custom-inverse">Siguiente</a>

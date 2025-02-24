@@ -227,24 +227,24 @@ namespace MiluTienda.Controllers
         {
             // Buscar el pedido por ID
             var pedido = await _context.Pedidos
-                .Include(p => p.Estado)  // Incluir el estado del pedido
+                .Include(p => p.Estado) 
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             // Verificar si el pedido existe
             if (pedido == null)
             {
-                return NotFound();  // Si no existe, retornar 404
+                return NotFound(); 
             }
 
-            // Verificar que el pedido no esté en el último estado posible
-            if (pedido.EstadoId == 4) // Asumiendo que 6 es el último estado (puede variar dependiendo de tu modelo de estado)
+            // Verificar que el pedido no esté en el último estado posible (Entregado)
+            if (pedido.EstadoId > 4)
             {
                 return BadRequest("El pedido ya está en el estado final.");
             }
 
             // Obtener el siguiente estado
             var siguienteEstado = _context.Estados
-                .FirstOrDefault(e => e.Id == pedido.EstadoId + 1); // Incrementar el EstadoId en 1
+                .FirstOrDefault(e => e.Id == pedido.EstadoId + 1);
 
             if (siguienteEstado == null)
             {

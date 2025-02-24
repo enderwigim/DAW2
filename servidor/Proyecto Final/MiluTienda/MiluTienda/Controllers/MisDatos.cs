@@ -105,7 +105,7 @@ namespace MiluTienda.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "MisDatos");
             }
             return View(cliente);
         }
